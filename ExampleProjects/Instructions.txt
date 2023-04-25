@@ -1,0 +1,37 @@
+These are some example projects that we did/you might do term 2
+**Please do not take any of the provided code, the instructors still have access and know it's from me**
+If there are any issues with the instructions or any questions, don't be afraid to ask me in person or message me in the discord
+
+For the python GUI:
+ - make sure python is installed on your machine
+ - run "pip install flask"
+ - run "pip install flask_sqlalchemy"
+ - run "pip install requests"
+ - two terminals will be required to run the app/GUI
+ - one terminal will have to run the app:
+    - on one terminal, make sure you cd to AgileDevelopmentProject/ExampleProjects/GuiProject/store
+    - run "py .\app.py"
+    - If the modules are installed properly, it should tell you that the app is running on a specific http server (mine is "http://127.0.0.1:5000")
+    - If you copy and paste the http into a browser, a web page with a list of products should show up, this will let you know that it is running properly
+- the second terminal will open the GUI:
+    - on this second terminal, make sure you cd to AgileDevelopmentProject/ExampleProjects/GuiProject/store/GUI
+    - run "py .\storegui.py"
+    - this will open up the GUI and you can play around with it inside
+
+For the Remindly node application:
+- make sure you download node.js on your machine
+    - you can do this by going into your browser, searching up "node.js download" and then follow the instructions to download node.js (similar to how python was installed onto our machines)
+- run "npm install passport"
+- run "npm install passport-local"
+- run "npm install express-session"
+- run "npm install express"
+- run "npm install ejs" 
+- run "npm install express-ejs-layouts"
+- run "npm install nodemon"
+- in a terminal, cd to AgileDevelopmentProject/ExampleProjects/Remindly
+    - run "npm start"
+    - if everything is installed properly, you should see another http where the server is running (mine is "localhost:3001/reminders")
+    - copy and paste the http into a browser and you should see a login screen
+    - login username is : jimmy123@gmail.com
+    - login password is : jimmy123!
+    - you will now have access to the app's functionality
