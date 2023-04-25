@@ -18,7 +18,7 @@ For the python GUI:
     - run "py .\storegui.py"
     - this will open up the GUI and you can play around with it inside
 
-For the Remindly node application:
+For the RemindlyApp node application:
 - make sure you download node.js on your machine
     - you can do this by going into your browser, searching up "node.js download" and then follow the instructions to download node.js (similar to how python was installed onto our machines)
 - run "npm install passport"
@@ -28,7 +28,7 @@ For the Remindly node application:
 - run "npm install ejs" 
 - run "npm install express-ejs-layouts"
 - run "npm install nodemon"
-- in a terminal, cd to AgileDevelopmentProject/ExampleProjects/Remindly
+- in a terminal, cd to AgileDevelopmentProject/ExampleProjects/RemindlyApp
     - run "npm start"
     - if everything is installed properly, you should see another http where the server is running (mine is "localhost:3001/reminders")
     - copy and paste the http into a browser and you should see a login screen
