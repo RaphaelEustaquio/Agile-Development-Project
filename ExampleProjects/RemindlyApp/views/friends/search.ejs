@@ -1,0 +1,30 @@
+<h1>Search Users</h1>
+<form action="/friends/search" method="get">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Search by name or email">
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach((user) => { %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <form action="/friends/add/<%= user.id %>" method="post">
+            <button type="submit" class="btn btn-primary">Add as Friend</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  

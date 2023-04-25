@@ -1,0 +1,18 @@
+<h1>Friends</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% friends.forEach((friend) => { %>
+        <tr>
+            <td><%= friend.name %></td>
+            <td><%= friend.email %></td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+<a href="/friends/search" class="btn btn-primary">Add Friends</a>
