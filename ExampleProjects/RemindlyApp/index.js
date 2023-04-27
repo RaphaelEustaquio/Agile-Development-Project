@@ -4,7 +4,6 @@ const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const reminderController = require("./controller/reminder_controller");
-const authController = require("./controller/auth_controller");
 const friendController = require("./controller/friend_controller");
 
 app.use(express.static(path.join(__dirname, "public")));
