@@ -10,12 +10,12 @@ For the python GUI:
  - two terminals will be required to run the app/GUI
  - one terminal will have to run the app:
     - on one terminal, make sure you cd to AgileDevelopmentProject/ExampleProjects/GuiProject/store
-    - run "py .\app.py"
+    - run "python .\app.py"
     - If the modules are installed properly, it should tell you that the app is running on a specific http server (mine is "http://127.0.0.1:5000")
     - If you copy and paste the http into a browser, a web page with a list of products should show up, this will let you know that it is running properly
 - the second terminal will open the GUI:
     - on this second terminal, make sure you cd to AgileDevelopmentProject/ExampleProjects/GuiProject/store/GUI
-    - run "py .\storegui.py"
+    - run "python .\storegui.py"
     - this will open up the GUI and you can play around with it inside
 
 For the RemindlyApp node application:
