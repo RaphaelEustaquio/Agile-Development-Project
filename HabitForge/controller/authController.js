@@ -42,8 +42,9 @@ const registerUser = async (req, res) => {
 };
 
 const logout = (req, res) => {
-    req.logout();
-    res.redirect('/login');
+    req.logout(() => {
+        res.redirect('/login');
+    });
 };
 
 module.exports = { renderIndex, renderLogin, loginUser, renderRegister, registerUser, logout };

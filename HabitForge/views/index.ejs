@@ -6,7 +6,7 @@
 <body>
     <% if (user) { %>
         <h1>Welcome, <%= user.name %>!</h1>
-        <form action="/logout" method="post">
+        <form action="/logout" method="get">
             <button type="submit">Log Out</button>
         </form>
         <!-- Add habit tracking functionality here -->

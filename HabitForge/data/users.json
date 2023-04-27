@@ -1,9 +1,11 @@
 [
-    {
-        "id": "1",
-        "name": "John Doe",
-        "email": "john@example.com",
-        "password": "john123",
-        "habits": []
-    }
+  {
+    "id": "1682579269003",
+    "name": "test",
+    "email": "test@test.com",
+    "password": "$2a$10$i6mWq7vQBgZe3S06LsZQMeooczacLDtT9S1eDE917zWq0ajq204p.",
+    "habits": [
+      "quit smoking"
+    ]
+  }
 ]
