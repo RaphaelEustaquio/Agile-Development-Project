@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+</head>
+<body>
+    <% if (user) { %>
+        <h1>Welcome, <%= user.name %>!</h1>
+        <form action="/logout" method="get">
+            <button type="submit">Log Out</button>
+        </form>
+        <!-- Add habit tracking functionality here -->
+        <h2>Habits</h2>
+        <form action="/add-habit" method="post">
+            <label for="habit">New Habit</label>
+            <input type="text" name="habit" required>
+            <button type="submit">Add Habit</button>
+        </form>
+        <ul>
+            <% user.habits.forEach(habit => { %>
+                <li><%= habit %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <h1>Welcome, please log in or register.</h1>
+        <a href="/login">Login</a> | <a href="/register">Register</a>
+    <% } %>
+</body>
+</html>
