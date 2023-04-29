@@ -6,11 +6,11 @@ const users = require('../data/users.json');
 const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/authMiddleware');
 
 const renderIndex = (req, res) => {
-    res.render('index.ejs', { user: req.user });
+    res.render('userhome/index.ejs', { user: req.user });
 };
 
 const renderLogin = (req, res) => {
-    res.render('login.ejs');
+    res.render('auth/login.ejs');
 };
 
 const loginUser = passport.authenticate('local', {
@@ -20,7 +20,7 @@ const loginUser = passport.authenticate('local', {
 });
 
 const renderRegister = (req, res) => {
-    res.render('register.ejs');
+    res.render('auth/register.ejs');
 };
 
 const registerUser = async (req, res) => {
