@@ -11,18 +11,22 @@ const saveUsers = () => {
   
   
 const addHabit = (req, res) => {
-    const habit = {
-        id: Date.now().toString(),
-        name: req.body.habit,
-    };
-    const user = users.find((user) => user.id === req.user.id);
+  const habit = {
+    id: Date.now().toString(),
+    name: req.body.habit,
+    description: req.body.description,
+    logDays: req.body.logDays,
+    duration: req.body.duration,
+    isPublic: req.body.isPublic === 'on',
+  };
+  const user = users.find((user) => user.id === req.user.id);
 
-    if (user) {
-        user.habits.push(habit);
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
-    }
+  if (user) {
+    user.habits.push(habit);
+    saveUsers();
+  }
 
-    res.redirect('/');
+  res.redirect('/');
 };
 
 const editHabit = (req, res) => {
