@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Habit</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Add Habit', currentPage: 'userhome' }) %>
+    <div class="container">
+        <h1>Add a new habit</h1>
+        <form action="/add-habit" method="post">
+            <label for="habit">Habit title:</label>
+            <input type="text" name="habit" required>
+
+            <label for="description">Habit description:</label>
+            <textarea name="description" required></textarea>
+
+            <label for="logDays">Log habit every:</label>
+            <select name="logDays">
+                <option value="mon">Monday</option>
+                <option value="tue">Tuesday</option>
+                <option value="wed">Wednesday</option>
+                <option value="thu">Thursday</option>
+                <option value="fri">Friday</option>
+                <option value="sat">Saturday</option>
+                <option value="sun">Sunday</option>
+            </select>
+
+            <label for="duration">Habit duration (days):</label>
+            <input type="number" name="duration" min="1" required>
+
+            <label for="isPublic">Make habit public:</label>
+            <input type="checkbox" name="isPublic">
+
+            <button type="submit">Add Habit</button>
+        </form>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

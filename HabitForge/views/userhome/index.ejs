@@ -10,11 +10,7 @@
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
             <h2>Habits</h2>
-            <form action="/add-habit" method="post">
-                <label for="habit">New Habit</label>
-                <input type="text" name="habit" required>
-                <button type="submit">Add Habit</button>
-            </form>
+            <a href="/add-habit">Add Habit</a>
             <div class="badge-container">
                 <% user.habits.forEach((habit) => { %>
                     <div class="badge" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
