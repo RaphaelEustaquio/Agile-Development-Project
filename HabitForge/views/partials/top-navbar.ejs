@@ -1,0 +1,18 @@
+<div class="top-navbar">
+    <div class="logo">
+      <a href="/"><img src="/images/logo.png" alt="Logo"></a>
+    </div>
+    <div class="page-title">
+      <%= pageTitle %>
+    </div>
+    <div class="user-action">
+      <% if (currentPage === 'userhome') { %>
+        <form action="/logout" method="get">
+          <button type="submit">Log Out</button>
+        </form>
+      <% } else { %>
+        <a href="/userhome"><i class="icon icon-userhome"></i></a>
+      <% } %>
+    </div>
+  </div>
+  
