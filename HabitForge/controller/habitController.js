@@ -3,6 +3,10 @@ const path = require('path');
 const users = require('../data/users.json');
 const { checkAuthenticated } = require('../middleware/authMiddleware');
 
+const saveUsers = () => {
+    fs.writeFileSync(path.join(__dirname, '../data/users.json'), JSON.stringify(users, null, 2));
+  };
+  
 const addHabit = (req, res) => {
     const habit = {
         id: Date.now().toString(),
@@ -24,7 +28,22 @@ const editHabit = (req, res) => {
       return res.redirect('/');
     }
     res.render('edit-habit.ejs', { user: req.user, habit });
-  };
+};
+
+  const updateHabit = (req, res) => {
+    const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
+    if (habitIndex !== -1) {
+      req.user.habits[habitIndex].name = req.body.habit;
+      saveUsers();
+    }
+    res.redirect('/');
+};
+  
+ const deleteHabit = (req, res) => {
+    req.user.habits = req.user.habits.filter((h) => h.id !== req.params.habitId);
+    saveUsers();
+    res.redirect('/');
+};
   
 
-module.exports = { addHabit, editHabit };
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit };
