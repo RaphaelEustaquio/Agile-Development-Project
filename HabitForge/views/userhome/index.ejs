@@ -5,12 +5,10 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <%- include('../partials/top-navbar', { pageTitle: 'User Home', currentPage: 'userhome' }) %>
     <div class="container">
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
-            <form action="/logout" method="get">
-                <button type="submit">Log Out</button>
-            </form>
             <h2>Habits</h2>
             <form action="/add-habit" method="post">
                 <label for="habit">New Habit</label>
@@ -31,5 +29,6 @@
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
     </div>
+    <%- include('../partials/navbar') %>
 </body>
 </html>
