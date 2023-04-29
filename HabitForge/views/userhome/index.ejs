@@ -2,6 +2,19 @@
 <html>
 <head>
     <title>User Page</title>
+    <style>
+        a:hover span {
+            font-size: 1.2em; /* Increase font size by 20% when hovered */
+            transform: scale(1.2); /* Scale the icon by 20% when hovered */
+        }
+        a > span {
+            text-decoration: none; /* Remove underline from icon */
+            display: inline-block; /* Allow fixed width and height */
+            width: 20px; /* Set fixed width */
+            height: 20px; /* Set fixed height */
+            overflow: hidden; /* Hide any overflow from scaling */
+        }
+    </style>
 </head>
 <body>
     <% if (user) { %>
@@ -17,8 +30,11 @@
             <button type="submit">Add Habit</button>
         </form>
         <ul>
-            <% user.habits.forEach(habit => { %>
-                <li><%= habit %></li>
+            <% user.habits.forEach((habit) => { %>
+                <li>
+                    <%= habit.name %> 
+                    <a href="userhome/edit-habit/<%= habit.id %>"><span>🔧</span></a>
+                </li>
             <% }) %>
         </ul>
     <% } else { %>

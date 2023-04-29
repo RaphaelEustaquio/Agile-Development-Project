@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Edit Habit</title>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Edit Habit</h1>
-    <form action="/update-habit/<%= habit.id %>" method="POST">
-      <input type="text" name="habit" value="<%= habit.name %>" required>
-      <button type="submit">Update</button>
+    <form action="/userhome/update-habit/<%= habit.id %>" method="post">
+        <label for="habit">Habit</label>
+        <input type="text" name="habit" value="<%= habit.name %>" required>
+        <button type="submit">Update Habit</button>
     </form>
-    <form action="/delete-habit/<%= habit.id %>" method="POST">
-      <button type="submit">Delete</button>
+    <form action="/delete-habit/<%= habit.id %>" method="post">
+        <button type="submit">Remove Habit</button>
     </form>
-  </body>
+</body>
 </html>

@@ -1,18 +1,14 @@
 [
   {
-    "id": "1682579269003",
-    "name": "test",
-    "email": "test@test.com",
-    "password": "$2a$10$i6mWq7vQBgZe3S06LsZQMeooczacLDtT9S1eDE917zWq0ajq204p.",
-    "habits": [
-      "quit smoking"
-    ]
-  },
-  {
     "id": "1682742301700",
     "name": "raph",
     "email": "raph@test.com",
     "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
-    "habits": []
+    "habits": [
+      {
+        "id": "1682746655888",
+        "name": "test"
+      }
+    ]
   }
 ]
