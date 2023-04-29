@@ -1,0 +1,11 @@
+a:hover span {
+    font-size: 1.2em; /* Increase font size by 20% when hovered */
+    transform: scale(1.2); /* Scale the icon by 20% when hovered */
+}
+a > span {
+    text-decoration: none; /* Remove underline from icon */
+    display: inline-block; /* Allow fixed width and height */
+    width: 20px; /* Set fixed width */
+    height: 20px; /* Set fixed height */
+    overflow: hidden; /* Hide any overflow from scaling */
+}
