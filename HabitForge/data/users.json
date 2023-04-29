@@ -4,6 +4,19 @@
     "name": "raph",
     "email": "raph@test.com",
     "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
+<<<<<<< HEAD
     "habits": []
+=======
+    "habits": [
+      {
+        "id": "1682746655888",
+        "name": "test"
+      },
+      {
+        "id": "1682754999086",
+        "name": "running everyday"
+      }
+    ]
+>>>>>>> userpagedesign
   }
 ]
