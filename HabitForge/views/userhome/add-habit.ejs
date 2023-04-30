@@ -12,16 +12,16 @@
             <input type="text" name="title" required>
             <label for="description">Description</label>
             <textarea name="description" rows="5" required></textarea>
-            <label for="logDay">Log habit every:</label>
-            <select name="logDays" id="logDays" multiple>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-                <option value="Sunday">Sunday</option>
-              </select>
+            <label for="logDays">Log Days:</label>
+            <div id="logDays">
+              <label><input type="checkbox" name="logDays[]" value="Sunday"> Sunday</label>
+              <label><input type="checkbox" name="logDays[]" value="Monday"> Monday</label>
+              <label><input type="checkbox" name="logDays[]" value="Tuesday"> Tuesday</label>
+              <label><input type="checkbox" name="logDays[]" value="Wednesday"> Wednesday</label>
+              <label><input type="checkbox" name="logDays[]" value="Thursday"> Thursday</label>
+              <label><input type="checkbox" name="logDays[]" value="Friday"> Friday</label>
+              <label><input type="checkbox" name="logDays[]" value="Saturday"> Saturday</label>
+            </div>            
             <label for="duration">Habit Duration (days)</label>
             <input type="number" name="duration" required>
             <div class="toggle-container">
