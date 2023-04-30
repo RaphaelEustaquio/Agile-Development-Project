@@ -13,15 +13,15 @@
             <label for="description">Description</label>
             <textarea name="description" rows="5" required></textarea>
             <label for="logDay">Log habit every:</label>
-            <select name="logDay">
-                <option value="mon">Monday</option>
-                <option value="tue">Tuesday</option>
-                <option value="wed">Wednesday</option>
-                <option value="thu">Thursday</option>
-                <option value="fri">Friday</option>
-                <option value="sat">Saturday</option>
-                <option value="sun">Sunday</option>
-            </select>
+            <select name="logDays" id="logDays" multiple>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
             <label for="duration">Habit Duration (days)</label>
             <input type="number" name="duration" required>
             <div class="toggle-container">

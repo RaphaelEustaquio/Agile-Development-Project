@@ -11,23 +11,25 @@ const saveUsers = () => {
   
   
 const addHabit = (req, res) => {
-  const habit = {
-    id: Date.now().toString(),
-    name: req.body.habit,
-    description: req.body.description,
-    logDays: req.body.logDays,
-    duration: req.body.duration,
-    isPublic: req.body.isPublic === 'on',
+    const habit = new Habit(
+      Date.now().toString(),
+      req.body.habit,
+      req.body.description,
+      req.body.logDays, // Make sure the form sends an array of log days
+      req.body.duration,
+      req.body.isPrivate === "on"
+    );
+  
+    const user = users.find((user) => user.id === req.user.id);
+  
+    if (user) {
+      user.habits.push(habit);
+      saveUsers();
+    }
+  
+    res.redirect("/");
   };
-  const user = users.find((user) => user.id === req.user.id);
-
-  if (user) {
-    user.habits.push(habit);
-    saveUsers();
-  }
-
-  res.redirect('/');
-};
+  
 
 const editHabit = (req, res) => {
     const habit = req.user.habits.find((h) => h.id === req.params.habitId);
