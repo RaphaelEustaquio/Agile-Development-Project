@@ -12,14 +12,6 @@
       {
         "id": "1682754999086",
         "name": "running everyday"
-      },
-      {
-        "id": "1682812483537",
-        "name": "quit smoking",
-        "description": "do not touch a vape at all",
-        "logDays": "wed",
-        "duration": "30",
-        "isPublic": false
       }
     ]
   }

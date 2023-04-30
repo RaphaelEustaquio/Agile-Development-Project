@@ -9,16 +9,15 @@
     <div class="container">
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
-            <h2>Habits</h2>
-            <div class="badge-container">
+            <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
-                    <div class="badge" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                        <%= habit.name %>
-                        <a href="userhome/edit-habit/<%= habit.id %>" class="edit-link">
-                        </a>
-                    </div>
+                  <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
+                    <%= habit.name %>
+                    <a href="userhome/edit-habit/<%= habit.id %>" class="edit-link">
+                    </a>
+                  </div>
                 <% }) %>
-            </div>
+              </div>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
