@@ -68,3 +68,24 @@
     font-size: 24px;
   }
   
+
+  /* add-habit styles */
+.add-habit-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.add-habit-form label,
+.add-habit-form input,
+.add-habit-form select,
+.add-habit-form button {
+    margin-bottom: 15px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
