@@ -10,7 +10,6 @@
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
             <h2>Habits</h2>
-            <a href="/add-habit">Add Habit</a>
             <div class="badge-container">
                 <% user.habits.forEach((habit) => { %>
                     <div class="badge" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
@@ -24,6 +23,7 @@
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
+        <button id="add-habit-btn" onclick="location.href='/add-habit'">Add Habit</button>
     </div>
     <%- include('../partials/navbar') %>
 </body>
