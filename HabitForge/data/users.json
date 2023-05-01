@@ -6,16 +6,6 @@
     "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
     "habits": [
       {
-        "id": "1682746655888",
-        "name": "test",
-        "progress": null,
-        "lastCheckIn": "2023-05-01T01:00:14.016Z"
-      },
-      {
-        "id": "1682754999086",
-        "name": "running everyday"
-      },
-      {
         "id": "1682907691950",
         "name": "testing",
         "description": "asdf",
