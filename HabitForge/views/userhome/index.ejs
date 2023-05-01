@@ -10,13 +10,20 @@
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
             <div class="habit-container">
-                <% user.habits.forEach((habit) => { %>
-                  <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
+              <% user.habits.forEach((habit) => { %>
+                <div class="habit <%= habit.status %>" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
+                  <div class="habit-content">
                     <%= habit.name %>
-                    <a href="userhome/edit-habit/<%= habit.id %>" class="edit-link">
-                    </a>
+                    <% if (habit.checkedIn) { %>
+                      <div class="checked-in">Checked-In <span class="checkmark">&#10003;</span></div>
+                    <% } else { %>
+                      <form action="/userhome/check-in/<%= habit.id %>" method="post" class="check-in-form">
+                        <button type="submit" class="check-in-btn">Check In</button>
+                      </form>
+                    <% } %>
                   </div>
-                <% }) %>
+                </div>
+              <% }) %>
               </div>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>

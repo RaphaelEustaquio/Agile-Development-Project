@@ -30,9 +30,6 @@ const addHabit = (req, res) => {
     res.redirect('/');
 };
 
-
-  
-
 const editHabit = (req, res) => {
     const habit = req.user.habits.find((h) => h.id === req.params.habitId);
     if (!habit) {
@@ -59,6 +56,38 @@ const updateHabit = (req, res) => {
     saveUsers();
     res.redirect('/');
 };
-  
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit };
+const checkIn = (req, res) => {
+  const habitId = req.params.habitId;
+  const user = users.find((user) => user.id === req.user.id);
+  const habit = user.habits.find((habit) => habit.id === habitId);
+
+  if (!habit) {
+    return res.redirect("/");
+  }
+
+  const today = new Date();
+  const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
+  const daysDifference = lastCheckIn ? Math.floor((today - lastCheckIn) / (1000 * 60 * 60 * 24)) : null;
+  
+  if (daysDifference > 1) {
+    user.points -= habit.progress;
+    habit.progress = 0;
+  }
+
+  habit.progress += 10;
+  user.points += 10;
+
+  const nextLevelPoints = user.level * 100 * 1.25;
+  if (user.points >= nextLevelPoints) {
+    user.level++;
+    user.points -= nextLevelPoints;
+  }
+
+  habit.lastCheckIn = today;
+
+  saveUsers();
+  res.redirect('/');
+};
+
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn };

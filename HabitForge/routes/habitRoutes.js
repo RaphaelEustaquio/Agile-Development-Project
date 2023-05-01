@@ -11,5 +11,6 @@ router.post('/add-habit', checkAuthenticated, habitController.addHabit);
 router.get('/userhome/edit-habit/:habitId', checkAuthenticated, habitController.editHabit);
 router.post('/userhome/update-habit/:habitId', checkAuthenticated, habitController.updateHabit);
 router.post('/delete-habit/:habitId', checkAuthenticated, habitController.deleteHabit);
+router.post("/userhome/check-in/:habitId", checkAuthenticated, habitController.checkIn);
 
 module.exports = router;

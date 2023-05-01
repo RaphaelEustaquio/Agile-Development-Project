@@ -7,23 +7,13 @@
     "habits": [
       {
         "id": "1682746655888",
-        "name": "test"
+        "name": "test",
+        "progress": null,
+        "lastCheckIn": "2023-05-01T01:00:14.016Z"
       },
       {
         "id": "1682754999086",
         "name": "running everyday"
-      },
-      {
-        "id": "1682898154669",
-        "description": "testing",
-        "logDays": [
-          "Monday",
-          "Tuesday",
-          "Wednesday"
-        ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 0
       },
       {
         "id": "1682898258764",
@@ -35,8 +25,10 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 0
+        "progress": 20,
+        "lastCheckIn": "2023-05-01T01:00:59.114Z"
       }
-    ]
+    ],
+    "points": 20
   }
 ]

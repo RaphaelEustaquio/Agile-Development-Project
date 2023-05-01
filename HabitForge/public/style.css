@@ -117,6 +117,7 @@
 }
 
 .habit {
+    position: relative;
     background-color: #333;
     color: white;
     padding: 20px;
@@ -131,4 +132,20 @@
 
 .habit:hover {
     background-color: #555;
+}
+
+.habit-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checked-in {
+  display: flex;
+  align-items: center;
+}
+
+.checkmark {
+  font-size: 18px;
+  margin-left: 5px;
 }
