@@ -21,8 +21,8 @@
         "duration": 100,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": true,
-        "lastCheckIn": "2023-05-01T02:21:39.413Z"
+        "checkedInToday": false,
+        "lastCheckIn": "2023-04-01T20:31:49.995Z"
       },
       {
         "id": "1682964263054",
@@ -37,6 +37,37 @@
         "progress": 10,
         "checkedInToday": true,
         "lastCheckIn": "2023-05-01T18:19:59.593Z"
+      },
+      {
+        "id": "1682973225500",
+        "name": "play destiny",
+        "description": "i wawnna play destiny",
+        "logDays": [
+          "Sunday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "duration": 80,
+        "isPublic": true,
+        "progress": 0,
+        "checkedInToday": false
+      },
+      {
+        "id": "1682973446340",
+        "name": "quit smoking",
+        "description": "testing",
+        "logDays": [
+          "Sunday",
+          "Tuesday"
+        ],
+        "duration": 100,
+        "isPublic": false,
+        "progress": 0,
+        "checkedInToday": false,
+        "lastCheckIn": "2023-04-30T18:19:59.593Z"
       }
     ],
     "points": 40

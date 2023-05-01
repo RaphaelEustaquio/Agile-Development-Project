@@ -92,4 +92,4 @@ const checkIn = (req, res) => {
   res.redirect('/');
 };
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn };
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers };
