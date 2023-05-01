@@ -9,22 +9,31 @@
     <div class="container">
         <% if (user) { %>
             <h1>Welcome, <%= user.name %>!</h1>
-            <div class="habit-container">
-              <% user.habits.forEach((habit) => { %>
-                <div class="habit <%= habit.status %>" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                  <div class="habit-content">
+            
+            <% function isTodayCheckInDay(habit) {
+              if (!habit.logDays) {
+                  return false;
+              }
+              const today = new Date();
+              const todayDay = today.getDay();
+              const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+              return habit.logDays.includes(daysOfWeek[todayDay]);
+          } %>
+
+          <div class="habit-container">
+            <% user.habits.forEach((habit) => { %>
+                <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
                     <%= habit.name %>
-                    <% if (habit.checkedIn) { %>
-                      <div class="checked-in">Checked-In <span class="checkmark">&#10003;</span></div>
-                    <% } else { %>
-                      <form action="/userhome/check-in/<%= habit.id %>" method="post" class="check-in-form">
-                        <button type="submit" class="check-in-btn">Check In</button>
-                      </form>
+                    <% if (isTodayCheckInDay(habit)) { %>
+                        <% if (habit.checkedInToday) { %>
+                            <span class="checked-in">Checked-In ✓</span>
+                        <% } else { %>
+                            <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
+                        <% } %>
                     <% } %>
-                  </div>
                 </div>
-              <% }) %>
-              </div>
+            <% }) %>
+        </div>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

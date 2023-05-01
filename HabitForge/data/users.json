@@ -16,19 +16,25 @@
         "name": "running everyday"
       },
       {
-        "id": "1682898258764",
-        "name": "another test",
-        "description": "asdfj",
+        "id": "1682907691950",
+        "name": "testing",
+        "description": "asdf",
         "logDays": [
+          "Sunday",
           "Monday",
-          "Tuesday"
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 20,
-        "lastCheckIn": "2023-05-01T01:00:59.114Z"
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-01T02:21:39.413Z"
       }
     ],
-    "points": 20
+    "points": 30
   }
 ]

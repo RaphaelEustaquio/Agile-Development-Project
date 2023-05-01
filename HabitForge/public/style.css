@@ -131,8 +131,13 @@
 }
 
 .habit:hover {
-    background-color: #555;
+  background-color: #555;
 }
+
+.habit:hover .checked-in {
+  background-color: #555;
+}
+
 
 .habit-content {
   display: flex;
@@ -140,12 +145,32 @@
   align-items: center;
 }
 
-.checked-in {
-  display: flex;
-  align-items: center;
+.check-in-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  z-index: 1;
 }
 
-.checkmark {
-  font-size: 18px;
-  margin-left: 5px;
+.check-in-btn:hover {
+  background-color: #555;
+}
+
+.checked-in {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  z-index: 1;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: white;
 }

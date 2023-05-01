@@ -10,12 +10,12 @@ const saveUsers = () => {
   };
   
   
-const addHabit = (req, res) => {
+  const addHabit = (req, res) => {
     const habit = {
         id: Date.now().toString(),
         name: req.body.title,
         description: req.body.description,
-        logDays: Array.isArray(req.body.logDays) ? req.body.logDays : [req.body.logDays],
+        logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
         duration: parseInt(req.body.duration),
         isPublic: req.body.isPublic === 'on',
         progress: 0,
@@ -29,6 +29,7 @@ const addHabit = (req, res) => {
 
     res.redirect('/');
 };
+
 
 const editHabit = (req, res) => {
     const habit = req.user.habits.find((h) => h.id === req.params.habitId);
@@ -77,6 +78,7 @@ const checkIn = (req, res) => {
 
   habit.progress += 10;
   user.points += 10;
+  habit.checkedInToday = true;
 
   const nextLevelPoints = user.level * 100 * 1.25;
   if (user.points >= nextLevelPoints) {
