@@ -21,8 +21,8 @@
         "duration": 100,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-04-01T20:31:49.995Z"
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-01T21:11:54.378Z"
       },
       {
         "id": "1682964263054",
