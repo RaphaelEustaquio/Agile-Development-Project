@@ -52,8 +52,9 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 0,
-        "checkedInToday": false
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-02T18:01:11.662Z"
       },
       {
         "id": "1682973446340",
@@ -68,8 +69,20 @@
         "progress": 0,
         "checkedInToday": false,
         "lastCheckIn": "2023-04-30T18:19:59.593Z"
+      },
+      {
+        "id": "1683050821477",
+        "name": "saturday",
+        "description": "sat",
+        "logDays": [
+          "Saturday"
+        ],
+        "duration": 60,
+        "isPublic": false,
+        "progress": 0,
+        "checkedInToday": false
       }
     ],
-    "points": 40
+    "points": 50
   }
 ]
