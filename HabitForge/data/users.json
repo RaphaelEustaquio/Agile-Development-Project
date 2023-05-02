@@ -21,7 +21,7 @@
         "duration": 100,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-01T21:11:54.378Z"
       },
       {
@@ -35,7 +35,7 @@
         "duration": 50,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-01T18:19:59.593Z"
       },
       {
@@ -70,6 +70,20 @@
         "lastCheckIn": "2023-04-30T18:19:59.593Z"
       }
     ],
-    "points": 40
+    "points": 40,
+    "friends": [
+      {
+        "id": "1683065441249",
+        "name": "eric"
+      }
+    ]
+  },
+  {
+    "id": "1683065441249",
+    "name": "eric",
+    "email": "eric@test.com",
+    "password": "$2a$10$Homw1y2mlY2bhxnR/ru7Je1ATh/BFQdm5VbqKRwTF8KLtNai4MNLa",
+    "habits": [],
+    "friends": []
   }
 ]

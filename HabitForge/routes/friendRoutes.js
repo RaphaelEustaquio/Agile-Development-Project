@@ -3,7 +3,7 @@ const router = express.Router();
 const { checkAuthenticated } = require('../middleware/authMiddleware');
 
 // New route for rendering the "My Friends" page
-router.get('/friends', checkAuthenticated, (req, res) => {
+router.get('/friends/index', checkAuthenticated, (req, res) => {
     res.render('friends/index.ejs', { user: req.user });
 });
 
