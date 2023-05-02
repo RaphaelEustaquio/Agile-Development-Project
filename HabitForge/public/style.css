@@ -18,7 +18,21 @@
   .logo img {
     height: 5vh; /* Use viewport units to make the logo responsive */
   }
+
+.fulllogo{
+  display: flex;
+  justify-content: center;
+}
+
+.fulllogo img {
+    height:25vh; /* Set the height of the image to 100% to fill the parent container */
+    width: 25vh; /* Set the width of the image to 100% to fill the parent container */
+}
   
+  body {
+    background-color: #f2f0f0;
+  }
+
   .page-title {
     font-size: calc(18px + 0.5vw); /* Use calc and viewport units to make the title responsive */
   }
