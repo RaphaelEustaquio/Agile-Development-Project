@@ -1,3 +1,18 @@
+html {
+  height: 100%;
+
+}
+
+body {
+  background:#f2f0f0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+
 /* Make container responsive */
 .container {
     max-width: 1200px; /* Set a max-width to prevent container from getting too wide */
@@ -19,18 +34,74 @@
     height: 5vh; /* Use viewport units to make the logo responsive */
   }
 
-.fulllogo{
-  display: flex;
-  justify-content: center;
-}
+  .fulllogo img {
+      padding-top: 10%;
+      height:25vh; /* Set the height of the image to 100% to fill the parent container */
+      width: 25vh; /* Set the width of the image to 100% to fill the parent container */
+      padding-bottom: 20%;
+  }
 
-.fulllogo img {
-    height:25vh; /* Set the height of the image to 100% to fill the parent container */
-    width: 25vh; /* Set the width of the image to 100% to fill the parent container */
-}
+  label {
+    display: block;
+    width: 100%;
+  }
+
+  .loginpage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loginform {
+    display: flex;
+    font-size: 50px;
+    flex-direction: column;
+    width: 80%;
+  }
   
-  body {
-    background-color: #f2f0f0;
+  .passwordcontainer {
+    padding-bottom: 40px;
+  }
+
+  .loginbutton {
+    height: 80px;
+    width: 100%;
+    font-size: 40px;
+    border-radius: 30px 30px 30px 30px;
+    background-color: #0EA47a; 
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  }
+
+  .loginbutton:active {
+    background-color: #056c4f;
+  }
+
+  input[type="email"], input[type="password"] {
+    height: 80px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+  }
+
+  .registration {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 50px;
+    position: absolute;
+    bottom: 20vh;
+  }
+
+  .padding {
+    padding-bottom: 20px;
+    padding-top: 20px;
   }
 
   .page-title {

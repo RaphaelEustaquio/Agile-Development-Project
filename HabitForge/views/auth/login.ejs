@@ -3,19 +3,26 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="loginpage">
     <div class="fulllogo">
-        <a href="/"><img src="/images/fulllogo.png" alt="Logo"></a>
+        <img src="/images/fulllogo.png" alt="Logo"></a>
     </div>
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" required>
-        <label for="password">Password</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
-    <a href="/register">Register</a>
+    <div class="loginform">
+        <form action="/login" method="post">
+            <label for="email" class="padding">Email</label>
+            <input type="email" name="email" required placeholder="name@example.com">
+            <div class="passwordcontainer">
+                <label for="password" class="padding">Password</label>
+                <input type="password" name="password" required placeholder="**********">
+            </div>
+            <button type="submit" class="loginbutton">Login</button>
+        </form>
+    </div>
+    <div class="registration">
+        <p>New to Habit@?</p>
+        <a href="/register">Register</a>
+    </div>
 </body>
 </html>
