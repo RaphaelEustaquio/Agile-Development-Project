@@ -36,5 +36,24 @@
       }
     ],
     "points": 30
+  },
+  {
+    "id": "1682910917292",
+    "name": "test",
+    "email": "test12@gmail.com",
+    "password": "$2a$10$4LHdDRZa9AB4oXXOvKZHqeYM512wpiqoe360vQJ5ZkFGeGN8a32ye",
+    "habits": [
+      {
+        "id": "1682964749503",
+        "name": "pa",
+        "description": "jrfijfoijrf",
+        "logDays": [
+          "Sunday"
+        ],
+        "duration": 30,
+        "isPublic": false,
+        "progress": 0
+      }
+    ]
   }
 ]
