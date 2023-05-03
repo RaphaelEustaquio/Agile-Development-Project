@@ -78,7 +78,7 @@ button {
     background-color: #056c4f;
   }
 
-  input[type="email"], input[type="password"] {
+  input[type="email"], input[type="password"], input[type="text"] {
     height: 80px;
     width: 100%;
     margin-bottom: 20px;
