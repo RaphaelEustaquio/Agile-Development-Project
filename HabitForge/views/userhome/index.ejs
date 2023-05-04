@@ -12,7 +12,12 @@
     <%- include('../partials/navbar', { currentPage: 'userhome' }) %>
     <div class="container">
         <% if (user) { %>
-            <h1>Welcome, <%= user.name %>!</h1>
+            <div class="header-container">
+                <h1>Welcome, <%= user.name %>!</h1>
+                <div class="points-display">
+                    Level <%= user.level %> <%= user.points %>/<%= user.level * 100 * 1.25 %>
+                </div>
+            </div>
             
             <% function isTodayCheckInDay(habit) {
                 if (!habit.logDays) {
