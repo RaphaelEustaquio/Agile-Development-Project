@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const users = require('../data/users.json');
 const habitController = require('../controller/habitController.js');
-const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/authMiddleware');
 
 const updateHabitsCheckedInToday = (user) => {
     const today = new Date();
@@ -65,7 +64,8 @@ const registerUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
-            habits: []
+            habits: [],
+            friends: []
         };
         users.push(newUser);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
