@@ -53,7 +53,7 @@
         "duration": 80,
         "isPublic": true,
         "progress": 10,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-02T18:01:11.662Z"
       },
       {
