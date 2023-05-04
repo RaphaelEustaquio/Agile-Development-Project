@@ -22,6 +22,7 @@ const saveUsers = () => {
         duration: parseInt(req.body.duration),
         isPublic: req.body.isPublic === 'on',
         progress: 0,
+        level: 1
     };
     const user = users.find((user) => user.id === req.user.id);
 
