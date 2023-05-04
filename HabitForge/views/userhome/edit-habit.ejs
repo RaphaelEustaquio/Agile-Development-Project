@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>Edit Habit</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Edit Habit', currentPage: 'edit-habit' }) %>
     <h1>Edit Habit</h1>
     <form action="/userhome/update-habit/<%= habit.id %>" method="post">
         <label for="habit">Habit</label>

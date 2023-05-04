@@ -8,8 +8,9 @@ const initializePassport = require('./middleware/passport');
 const path = require("path")
 const authRoutes = require('./routes/authRoutes');
 const habitRoutes = require('./routes/habitRoutes');
-const friendRoutes = require('./routes/friendRoutes');
-
+const friendRoutes = require('./routes/friendRoutes')
+const feedRoutes = require('./routes/feedRoutes')
+const leaderboardRoutes = require('./routes/leaderboardRoutes')
 const app = express();
 const users = require('./data/users.json');
 const getUserByEmail = (email) => users.find((user) => user.email === email);
@@ -33,7 +34,9 @@ app.use(passport.session());
 
 app.use(authRoutes);
 app.use(habitRoutes);
-app.use(friendRoutes);
+app.use(friendRoutes); 
+app.use(feedRoutes); 
+app.use(leaderboardRoutes); 
 
 app.listen(3000, () => {
     console.log('Server running. Visit: localhost:3000/login in your browser');

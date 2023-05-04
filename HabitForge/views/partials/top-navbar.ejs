@@ -10,8 +10,11 @@
         <form action="/logout" method="get">
           <button type="submit">Log Out</button>
         </form>
-      <% } else { %>
-        <a href="/"></a>
+        <% } else { %>
+          <form action="/" method="get">
+            <button type="submit">Home</button>
+          </form>
+          <!-- <a href="/"></a> -->
       <% } %>
     </div>
   </div>

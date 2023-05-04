@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friends Page</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Friends', currentPage: 'friends' }) %>
+    <div class="container">
+        <% if (user) { %>
+            <form action="/friends" method="POST">
+                <div class="form-group">
+                  <label for="email">Find friends by email address:</label>
+                  <input type="text" class="form-control" id="emailInput" placeholder="Email" name="email">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+        <button id="add-habit-btn" onclick="location.href='/add-friend'">Add Friend</button>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>
