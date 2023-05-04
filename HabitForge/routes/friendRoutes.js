@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const socialController = require('../controller/socialController');
+const friendController = require('../controller/friendController');
 const { checkAuthenticated } = require('../middleware/authMiddleware');
 
-// router.post('/add-habit', checkAuthenticated, habitController.addHabit); nemoone
+router.get('/friends/index', checkAuthenticated, friendController.renderFriendsIndex);
 
-router.get("/friends", checkAuthenticated, socialController.list)
+// Add more friend-related routes here
 
-router.post("/friends", checkAuthenticated, socialController.findAndAddFriend)
-
-module.exports = router
+module.exports = router;
