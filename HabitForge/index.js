@@ -14,7 +14,6 @@ const leaderboardRoutes = require('./routes/leaderboardRoutes')
 
 const app = express();
 const users = require('./data/users.json');
-const socialController = require('./controller/socialController');
 const getUserByEmail = (email) => users.find((user) => user.email === email);
 const getUserById = (id) => users.find((user) => user.id === id);
 
