@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 let users = require('../data/users.json');
-const { checkAuthenticated } = require('../middleware/authMiddleware');
+
+const renderIndex = (req, res) => {
+  res.render('userhome/add-habit.ejs', { user: req.user });
+}
 
 const saveUsers = () => {
     const updatedUsers = JSON.stringify(users, null, 2);
@@ -92,4 +95,4 @@ const checkIn = (req, res) => {
   res.redirect('/');
 };
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers };
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex };

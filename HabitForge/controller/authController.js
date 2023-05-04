@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const users = require('../data/users.json');
 const habitController = require('../controller/habitController.js');
-const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/authMiddleware');
 
 const updateHabitsCheckedInToday = (user) => {
     const today = new Date();
