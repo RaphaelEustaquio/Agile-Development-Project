@@ -3,6 +3,8 @@
 <head>
     <title>Edit Habit</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Edit Habit', currentPage: 'edit-habit' }) %>
@@ -15,5 +17,6 @@
     <form action="/delete-habit/<%= habit.id %>" method="post">
         <button type="submit">Remove Habit</button>
     </form>
+    <%- include('../partials/navbar', { currentPage: 'add-habit' }) %>
 </body>
 </html>

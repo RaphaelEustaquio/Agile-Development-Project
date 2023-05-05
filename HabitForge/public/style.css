@@ -13,27 +13,73 @@ button {
 }
 
 .friendsicon {
-  height: 7vh;
-  width: 7vh;
+  height: 80px;
+  width: 70px;
+}
+
+.friendsicon:hover {
+  height: 85px;
+  width: 75px;
+}
+
+.friendsicon:active {
+  height: 75px;
+  width: 65px;
 }
 
 .feedicon {
   position: relative;
-  top: 3px;
-  left: 7px;
+  left:20px;
+  bottom:3px;
+  height: 80px;
+  width: 65px;
+}
+
+.feedicon:hover {
+  height: 85px;
+  width: 70px;
+}
+
+.feedicon:active {
   height: 75px;
-  width: 85px;
+  width: 60px;
 }
 
 .leaderboardicon {
-  height: 75px;
-  width: 85px;
+  height: 85px;
+  width: 110px;
+}
+
+.leaderboardicon:hover {
+  height: 90px;
+  width: 115px;
+}
+
+.leaderboardicon:active {
+  height: 80px;
+  width: 105px;
 }
 
 .homeicon {
   height: 65px;
   width: 65px;
 }
+
+.homeicon:active {
+  height: 60px;
+  width: 60px;
+}
+
+.logouticon {
+  height: 55px;
+  width: 55px;
+}
+
+.logouticon:active {
+  height: 50px;
+  width: 50px;
+}
+
 
 /* Make container responsive */
 .container {
@@ -269,7 +315,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
 }
 
 textarea {

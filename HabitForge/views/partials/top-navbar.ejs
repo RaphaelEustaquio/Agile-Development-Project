@@ -7,9 +7,7 @@
     </div>
     <div class="user-action">
       <% if (currentPage === 'userhome') { %>
-        <form action="/logout" method="get">
-          <button type="submit" class="logoutbutton">Log Out</button>
-        </form>
+        <a href="/logout"><img class="logouticon" src="/images/logouticon.png" alt="Logout"></a>
         <% } else { %>
           <a href="/"><img class="homeicon" src="/images/homeicon.png" alt="Logo"></a>
       <% } %>
