@@ -25,7 +25,7 @@ const renderIndex = (req, res) => {
     updateHabitsCheckedInToday(req.user);
     habitController.saveUsers();
   }
-  res.render('userhome/index.ejs', { user: req.user });
+  res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds });
 };
 
 
@@ -65,7 +65,8 @@ const registerUser = async (req, res) => {
             email: req.body.email,
             password: hashedPassword,
             habits: [],
-            friends: []
+            friends: [],
+            level: 1
         };
         users.push(newUser);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));

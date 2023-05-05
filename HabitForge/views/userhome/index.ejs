@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascript.js"></script>
 </head>
 <body>
     <button id="add-habit-btn" onclick="location.href='/add-habit'">Add a Habit</button>
@@ -15,7 +16,7 @@
             <div class="header-container">
                 <h1>Welcome, <%= user.name %>!</h1>
                 <div class="points-display">
-                    Level <%= user.level %> <%= user.points %>/<%= user.level * 100 * 1.25 %>
+                    Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
                 </div>
             </div>
             

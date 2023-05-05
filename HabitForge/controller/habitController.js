@@ -21,8 +21,7 @@ const saveUsers = () => {
         logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
         duration: parseInt(req.body.duration),
         isPublic: req.body.isPublic === 'on',
-        progress: 0,
-        level: 1
+        progress: 0
     };
     const user = users.find((user) => user.id === req.user.id);
 
@@ -62,6 +61,17 @@ const updateHabit = (req, res) => {
     res.redirect('/');
 };
 
+const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
+
+const updateUserPoints = (user, points) => {
+  user.points += points;
+
+  while (user.level < levelingThresholds.length && user.points >= levelingThresholds[user.level - 1]) {
+    user.points -= levelingThresholds[user.level - 1];
+    user.level++;
+  }
+};
+
 const checkIn = (req, res) => {
   const habitId = req.params.habitId;
   const user = users.find((user) => user.id === req.user.id);
@@ -81,14 +91,8 @@ const checkIn = (req, res) => {
   }
 
   habit.progress += 10;
-  user.points += 10;
+  updateUserPoints(user, 10);
   habit.checkedInToday = true;
-
-  const nextLevelPoints = user.level * 100 * 1.25;
-  if (user.points >= nextLevelPoints) {
-    user.level++;
-    user.points -= nextLevelPoints;
-  }
 
   habit.lastCheckIn = today;
 
@@ -96,4 +100,4 @@ const checkIn = (req, res) => {
   res.redirect('/');
 };
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex };
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds };
