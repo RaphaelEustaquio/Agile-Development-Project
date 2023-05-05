@@ -7,16 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'Edit Habit', currentPage: 'edit-habit' }) %>
-    <h1>Edit Habit</h1>
-    <form action="/userhome/update-habit/<%= habit.id %>" method="post">
-        <label for="habit">Habit</label>
-        <input type="text" name="habit" value="<%= habit.name %>" required>
-        <button type="submit">Update Habit</button>
-    </form>
-    <form action="/delete-habit/<%= habit.id %>" method="post">
-        <button type="submit">Remove Habit</button>
-    </form>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Habit', currentPage: 'edit-habit' }) %>  <div class="container">
+    <div class="container">
+        <form class="add-habit-form" action="/userhome/update-habit/<%= habit.id %>" method="post">
+            <label for="title">Habit Title</label>
+            <input type="text" name="title" value="<%= habit.name %>" readonly="readonly">
+            <label for="description">Description</label>
+            <textarea name="description" rows="5" required><%= habit.description %></textarea>
+            <label for="logDays">Log Days:</label>
+            <% ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].forEach(function (date) { %>
+                    <% if (habit.logDays.includes(date)) { %>
+                        <label><input type="checkbox" name="logDays[]" value="<%= date %>" checked> <%= date %></label>
+                    <% } else { %>
+                        <label><input type="checkbox" name="logDays[]" value="<%= date %>" > <%= date %></label>
+                    <% } %>
+            <% }) %>
+            <label for="duration">Habit Duration (days)</label>
+            <input type="number" name="duration" value="<%= habit.duration %>" required>
+            <% if (habit.isPublic == true) { %>
+                <div class="toggle-container">
+                    <label for="isPublic">Make habit public</label>
+                    <input type="checkbox" name="isPublic" checked>
+                </div>
+            <% } else { %>
+            <div class="toggle-container">
+                <label for="isPublic">Make habit public</label>
+                <input type="checkbox" name="isPublic">
+            </div>
+            <% } %>
+            <button type="submit">Update Habit</button>
+        </form>
+        <form class="delete-habit-form" action="/delete-habit/<%= habit.id %>" method="post">
+            <button id="remove-habit-btn" type="submit">Remove Habit</button>
+        </form>
+    </div>
     <%- include('../partials/navbar', { currentPage: 'add-habit' }) %>
 </body>
 </html>

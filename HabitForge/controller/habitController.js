@@ -47,7 +47,11 @@ const updateHabit = (req, res) => {
     if (habitIndex !== -1) {
       req.user.habits[habitIndex] = {
         id: req.user.habits[habitIndex].id,
-        name: req.body.habit,
+        name: req.body.title,
+        description: req.body.description,
+        logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
+        duration: parseInt(req.body.duration),
+        isPublic: req.body.isPublic === 'on',
       };
       saveUsers();
     }
