@@ -21,8 +21,8 @@
         "duration": 100,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-01T21:11:54.378Z"
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-04T23:19:34.016Z"
       },
       {
         "id": "1682964263054",
@@ -53,8 +53,8 @@
         "duration": 80,
         "isPublic": true,
         "progress": 10,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-02T18:01:11.662Z"
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-04T23:19:42.652Z"
       },
       {
         "id": "1682973446340",
@@ -81,15 +81,58 @@
         "isPublic": false,
         "progress": 0,
         "checkedInToday": false
+      },
+      {
+        "id": "1683244137605",
+        "name": "testing update",
+        "description": "testing",
+        "logDays": [
+          "Thursday"
+        ],
+        "duration": 100,
+        "isPublic": false,
+        "progress": 10,
+        "level": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-04T23:49:00.591Z"
+      },
+      {
+        "id": "1683245457150",
+        "name": "hello",
+        "description": "fadsf",
+        "logDays": [
+          "Thursday"
+        ],
+        "duration": 11,
+        "isPublic": false,
+        "progress": 10,
+        "level": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-05T00:10:59.767Z"
+      },
+      {
+        "id": "1683246073456",
+        "name": "asdf",
+        "description": "adsf",
+        "logDays": [
+          "Thursday"
+        ],
+        "duration": 111,
+        "isPublic": false,
+        "progress": 10,
+        "level": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-05T00:21:19.931Z"
       }
     ],
-    "points": 40,
+    "points": 0,
     "friends": [
       {
         "id": "1683065441249",
         "name": "eric"
       }
-    ]
+    ],
+    "level": 1
   },
   {
     "id": "1683065441249",
