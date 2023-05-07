@@ -3,26 +3,12 @@ const passport = require('passport');
 const fs = require('fs');
 const path = require('path');
 const users = require('../data/users.json');
-const habitController = require('../controller/habitController.js');
-
-const updateHabitsCheckedInToday = (user) => {
-    const today = new Date();
-    user.habits.forEach((habit) => {
-      const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
-      if (lastCheckIn) {
-        const daysDifference = Math.floor(
-          (today - lastCheckIn) / (1000 * 60 * 60 * 24)
-        );
-        habit.checkedInToday = daysDifference === 0;
-      } else {
-        habit.checkedInToday = false;
-      }
-    });
-  };  
+const habitController = require('../controller/habitController.js'); 
 
 const renderIndex = (req, res) => {
   if (req.user) {
-    updateHabitsCheckedInToday(req.user);
+    habitController.checkMissedHabits(req.user);
+    habitController.updateUserPoints(req.user, 0);
     habitController.saveUsers();
   }
   res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds });
@@ -45,8 +31,7 @@ const loginUser = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        // Call updateHabitsCheckedInToday function here
-        updateHabitsCheckedInToday(user);
+        habitController.checkMissedHabits(user);
         return res.redirect('/');
       });
     })(req, res, next);

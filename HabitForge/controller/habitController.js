@@ -92,22 +92,41 @@ const checkIn = (req, res) => {
   }
 
   const today = new Date();
-  const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
-  const daysDifference = lastCheckIn ? Math.floor((today - lastCheckIn) / (1000 * 60 * 60 * 24)) : null;
-  
-  if (daysDifference > 1) {
-    user.points -= habit.progress;
-    habit.progress = 0;
-  }
 
   habit.progress += 10;
   updateUserPoints(user, 10);
   habit.checkedInToday = true;
-
   habit.lastCheckIn = today;
 
   saveUsers();
   res.redirect('/');
 };
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds };
+
+const checkMissedHabits = (user) => {
+  let pointsDeducted = 0;
+  const today = new Date();
+
+  user.habits.forEach((habit) => {
+    const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
+    const daysDifference = lastCheckIn ? Math.floor((today - lastCheckIn) / (1000 * 60 * 60 * 24)) : null;
+
+    if (daysDifference > 0) {
+      const missedLogDays = habit.logDays.filter(logDay => {
+        const logDayIndex = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].indexOf(logDay);
+        const lastCheckInIndex = lastCheckIn.getDay();
+        return (logDayIndex > lastCheckInIndex) || (logDayIndex === lastCheckInIndex && lastCheckIn.getHours() >=  habit.duration);
+      });
+
+      if (missedLogDays.length > 0) {
+        const habitPoints = habit.progress;
+        habit.progress = 0;
+        pointsDeducted += habitPoints;
+      }
+    }
+  });
+
+  user.points = Math.max(0, user.points - pointsDeducted);
+};
+
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds, checkMissedHabits, updateUserPoints };
