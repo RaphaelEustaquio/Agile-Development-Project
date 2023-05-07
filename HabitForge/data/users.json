@@ -21,7 +21,7 @@
         "duration": 100,
         "isPublic": false,
         "progress": 10,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-04T23:19:34.016Z"
       },
       {
@@ -53,7 +53,7 @@
         "duration": 80,
         "isPublic": true,
         "progress": 10,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-04T23:19:42.652Z"
       },
       {
@@ -71,18 +71,6 @@
         "lastCheckIn": "2023-04-30T18:19:59.593Z"
       },
       {
-        "id": "1683050821477",
-        "name": "saturday",
-        "description": "sat",
-        "logDays": [
-          "Saturday"
-        ],
-        "duration": 60,
-        "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false
-      },
-      {
         "id": "1683244137605",
         "name": "testing update",
         "description": "testing",
@@ -93,7 +81,7 @@
         "isPublic": false,
         "progress": 10,
         "level": 1,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-04T23:49:00.591Z"
       },
       {
@@ -107,7 +95,7 @@
         "isPublic": false,
         "progress": 10,
         "level": 1,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:10:59.767Z"
       },
       {
@@ -121,7 +109,7 @@
         "isPublic": false,
         "progress": 10,
         "level": 1,
-        "checkedInToday": true,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:21:19.931Z"
       }
     ],

@@ -44,19 +44,45 @@
                 return habit.logDays[0];
             } %>
 
+            <% function missedLastCheckIn(habit) {
+                if (!habit.logDays || !habit.lastCheckIn) {
+                    return false;
+                }
+                const today = new Date();
+                const lastCheckInDate = new Date(habit.lastCheckIn);
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                
+                let nextCheckInDate = new Date(lastCheckInDate);
+                do {
+                    nextCheckInDate.setDate(nextCheckInDate.getDate() + 1);
+                    if (habit.logDays.includes(daysOfWeek[nextCheckInDate.getDay()])) {
+                        break;
+                    }
+                } while (true);
+                
+                const nextCheckInDay = daysOfWeek[nextCheckInDate.getDay()];
+                const todayDay = daysOfWeek[today.getDay()];
+                
+                return nextCheckInDay !== todayDay && nextCheckInDate < today;
+            } %>
+            
+              
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
                         <%= habit.name %>
                         <% if (isTodayCheckInDay(habit)) { %>
                             <% if (habit.checkedInToday) { %>
-                                <span class="checked-in">Checked-In ✓</span>
+                              <span class="checked-in">Checked-In ✓</span>
                             <% } else { %>
-                                <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
+                              <% if (missedLastCheckIn(habit)) { %>
+                                <span class="missed-check-in">Missed Last Check-In</span>
+                              <% } %>
+                              <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
                             <% } %>
-                        <% } else { %>
+                          <% } else { %>
                             <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
-                        <% } %>
+                          <% } %>                          
                     </div>
                 <% }) %>
             </div>
