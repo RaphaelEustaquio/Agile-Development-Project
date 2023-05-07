@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Friend</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
+    <div class="container">
+        <% if (user) { %>
+            <h1>Add Friend</h1>
+            
+            <div class="search-container">
+                <form method="POST" action="/friends/search">
+                    <input type="text" placeholder="Search for a friend..." name="search" class="search-input">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <!-- Search results will be displayed here -->
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+    </div>
+    <%- include('../partials/navbar', { currentPage: 'friends' }) %>
+</body>
+</html>
