@@ -56,8 +56,18 @@ const updateHabit = (req, res) => {
   
   
  const deleteHabit = (req, res) => {
-    req.user.habits = req.user.habits.filter((h) => h.id !== req.params.habitId);
-    saveUsers();
+    const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
+    
+    
+    if (habitIndex !== -1){
+      const habit = req.user.habits[habitIndex]
+      
+      req.user.points -= habit.progress;
+      
+      req.user.habits.splice(habitIndex, 1);
+      
+      saveUsers();
+    }
     res.redirect('/');
 };
 
