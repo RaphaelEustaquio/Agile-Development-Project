@@ -12,9 +12,26 @@ const searchUsers = (req, res) => {
   res.render('friends/add-friend.ejs', { user: req.user, searchResults: matchedUsers });
 };
 
+const followUser = (req, res) => {
+  const userId = req.params.id;
+  const userToFollow = users.find(user => user.id === userId);
+
+  if (userToFollow && !req.user.friends.some(friend => friend.id === userId)) {
+    req.user.friends.push({
+      id: userToFollow.id,
+      name: userToFollow.name,
+      email: userToFollow.email
+    });
+    friendController.saveUsers();
+  }
+
+  res.redirect('/friends/index');
+};
+
   module.exports = {
     renderFriendsIndex,
     renderAddFriend,
     searchUsers,
+    followUser,
   };
   
