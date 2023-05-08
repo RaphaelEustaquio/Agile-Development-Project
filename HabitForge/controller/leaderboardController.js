@@ -5,7 +5,6 @@ let users = require('../data/users.json');
 
 const list = (req, res) => {
     let friendlist = []
-    console.log(req.user)
         // Find reminders of friends and mark them appropriately
     res.render('leaderboard/public.ejs', { user: req.user });
     //     const user = users.findOne(req.user.email)

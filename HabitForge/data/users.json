@@ -20,7 +20,7 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 10,
+        "progress": 0,
         "checkedInToday": false,
         "lastCheckIn": "2023-05-04T23:19:34.016Z"
       },
@@ -34,7 +34,7 @@
         ],
         "duration": 50,
         "isPublic": false,
-        "progress": 10,
+        "progress": 0,
         "checkedInToday": false,
         "lastCheckIn": "2023-05-01T18:19:59.593Z"
       },
@@ -52,7 +52,7 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 10,
+        "progress": 0,
         "checkedInToday": false,
         "lastCheckIn": "2023-05-04T23:19:42.652Z"
       },
@@ -93,7 +93,7 @@
         ],
         "duration": 11,
         "isPublic": false,
-        "progress": 10,
+        "progress": 0,
         "level": 1,
         "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:10:59.767Z"
@@ -117,7 +117,8 @@
     "friends": [
       {
         "id": "1683065441249",
-        "name": "eric"
+        "name": "eric",
+        "email": "eric@test.com"
       }
     ],
     "level": 1

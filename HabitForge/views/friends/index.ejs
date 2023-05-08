@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'My Friends', currentPage: 'friends' }) %>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Friends' }) %>
     <div class="container">
         <% if (user) { %>
             <h1>My Friends</h1>
@@ -27,8 +27,8 @@
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
-        <button id="add-friends-btn" onclick="location.href='/add-friends'">Add Friends</button>
+        <button id="add-friends-btn" onclick="location.href='/friends/add-friend'">Add Friends</button>
     </div>
-    <%- include('../partials/navbar', { currentPage: 'friends' }) %>
+    <%- include('../partials/navbar') %>
 </body>
 </html>
