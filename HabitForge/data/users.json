@@ -74,7 +74,8 @@
     "friends": [
       {
         "id": "1683065441249",
-        "name": "eric"
+        "name": "eric",
+        "email": "eric@test.com"
       }
     ]
   },

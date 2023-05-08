@@ -1,9 +1,12 @@
+const users = require('../data/users.json');
+const habitController = require('./habitController.js')
+
 const renderFriendsIndex = (req, res) => {
     res.render('friends/index.ejs', { user: req.user });
   };
 
 const renderAddFriend = (req, res) => {
-  res.render('friends/add-friend.ejs', { user: req.user });
+  res.render('friends/add-friend.ejs', { user: req.user, searchResults: [] });
 };
 
 const searchUsers = (req, res) => {
@@ -22,7 +25,7 @@ const followUser = (req, res) => {
       name: userToFollow.name,
       email: userToFollow.email
     });
-    friendController.saveUsers();
+    habitController.saveUsers();
   }
 
   res.redirect('/friends/index');
