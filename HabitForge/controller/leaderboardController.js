@@ -1,25 +1,22 @@
-const fs = require('fs');
-const path = require('path');
-let users = require('../data/users.json');
+const users = require('../data/users.json');
 
+const comparePoints = (a, b) => {
+  return b.points - a.points;
+};
 
-const list = (req, res) => {
-    let friendlist = []
-        // Find reminders of friends and mark them appropriately
-    res.render('leaderboard/public.ejs', { user: req.user });
-    //     const user = users.findOne(req.user.email)
-    //     for (let friend of user.friends) {
-    //         const friendUser = Database.findOne(friend)
-    //         friendReminders.push({
-    //             name: friendUser.name,
-    //             email: friendUser.email,
-    //             reminderList: friendUser.reminders
-    //         })
-    //     }
+const renderPublicLeaderboard = (req, res) => {
+  const sortedUsers = users.slice().sort(comparePoints);
+  res.render('leaderboard/public.ejs', { user: req.user, leaderboard: sortedUsers });
+};
 
-    //     res.render("reminder/index", {reminders: user.reminders, 
-    //         friendReminders: friendReminders});
-    // res.redirect('/friends')
-}
+const renderPrivateLeaderboard = (req, res) => {
+  const friends = req.user.friends;
+  friends.push(req.user);
+  const sortedFriends = friends.slice().sort(comparePoints);
+  res.render('leaderboard/private.ejs', { user: req.user, leaderboard: sortedFriends });
+};
 
-module.exports = { list,findAndAddFriend };
+module.exports = {
+  renderPublicLeaderboard,
+  renderPrivateLeaderboard,
+};
