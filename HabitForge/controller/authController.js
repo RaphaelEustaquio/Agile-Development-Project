@@ -25,7 +25,7 @@ const loginUser = (req, res, next) => {
         return next(err);
       }
       if (!user) {
-        return res.render('auth/login', { errorMessage: info.message });
+        return res.render('auth/login.ejs', { errorMessage: info.message });
       }
       req.logIn(user, (err) => {
         if (err) {

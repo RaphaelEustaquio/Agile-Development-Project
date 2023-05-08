@@ -4,22 +4,33 @@
     <title>Login</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script defer src="/javascript.js"></script>
 </head>
-<body class="loginpage">
+<body class="loginpage" id="login-page">
     <div class="fulllogo">
         <img src="/images/fulllogo.png" alt="Logo"></a>
     </div>
     <div class="loginform">
         <form action="/login" method="post">
-            <label for="email" class="padding">Email</label>
+          <label for="email" class="padding">Email</label>
+          <div>
             <input type="email" name="email" required placeholder="name@example.com">
-            <div class="passwordcontainer">
-                <label for="password" class="padding">Password</label>
-                <input type="password" name="password" required placeholder="**********">
+            <% if (typeof errorMessage !== 'undefined' && errorMessage.includes('email')) { %>
+              <div class="error-message" id="error-message"><%= errorMessage %></div>
+            <% } %>
+          </div>
+          <div class="passwordcontainer">
+            <label for="password" class="padding">Password</label>
+            <div>
+              <input type="password" name="password" required placeholder="**********">
+              <% if (typeof errorMessage !== 'undefined' && errorMessage.includes('Password')) { %>
+                <div class="error-message" id="error-message"><%= errorMessage %></div>
+              <% } %>
             </div>
-            <button type="submit" class="loginbutton">Login</button>
+          </div>
+          <button type="submit" class="loginbutton">Login</button>
         </form>
-    </div>
+      </div>
     <div class="registration">
         <p>New to Habit@?</p>
         <a href="/register">Register</a>

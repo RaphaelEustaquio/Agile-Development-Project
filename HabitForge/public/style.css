@@ -445,6 +445,12 @@ textarea {
   color: #d9534f;
 }
 
+.error-message {
+  color: red;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 /* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
 .leaderboard-container {
   display: flex;
