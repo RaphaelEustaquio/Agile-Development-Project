@@ -1,47 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Leaderboard Page</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Public Leaderboard</title>
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'Leaderboard', currentPage: 'leaderboard' }) %>
-    <div class="container">
-        <% if (user) { %>
-            <h1>other stuff</h1>
-            <!-- <h1>Welcome, <%= user.name %>!</h1>
-            
-            <% function isTodayCheckInDay(habit) {
-              if (!habit.logDays) {
-                  return false;
-              }
-              const today = new Date();
-              const todayDay = today.getDay();
-              const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-              return habit.logDays.includes(daysOfWeek[todayDay]);
-          } %>
+    <%- include('../partials/top-navbar', { pageTitle: 'Leaderboard'}) %>
 
-          <div class="habit-container">
-            <% user.habits.forEach((habit) => { %>
-                <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                    <%= habit.name %>
-                    <% if (isTodayCheckInDay(habit)) { %>
-                        <% if (habit.checkedInToday) { %>
-                            <span class="checked-in">Checked-In ✓</span>
-                        <% } else { %>
-                            <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
-                        <% } %>
-                    <% } %>
+    <div class="container">
+        <h1 class="page-title">Public Leaderboard</h1>
+        <div class="leaderboard-container">
+            <div class="leaderboard-header">
+                <span>Rank</span>
+                <span>Name</span>
+                <span>Level</span>
+                <span>Points</span>
+            </div>
+            <% leaderboard.forEach((user, index) => { %>
+                <div class="leaderboard-row <%= (index < 3) ? 'special' : '' %>">
+                    <span><%= index + 1 %></span>
+                    <span><%= user.name %></span>
+                    <span>Level <%= user.level %></span>
+                    <span><%= user.points %> points</span>
                 </div>
-            <% }) %>
-        </div> -->
-        <% } else { %>
-            <h1>Welcome, please log in or register.</h1>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
-        <% } %>
-        <!-- <button id="add-habit-btn" onclick="location.href='/add-friend'">Add Friend</button> -->
+            <% }); %>
+        </div>
     </div>
     <%- include('../partials/navbar') %>
 </body>
