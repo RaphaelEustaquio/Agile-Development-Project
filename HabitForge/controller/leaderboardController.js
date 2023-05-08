@@ -22,8 +22,4 @@ const list = (req, res) => {
     // res.redirect('/friends')
 }
 
-const findAndAddFriend = (req, res) => {
-    
-}
-
 module.exports = { list,findAndAddFriend };
