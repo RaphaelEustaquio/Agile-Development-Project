@@ -43,21 +43,25 @@ const editHabit = (req, res) => {
 };
 
 const updateHabit = (req, res) => {
-    const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
-    if (habitIndex !== -1) {
-      req.user.habits[habitIndex] = {
-        id: req.user.habits[habitIndex].id,
-        name: req.body.title,
-        description: req.body.description,
-        logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
-        duration: parseInt(req.body.duration),
-        isPublic: req.body.isPublic === 'on',
-      };
-      saveUsers();
-    }
-    res.redirect('/');
-  };
-  
+  const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
+  if (habitIndex !== -1) {
+    const oldHabit = req.user.habits[habitIndex];
+    
+    req.user.habits[habitIndex] = {
+      id: oldHabit.id,
+      name: req.body.title,
+      description: req.body.description,
+      logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
+      duration: parseInt(req.body.duration),
+      isPublic: req.body.isPublic === 'on',
+      progress: oldHabit.progress,
+      checkedInToday: oldHabit.checkedInToday,
+      lastCheckIn: oldHabit.lastCheckIn
+    };
+    saveUsers();
+  }
+  res.redirect('/');
+};
   
  const deleteHabit = (req, res) => {
     const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
