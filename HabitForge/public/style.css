@@ -1,7 +1,4 @@
-/* html {
-  height: auto;
 
-} */
 
 body {
   background:#f2f0f0;
@@ -30,7 +27,7 @@ button {
 .feedicon {
   position: relative;
   left:20px;
-  bottom:3px;
+  bottom:0;
   height: 80px;
   width: 65px;
 }
@@ -109,13 +106,12 @@ button {
       padding-top: 20%;
       height:20vh; /* Set the height of the image to 100% to fill the parent container */
       width: 20vh; /* Set the width of the image to 100% to fill the parent container */
-      padding-bottom: 10%;
   }
 
-  label {
+  /* label {
     display: block;
     width: 100%;
-  }
+  } */
 
   .loginpage {
     display: flex;
@@ -450,6 +446,53 @@ textarea {
   margin-top: 5px;
   margin-bottom: 10px;
 }
+
+
+#add-friends-btn {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    background-color: #0EA47a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+  }
+
+  #add-friends-btn:hover {
+    background-color: #15c795;
+  }
+
+  #add-friends-btn:active {
+  background-color: #0c8664;
+  }
+
+
+  .search-results {
+    padding-left: 15px;
+    padding-right: 20px;
+    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #follow-btn {
+    position: relative;
+    background-color: #333;
+    height: 50px;
+    color: white;
+    margin: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
 /* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
 .leaderboard-container {

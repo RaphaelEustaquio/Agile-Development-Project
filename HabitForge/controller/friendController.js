@@ -11,7 +11,9 @@ const renderAddFriend = (req, res) => {
 
 const searchUsers = (req, res) => {
   const searchQuery = req.body.search.toLowerCase();
-  const matchedUsers = users.filter(user => user.name.toLowerCase().includes(searchQuery));
+  const matchedUsers = users.filter(user => user.name.toLowerCase().includes(searchQuery) &&
+  user.id !== req.user.id && 
+  !req.user.friends.some(friend => friend.id === user.id));
   res.render('friends/add-friend.ejs', { user: req.user, searchResults: matchedUsers });
 };
 
