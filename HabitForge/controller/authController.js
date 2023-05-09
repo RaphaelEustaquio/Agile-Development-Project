@@ -51,7 +51,8 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
             habits: [],
             friends: [],
-            level: 1
+            level: 1,
+            points: 0
         };
         users.push(newUser);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
