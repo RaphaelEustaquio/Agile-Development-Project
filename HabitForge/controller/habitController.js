@@ -76,10 +76,20 @@ const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25)
 const updateUserPoints = (user, points) => {
   user.points += points;
 
-  while (user.level < levelingThresholds.length && user.points >= levelingThresholds[user.level - 1]) {
-    user.points -= levelingThresholds[user.level - 1];
-    user.level++;
+  let level = 1;
+  let remainingPoints = user.points;
+
+  for (let i = 0; i < levelingThresholds.length; i++) {
+    if (remainingPoints >= levelingThresholds[i]) {
+      level = i + 2;
+      remainingPoints -= levelingThresholds[i];
+    } else {
+      break;
+    }
   }
+
+  user.level = level;
+  user.remainingPoints = remainingPoints;
 };
 
 const checkIn = (req, res) => {
