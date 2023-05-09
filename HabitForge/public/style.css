@@ -88,6 +88,11 @@ button {
     /* padding-bottom: 100px; */
   }
   
+#logDays {
+  display: flex;
+  flex-direction: column;
+}
+
   /* Top Navbar styles */
   .top-navbar {
     display: flex;
@@ -108,10 +113,10 @@ button {
       width: 20vh; /* Set the width of the image to 100% to fill the parent container */
   }
 
-  /* label {
+  label {
     display: block;
     width: 100%;
-  } */
+  }
 
   .loginpage {
     display: flex;
@@ -477,11 +482,12 @@ textarea {
     padding-bottom: 150px;
     display: flex;
     flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
   }
 
   #follow-btn {
     position: relative;
-    background-color: #333;
+    background-color: #0EA47a;
     height: 50px;
     color: white;
     margin: 10px;
@@ -492,6 +498,15 @@ textarea {
     text-align: center;
     width: 100%;
     box-sizing: border-box;
+    border: none;
+  }
+  
+  #follow-btn:hover {
+    background-color: #15c795;
+  }
+
+  #follow-btn:active {
+  background-color: #0c8664;
   }
 
 /* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */

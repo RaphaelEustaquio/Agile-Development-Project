@@ -3,6 +3,7 @@
 <head>
     <title>Add Friend</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
@@ -11,7 +12,7 @@
             <h1>Add Friend</h1>
             <div class="search-container">
                 <form method="POST" action="/friends/search">
-                    <input type="text" placeholder="Search for a friend..." name="search" class="search-input">
+                    <input type="text" placeholder="Search for friends..." name="search" class="search-input">
                 </form>
             </div>
             <!-- Search results will be displayed here -->
@@ -23,13 +24,18 @@
     <% if (searchResults) { %>
       <div class="search-results">
         <h2>Search Results:</h2>
-        <% searchResults.forEach(result => { %>
-          <div class="search-result">
-            <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Follow</button>
-          </div>
-        <% }) %>
+        <% searchResults.forEach(result => {
+          if (result.id !== user.id && !user.friends.some(friend => friend.id === result.id)) { %>
+            <div class="search-result">
+              <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to Follow!</button>
+            </div>
+          <% }
+        }) %>
+        <% if (!searchResults.length) { %>
+          <p>There are no users that match that name or email.</p>
+        <% } %>
       </div>
-    <% } %>
+    <% } %>    
     <%- include('../partials/navbar') %>
 </body>
 </html>

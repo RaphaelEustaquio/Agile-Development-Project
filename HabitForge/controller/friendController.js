@@ -6,11 +6,14 @@ const renderFriendsIndex = (req, res) => {
   };
 
 const renderAddFriend = (req, res) => {
-  res.render('friends/add-friend.ejs', { user: req.user, searchResults: [] });
+  res.render('friends/add-friend.ejs', { user: req.user, searchResults: null });
 };
 
 const searchUsers = (req, res) => {
   const searchQuery = req.body.search.toLowerCase();
+  if (!searchQuery || searchQuery === " ") {
+    return res.render('friends/add-friend.ejs', { user: req.user, searchResults: []});
+  }
   const matchedUsers = users.filter(user => user.name.toLowerCase().includes(searchQuery) &&
   user.id !== req.user.id && 
   !req.user.friends.some(friend => friend.id === user.id));
