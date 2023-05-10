@@ -72,6 +72,7 @@ const updateHabit = (req, res) => {
       const habit = req.user.habits[habitIndex]
       
       req.user.points -= habit.progress;
+      req.user.totalPoints -= habit.progress;
       
       req.user.habits.splice(habitIndex, 1);
       
@@ -84,6 +85,7 @@ const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25)
 
 const updateUserPoints = (user, points) => {
   user.points += points;
+  user.totalPoints += points;
 
   while (user.level < levelingThresholds.length && user.points >= levelingThresholds[user.level - 1]) {
     user.points -= levelingThresholds[user.level - 1];
@@ -136,6 +138,7 @@ const checkMissedHabits = (user) => {
   });
 
   user.points = Math.max(0, user.points - pointsDeducted);
+  user.totalPoints = Math.max(0, user.totalPoints - pointsDeducted);
 };
 
 module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds, checkMissedHabits, updateUserPoints };

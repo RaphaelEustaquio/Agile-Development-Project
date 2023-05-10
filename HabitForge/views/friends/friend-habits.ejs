@@ -18,7 +18,8 @@
                     <h3>
                       Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
                     <h3>
-                    <p>Current Tree Level: <%= trees[user.level] %></p>
+                    <% const treeName = trees[user.level][0]; %>
+                    <p>Current Tree Level: <%= treeName %></p>
                 </div>
             </div>
 

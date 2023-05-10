@@ -618,45 +618,64 @@ background: #0c8664;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+  }
+
+  .tree-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
     
-  
-/* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
+  .treeDesc {
+    position: fixed;
+    bottom: 250px;
+    left: 20%;
+    right: 20%;
+  }
+/* Leaderboard styles */
 .leaderboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-bottom: 70px;
+  background-color: #333;
+  border-radius: 20px;
 }
+
+
+/* .leaderboard-rows {
+  display: flex;
+  flex-direction: column;
+} */
 
 .leaderboard-row,
 .leaderboard-header {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr;
+  grid-template-columns:1fr 1fr 1fr 1fr;
   gap: 20px;
-  justify-items: start;
-  align-items: center;
+  justify-items: center;
   width: 100%;
-  max-width: 600px;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
 }
+
 
 .leaderboard-row.special {
   font-size: 24px;
-  font-weight: bold;
-  color: #0EA47a;
-}
-
-.leaderboard-row:nth-child(2) {
   color: gold;
 }
 
-.leaderboard-row:nth-child(3) {
+.leaderboard-row:nth-child(2) {
   color: silver;
 }
 
-.leaderboard-row:nth-child(4) {
+.leaderboard-row:nth-child(3) {
   color: #cd7f32;
 }
+
 
 .leaderboard-switch {
   display: flex;
