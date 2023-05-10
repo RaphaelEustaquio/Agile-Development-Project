@@ -1,9 +1,12 @@
 
 
 body {
-  background:#f2f0f0;
+  background: linear-gradient(to bottom, #f2f0f0, #d3efc8);
   font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  margin: 0;
 }
+
 
 button {
   cursor: pointer;
@@ -26,8 +29,8 @@ button {
 
 .feedicon {
   position: relative;
-  left:20px;
-  bottom:0;
+  left:15px;
+  bottom: 3px;
   height: 80px;
   width: 65px;
 }
@@ -85,23 +88,24 @@ button {
     padding: 15px;
     padding-bottom:50px;
     font-size: 15px;
-    /* padding-bottom: 100px; */
   }
   
-#logDays {
-  display: flex;
-  flex-direction: column;
-}
+  #logDays {
+    display: flex;
+    flex-direction: column;
+  }
 
-  /* Top Navbar styles */
   .top-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #333;
+    padding-bottom: 10px;
+    background:#333;
+    border: none;
     color: white;
   }
+  
   
   .logo img {
     height: 8vh; /* Use viewport units to make the logo responsive */
@@ -217,13 +221,14 @@ button {
     left: 0;
     right: 0;
     height: 8vh;
-    margin: 10px;
-    background-color: #333;
+    background: #333;
     display: flex;
     justify-content: space-around;
     padding: 10px;
     align-items: center;
     z-index: 1000;
+    border-top-right-radius:30px;
+    border-top-left-radius: 30px;
   }
   
   .nav-item {
@@ -265,7 +270,7 @@ button {
   }
 
   .add-habit-form button {
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -275,11 +280,11 @@ button {
   }
 
   .add-habit-form button:hover {
-    background-color: #15c795;
+    background: #15c795;
   }
 
   .add-habit-form button:active {
-    background-color: #056c4f;
+    background: #056c4f;
   }
 
   .delete-habit-form {
@@ -288,7 +293,7 @@ button {
   }
   
   #remove-habit-btn {
-    background-color: #e10000;
+    background: linear-gradient(to right, #e40000, #d60000);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -298,14 +303,15 @@ button {
     margin: 20px;
     width: 400px;
   }
-
+  
   #remove-habit-btn:hover {
-    background-color: #ff0000;
+    background: #ff0000;
   }
 
   #remove-habit-btn:active {
-    background-color: #830000;
+    background: #820000;
   }
+  
 
   .toggle-container {
       display: flex;
@@ -318,7 +324,7 @@ button {
     position: fixed;
     bottom: 110px;
     right: 20px;
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -330,11 +336,11 @@ button {
   
   
   #add-habit-btn:hover {
-      background-color: #15c795;
+      background: #15c795;
   }
   
   #add-habit-btn:active {
-    background-color: #0c8664;
+    background: #0c8664;
 }
   /* Habit styles */
   .habit-container {
@@ -457,7 +463,7 @@ textarea {
     position: fixed;
     bottom: 110px;
     right: 20px;
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -468,11 +474,11 @@ textarea {
   }
 
   #add-friends-btn:hover {
-    background-color: #15c795;
+    background: #15c795;
   }
 
   #add-friends-btn:active {
-  background-color: #0c8664;
+  background: #0c8664;
   }
 
 
@@ -487,10 +493,10 @@ textarea {
 
   #follow-btn {
     position: relative;
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     height: 50px;
     color: white;
-    margin: 10px;
+    margin-top: 10px;
     border-radius: 25px;
     padding: 15px;
     font-size: 15px;
@@ -500,15 +506,39 @@ textarea {
     box-sizing: border-box;
     border: none;
   }
-  
+
   #follow-btn:hover {
-    background-color: #15c795;
+    background: #15c795;
   }
 
   #follow-btn:active {
-  background-color: #0c8664;
+  background: #0c8664;
   }
 
+  .friend {
+    position: relative;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .friend:hover {
+    background:#15c795;
+  }
+
+  .friend:active {
+    background: #0c8664;
+    }
+  
 /* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
 .leaderboard-container {
   display: flex;

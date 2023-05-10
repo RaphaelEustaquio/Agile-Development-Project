@@ -28,6 +28,7 @@
           if (result.id !== user.id && !user.friends.some(friend => friend.id === result.id)) { %>
             <div class="search-result">
               <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to Follow!</button>
+              
             </div>
           <% }
         }) %>

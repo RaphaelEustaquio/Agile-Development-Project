@@ -8,6 +8,7 @@
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'My Friends' }) %>
+
     <div class="container">
         <% if (user) { %>
             <h1>My Friends</h1>
@@ -18,9 +19,9 @@
 
             <div class="friends-container">
                 <% user.friends.forEach((friend) => { %>
-                    <div class="friend" onclick="location.href='friends/view-friend/<%= friend.id %>'">
-                        <%= friend.name %>
-                    </div>
+                    <button class="friend" onclick="location.href='friends/view-friend/<%= friend.id %>'">
+                        <%= friend.name %>: Level <%= friend.level %> - 
+                    </button>
                 <% }) %>
             </div>
         <% } else { %>

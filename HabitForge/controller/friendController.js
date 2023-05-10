@@ -28,7 +28,8 @@ const followUser = (req, res) => {
     req.user.friends.push({
       id: userToFollow.id,
       name: userToFollow.name,
-      email: userToFollow.email
+      email: userToFollow.email,
+      level: userToFollow.level,
     });
     habitController.saveUsers();
   }
