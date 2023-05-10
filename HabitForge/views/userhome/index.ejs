@@ -15,12 +15,13 @@
         <% if (user) { %>
             <div class="header-container">
                 <h1>Welcome, <%= user.name %>!</h1>
-                <button class="points-display" onclick="location.href='/achievements/index'">
-                    Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                </button>
-                </a>
             </div>
-            
+            <div class="points-container">
+                <button class="points-display" onclick="location.href='/achievements/index'">
+                  Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
+                </button>
+                <p>Current Tree Level:</p>
+            </div>
             <% function isTodayCheckInDay(habit) {
                 if (!habit.logDays) {
                     return false;

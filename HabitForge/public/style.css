@@ -293,7 +293,7 @@ button {
   }
   
   #remove-habit-btn {
-    background: linear-gradient(to right, #e40000, #d60000);
+    background: linear-gradient(to right, #ff0000, #d20000);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -438,7 +438,17 @@ textarea {
 
 .points-display {
   font-size: 1.25rem;
+  background: linear-gradient(to right, #0EA47a, #329D9C);
+  color: white;
+  border: none;
 }
+
+.points-container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+
 
 .missed-check-in {
   position: absolute;

@@ -6,129 +6,332 @@
     "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
     "habits": [
       {
-        "id": "1682907691950",
-        "name": "testing",
-        "description": "asdf",
+        "id": "1683693004017",
+        "name": "asaaaa",
+        "description": "sddsdfdsfsd",
         "logDays": [
-          "Sunday",
-          "Monday",
           "Tuesday",
           "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
+          "Thursday"
         ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:19:34.016Z"
-      },
-      {
-        "id": "1682964263054",
-        "name": "quit vaping",
-        "description": "less clouds",
-        "logDays": [
-          "Monday",
-          "Tuesday"
-        ],
-        "duration": 50,
-        "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-01T18:19:59.593Z"
-      },
-      {
-        "id": "1682973225500",
-        "name": "play destiny",
-        "description": "i wawnna play destiny",
-        "logDays": [
-          "Sunday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "duration": 80,
+        "duration": 12,
         "isPublic": true,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:19:42.652Z"
-      },
-      {
-        "id": "1682973446340",
-        "name": "quit smoking",
-        "description": "testing",
-        "logDays": [
-          "Sunday",
-          "Tuesday"
-        ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-04-30T18:19:59.593Z"
-      },
-      {
-        "id": "1683244137605",
-        "name": "testing update",
-        "description": "testing",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 100,
-        "isPublic": false,
         "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:49:00.591Z"
-      },
-      {
-        "id": "1683245457150",
-        "name": "hello",
-        "description": "fadsf",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 11,
-        "isPublic": false,
-        "progress": 0,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-05T00:10:59.767Z"
-      },
-      {
-        "id": "1683246073456",
-        "name": "asdf",
-        "description": "adsf",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 111,
-        "isPublic": false,
-        "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-05T00:21:19.931Z"
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T04:30:09.968Z"
       }
     ],
-    "points": 0,
+    "points": 10,
     "friends": [
       {
         "id": "1683065441249",
         "name": "eric",
         "email": "eric@test.com"
+      },
+      {
+        "id": "1683525569209",
+        "name": "new guy",
+        "email": "new@test.com"
+      },
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      },
+      {
+        "id": "1683645194616",
+        "name": "newww person",
+        "email": "new2@test.com"
+      },
+      {
+        "id": "1683654801600",
+        "name": "new account",
+        "email": "new3@test.com"
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com"
+      },
+      {
+        "id": "1683668041153",
+        "name": "bew",
+        "email": "new6@test.com"
       }
     ],
-    "level": 1
+    "level": 2
   },
   {
     "id": "1683065441249",
     "name": "eric",
     "email": "eric@test.com",
     "password": "$2a$10$Homw1y2mlY2bhxnR/ru7Je1ATh/BFQdm5VbqKRwTF8KLtNai4MNLa",
+    "habits": [
+      {
+        "id": "1683644943903",
+        "name": "New Habit",
+        "description": "i have a new habit i want to quit",
+        "logDays": [
+          "Tuesday",
+          "Friday",
+          "Saturday"
+        ],
+        "duration": 123,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T15:09:07.586Z"
+      },
+      {
+        "id": "1683644964361",
+        "name": "Second habit",
+        "description": "this is weird",
+        "logDays": [
+          "Tuesday",
+          "Thursday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T15:09:26.218Z"
+      }
+    ],
+    "friends": [],
+    "points": 20
+  },
+  {
+    "id": "1683525569209",
+    "name": "new guy",
+    "email": "new@test.com",
+    "password": "$2a$10$ZYoNmSYIBdAwSP/Dyo0tv.o7AMDlvmrgrGtLr4w7E6aFVRG76fUre",
     "habits": [],
-    "friends": []
+    "friends": [],
+    "level": 1,
+    "points": null
+  },
+  {
+    "id": "1683645194616",
+    "name": "newww person",
+    "email": "new2@test.com",
+    "password": "$2a$10$YFASwqGJOR0773UkSFQdi.3R23cswXheFnBKJYm2zxBRwbi68pvoG",
+    "habits": [],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com"
+      },
+      {
+        "id": "1683065441249",
+        "name": "eric",
+        "email": "eric@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0
+  },
+  {
+    "id": "1683654801600",
+    "name": "new account",
+    "email": "new3@test.com",
+    "password": "$2a$10$wUh1AWFUIuKOupu2BaMQ0e2k.k6SKDRF7xgm8meapUqXd1KEHcrT2",
+    "habits": [],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0
+  },
+  {
+    "id": "1683655010681",
+    "name": "newnr",
+    "email": "new4@test.com",
+    "password": "$2a$10$UmmgHU0qZtoaY1E2eks38uduG73T9qyPOsnSpTnmyuNdLKBH5NHtu",
+    "habits": [
+      {
+        "id": "1683655122056",
+        "name": "habit ",
+        "description": "lksdf",
+        "logDays": [
+          "Monday",
+          "Tuesday"
+        ],
+        "duration": 12,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T17:58:44.117Z"
+      },
+      {
+        "id": "1683655142187",
+        "name": "habit two",
+        "description": "alkjfldlkjslkdfj",
+        "logDays": [
+          "Tuesday",
+          "Wednesday"
+        ],
+        "duration": 0,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T17:59:04.049Z"
+      }
+    ],
+    "friends": [],
+    "level": 1,
+    "points": 20
+  },
+  {
+    "id": "1683668041153",
+    "name": "bew",
+    "email": "new6@test.com",
+    "password": "$2a$10$95A/xyy6vkB5IgGdyLCRnOSevpEYYfSaSNzX31X1oMBmOGQa1XpKi",
+    "habits": [
+      {
+        "id": "1683673160490",
+        "name": "mdsnlkf",
+        "description": "lksdflkjsfladk",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Saturday"
+        ],
+        "duration": 234,
+        "isPublic": false,
+        "progress": 0
+      }
+    ],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      },
+      {
+        "id": "1683065441249",
+        "name": "eric",
+        "email": "eric@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0
+  },
+  {
+    "id": "1683668054666",
+    "name": "another guy",
+    "email": "new7@test.com",
+    "password": "$2a$10$fN2dlcuMnuaKZBOC1tTqG.nOQEO5hd0C.In2aSWSky2HZ5NO1U.NW",
+    "habits": [],
+    "friends": [],
+    "level": 1,
+    "points": 0
+  },
+  {
+    "id": "1683676362694",
+    "name": "new person",
+    "email": "new9@test.com",
+    "password": "$2a$10$7Fj/HqSgU7XTXfgKrULTXeySxsp8yUQKTGksMzR/Ai4eyLg3NLvaK",
+    "habits": [
+      {
+        "id": "1683677017602",
+        "name": "hlak",
+        "description": "kldgkljga",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "duration": 11,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:03:39.907Z"
+      },
+      {
+        "id": "1683690266976",
+        "name": "kjjk",
+        "description": "lklk",
+        "logDays": [
+          "Tuesday",
+          "Wednesday"
+        ],
+        "duration": 5,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T03:44:28.856Z"
+      }
+    ],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com",
+        "level": 2
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com",
+        "level": 1
+      }
+    ],
+    "level": 1,
+    "points": 20
+  },
+  {
+    "id": "1683681041224",
+    "name": "eric kim",
+    "email": "eric1@test.com",
+    "password": "$2a$10$tLU3eOFK67flrT3UMxMpIOhx3h0UtEr2.RLRAmorRt/aGRLmafB3y",
+    "habits": [
+      {
+        "id": "1683683616874",
+        "name": "something",
+        "description": "asflkdfjkklj",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "duration": 123,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T01:53:38.821Z"
+      }
+    ],
+    "friends": [
+      {
+        "id": "1683654801600",
+        "name": "new account",
+        "email": "new3@test.com",
+        "level": 1
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com",
+        "level": 1
+      },
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com",
+        "level": 2
+      }
+    ],
+    "level": 1,
+    "points": 10
   }
 ]

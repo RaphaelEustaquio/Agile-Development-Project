@@ -1,10 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-let users = require('../data/users.json');
-
+const trees = require('../data/trees.json');
 
 const renderAchievements = (req, res) => {
-    res.render('achievements/index.ejs', { user: req.user });
+  res.render('achievements/index.ejs', {user: req.user, trees: trees});
 }
 
 module.exports = { renderAchievements };

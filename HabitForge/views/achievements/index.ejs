@@ -10,7 +10,7 @@
     <%- include('../partials/top-navbar', { pageTitle: 'Your Tree', currentPage: 'achievements' }) %>
     <div class="container">
         <% if (user) { %>
-            <h1>Your Tree</h1>
+            <h1>Your Tree Level: <%= trees[user.level] %> </h1>
             <img class="usertree" src="/images/<%= user.level %>.png" alt="Logo">
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
