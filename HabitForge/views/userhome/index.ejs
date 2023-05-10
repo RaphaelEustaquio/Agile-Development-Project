@@ -15,13 +15,14 @@
         <% if (user) { %>
             <div class="header-container">
                 <h1>Welcome, <%= user.name %>!</h1>
+                <div class="points-container">
+                    <button class="points-btn" onclick="location.href='/achievements/index'">
+                      Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
+                    </button>
+                    <p>Current Tree Level:</p>
+                </div>
             </div>
-            <div class="points-container">
-                <button class="points-display" onclick="location.href='/achievements/index'">
-                  Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                </button>
-                <p>Current Tree Level:</p>
-            </div>
+
             <% function isTodayCheckInDay(habit) {
                 if (!habit.logDays) {
                     return false;
@@ -68,7 +69,15 @@
                 return nextCheckInDay !== todayDay && nextCheckInDate < today;
             } %>
             
-              
+            <% if (user.habits.length === 0) { %>
+                <div class="message-container">
+                    <h2>You are currently not quitting any habits.</h2>
+                    <h2>Add one to the list now!</h2>
+                </div>
+            <% } else { %>
+                <h2>Here are your habits.</h2>
+            <% } %>
+
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
