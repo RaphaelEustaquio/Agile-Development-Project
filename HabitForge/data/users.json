@@ -20,9 +20,10 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:19:34.016Z"
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:35.713Z",
+        "streak": 1
       },
       {
         "id": "1682964263054",
@@ -34,9 +35,10 @@
         ],
         "duration": 50,
         "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-01T18:19:59.593Z"
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:36.964Z",
+        "streak": 1
       },
       {
         "id": "1682973225500",
@@ -52,9 +54,10 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:19:42.652Z"
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:28.096Z",
+        "streak": 1
       },
       {
         "id": "1682973446340",
@@ -66,9 +69,10 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-04-30T18:19:59.593Z"
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:34.273Z",
+        "streak": 1
       },
       {
         "id": "1683244137605",
@@ -96,7 +100,8 @@
         "progress": 0,
         "level": 1,
         "checkedInToday": false,
-        "lastCheckIn": "2023-05-05T00:10:59.767Z"
+        "lastCheckIn": "2023-05-05T00:10:59.767Z",
+        "streak": 0
       },
       {
         "id": "1683246073456",
@@ -111,9 +116,54 @@
         "level": 1,
         "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:21:19.931Z"
+      },
+      {
+        "id": "1683678521857",
+        "name": "be gone",
+        "description": "please",
+        "logDays": [
+          "Tuesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 0,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:28:44.121Z"
+      },
+      {
+        "id": "1683678825147",
+        "name": "be gone 2",
+        "description": "lalalal",
+        "logDays": [
+          "Tuesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 10,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:33:47.401Z"
+      },
+      {
+        "id": "1683750451932",
+        "name": "one day",
+        "description": "one",
+        "logDays": [
+          "Wednesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 10,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T20:27:34.341Z"
       }
     ],
-    "points": 0,
+    "points": 60,
     "friends": [
       {
         "id": "1683065441249",
@@ -121,7 +171,9 @@
         "email": "eric@test.com"
       }
     ],
-    "level": 1
+    "level": 1,
+    "remainingPoints": 60,
+    "completedPoints": null
   },
   {
     "id": "1683065441249",
