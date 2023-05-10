@@ -7,28 +7,25 @@
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
-    <div class="container">
-        <% if (user) { %>
+      <% if (user) { %>
+          <div class="search-container">
             <h1>Add Friend</h1>
-            <div class="search-container">
-                <form method="POST" action="/friends/search">
-                    <input type="text" placeholder="Search for friends..." name="search" class="search-input">
-                </form>
-            </div>
-            <!-- Search results will be displayed here -->
-        <% } else { %>
-            <h1>Welcome, please log in or register.</h1>
-            <a href="/login">Login</a> | <a href="/register">Register</a>
-        <% } %>
-    </div>
+              <form method="POST" action="/friends/search">
+                  <input type="text" placeholder="Search for friends..." name="search" class="search-input">
+              </form>
+          </div>
+          <!-- Search results will be displayed here -->
+      <% } else { %>
+          <h1>Welcome, please log in or register.</h1>
+          <a href="/login">Login</a> | <a href="/register">Register</a>
+      <% } %>
     <% if (searchResults) { %>
       <div class="search-results">
         <h2>Search Results:</h2>
         <% searchResults.forEach(result => {
-          if (result.id !== user.id && !user.friends.some(friend => friend.id === result.id)) { %>
+          if (result.id !== user.id && !user.realfriends.some(friend => friend.id === result.id)) { %>
             <div class="search-result">
-              <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to Follow!</button>
-              
+              <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
             </div>
           <% }
         }) %>

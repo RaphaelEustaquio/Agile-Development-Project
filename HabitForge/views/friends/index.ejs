@@ -11,17 +11,22 @@
 
     <div class="container">
         <% if (user) { %>
-            <h1>My Friends</h1>
-            
+            <div class="header-container">
+                <h1>My Friends</h1>
+                <button id="friend-requests-btn" onclick="location.href='/friends/friend-requests'">
+                    <% if (user.friends.length > 0) { %>
+                      <span class="badge"><%= user.friends.length %></span>
+                    <% } %>
+                    Friend Requests
+                </button>
+            </div>
             <div class="search-container">
                 <input type="text" placeholder="Search for my friends..." class="search-input">
             </div>
 
             <div class="friends-container">
-                <% user.friends.forEach((friend) => { %>
-                    <button class="friend" onclick="location.href='friends/view-friend/<%= friend.id %>'">
-                        <%= friend.name %>: Level <%= friend.level %> - 
-                    </button>
+                <% user.realfriends.forEach((friend) => { %>
+                    <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - </button>
                 <% }) %>
             </div>
         <% } else { %>
@@ -29,6 +34,7 @@
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
         <button id="add-friends-btn" onclick="location.href='/friends/add-friend'">Add Friends</button>
+        
     </div>
     <%- include('../partials/navbar') %>
 </body>

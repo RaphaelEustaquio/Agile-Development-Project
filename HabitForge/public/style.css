@@ -1,7 +1,7 @@
 
 
 body {
-  background: linear-gradient(to bottom, #f2f0f0, #d3efc8);
+  background: repeating-linear-gradient(to bottom, #f2f0f0, #d3efc8);
   font-family: 'Open Sans', sans-serif;
   height: 100vh;
   margin: 0;
@@ -462,13 +462,62 @@ textarea {
   margin-top: 5px;
   margin-bottom: 10px;
 }
+#friend-requests-btn {
+    position: fixed;
+    top: 150px;
+    right: 20px;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    color:white;
+    height: 45px;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+}
+
+#friend-requests-btn:hover {
+  background: #15c795;
+}
+
+#friend-requests-btn:active {
+background: #0c8664;
+}
+
+.badge {
+  background-color: orange;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.iconbadge {
+  background-color: orange;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: -5px;
+  left: 50px;
+  width: 24px;
+  height: 24px;
+}
 
 
 #add-friends-btn {
     position: fixed;
     bottom: 110px;
     right: 20px;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
+    background-color:#333;
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -478,12 +527,21 @@ textarea {
     z-index: 1000;
   }
 
+
   #add-friends-btn:hover {
-    background: #15c795;
+    background: #555;
   }
 
   #add-friends-btn:active {
-  background: #0c8664;
+  background: #474747;
+  }
+
+  /* .friends-container{
+    padding-bottom: 120px;
+  } */
+
+  .search-container{
+    padding: 10px;
   }
 
 

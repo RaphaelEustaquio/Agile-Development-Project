@@ -51,6 +51,7 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
             habits: [],
             friends: [],
+            realfriends: [],
             level: 1,
             points: 0
         };
