@@ -13,24 +13,26 @@ const saveUsers = () => {
   };
   
   
-  const addHabit = (req, res) => {
-    const habit = {
-        id: Date.now().toString(),
-        name: req.body.title,
-        description: req.body.description,
-        logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
-        duration: parseInt(req.body.duration),
-        isPublic: req.body.isPublic === 'on',
-        progress: 0
-    };
-    const user = users.find((user) => user.id === req.user.id);
+const addHabit = (req, res) => {
+  const habit = {
+    id: Date.now().toString(),
+    name: req.body.title,
+    description: req.body.description,
+    logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
+    duration: parseInt(req.body.duration),
+    isPublic: req.body.isPublic === 'on',
+    progress: 0,
+    completed: false,
+    streak: 0,
+};
+  const user = users.find((user) => user.id === req.user.id);
 
-    if (user) {
-        user.habits.push(habit);
-        saveUsers();
-    }
+  if (user) {
+      user.habits.push(habit);
+      saveUsers();
+  }
 
-    res.redirect('/');
+  res.redirect('/');
 };
 
 
@@ -55,20 +57,20 @@ const updateHabit = (req, res) => {
   };
   
   
- const deleteHabit = (req, res) => {
-    const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
+const deleteHabit = (req, res) => {
+  const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
+  
+  
+  if (habitIndex !== -1){
+    const habit = req.user.habits[habitIndex]
     
+    req.user.points -= habit.progress;
     
-    if (habitIndex !== -1){
-      const habit = req.user.habits[habitIndex]
-      
-      req.user.points -= habit.progress;
-      
-      req.user.habits.splice(habitIndex, 1);
-      
-      saveUsers();
-    }
-    res.redirect('/');
+    req.user.habits.splice(habitIndex, 1);
+    
+    saveUsers();
+  }
+  res.redirect('/');
 };
 
 const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
@@ -104,20 +106,30 @@ const checkIn = (req, res) => {
   const today = new Date();
 
   habit.progress += 10;
-  updateUserPoints(user, 10);
+  habit.streak += 1;
   habit.checkedInToday = true;
   habit.lastCheckIn = today;
+
+  // Check if the habit duration is reached
+  if (habit.streak === habit.duration) {
+    updateUserPoints(user, habit.progress); // add habit progress points to user points
+    habit.completed = true; // mark the habit as completed
+  }
 
   saveUsers();
   res.redirect('/');
 };
-
 
 const checkMissedHabits = (user) => {
   let pointsDeducted = 0;
   const today = new Date();
 
   user.habits.forEach((habit) => {
+    if (habit.completed) {
+      // This habit is already completed, so we don't need to check for missed check-ins
+      return;
+    }
+
     const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
     const daysDifference = lastCheckIn ? Math.floor((today - lastCheckIn) / (1000 * 60 * 60 * 24)) : null;
 
@@ -129,9 +141,12 @@ const checkMissedHabits = (user) => {
       });
 
       if (missedLogDays.length > 0) {
+        // Reset the streak and progress
+        habit.streak = 0;
         const habitPoints = habit.progress;
         habit.progress = 0;
         pointsDeducted += habitPoints;
+        habit.checkedInToday = false;
       }
     }
   });
