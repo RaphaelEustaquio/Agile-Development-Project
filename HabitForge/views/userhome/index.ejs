@@ -19,7 +19,7 @@
                     <button class="points-btn" onclick="location.href='/achievements/index'">
                       Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
                     </button>
-                    <p>Current Tree Level:</p>
+                    <p>Current Tree Level: <%= trees[user.level] %></p>
                 </div>
             </div>
 

@@ -14,11 +14,11 @@
         <% if (user) { %>
             <div class="header-container">
                 <h1><%= user.name %>'s page</h1>
-                <div class="points-container">
-                    <button class="points-btn">
+                <div class="friend-points-container">
+                    <h3>
                       Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                    </button>
-                    <p>Current Tree Level:</p>
+                    <h3>
+                    <p>Current Tree Level: <%= trees[user.level] %></p>
                 </div>
             </div>
 
@@ -74,23 +74,24 @@
                 </div>
             <% } %>
 
-            <div class="habit-container">
-                <% let hasPrivateHabit = false %>
-                <% let hasPublicHabit = false %>
-                <% user.habits.forEach((habit) => { %>
-                    <% if (habit.isPublic == true) { %>
-                        <% hasPublicHabit = true %>
-                    <% } else { %>
-                        <% hasPrivateHabit = true %>
-                    <% } %>
-                <% }) %>
-                <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
-                    <h2>Here are <%= user.name %>'s habits.</h2>
-                <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
-                    <h2><%= user.name %>'s habits are private.</h2>
-                <% } else if (hasPrivateHabit && hasPublicHabit) { %>
-                    <h2>Here are <%= user.name %>'s public habits.</h2>
+            <% let hasPrivateHabit = false %>
+            <% let hasPublicHabit = false %>
+            <% user.habits.forEach((habit) => { %>
+                <% if (habit.isPublic == true) { %>
+                    <% hasPublicHabit = true %>
+                <% } else { %>
+                    <% hasPrivateHabit = true %>
                 <% } %>
+            <% }) %>
+            <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
+                <h2>Here are <%= user.name %>'s habits.</h2>
+            <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
+                <h2><%= user.name %>'s habits are private.</h2>
+            <% } else if (hasPrivateHabit && hasPublicHabit) { %>
+                <h2>Here are <%= user.name %>'s public habits.</h2>
+            <% } %>
+
+            <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <% if (habit.isPublic == true) { %>
                         <div class="habit">

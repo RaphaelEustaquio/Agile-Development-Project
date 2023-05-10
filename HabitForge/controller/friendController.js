@@ -1,8 +1,9 @@
 const users = require('../data/users.json');
+const trees = require('../data/trees.json');
 const habitController = require('./habitController.js')
 
 const renderFriendsIndex = (req, res) => {
-  res.render('friends/index.ejs', { user: req.user });
+  res.render('friends/index.ejs', { user: req.user, trees: trees });
 };
 
 const renderAddFriend = (req, res) => {
@@ -16,7 +17,7 @@ const renderFriendRequests = (req, res) => {
 const renderFriendHabits = (req, res) => {
   const userId = req.params.id;
   const userToFollow = users.find(user => user.id === userId);
-  res.render('friends/friend-habits.ejs', { user: userToFollow,  levelingThresholds: habitController.levelingThresholds });
+  res.render('friends/friend-habits.ejs', { user: userToFollow,  levelingThresholds: habitController.levelingThresholds, trees: trees });
 };
 
 
@@ -35,7 +36,7 @@ const followUser = (req, res) => {
   const userId = req.params.id;
   const userToFollow = users.find(user => user.id === userId);
 
-  if (userToFollow && !req.user.friends.some(friend => friend.id === userId)) {
+  if (userToFollow && !req.user.friends.some(friend => friend.id === userId) && !userToFollow.friends.some(friend => friend.id === req.user.id)) {
     userToFollow.friends.push({
       id: req.user.id,
       name: req.user.name,
@@ -44,9 +45,9 @@ const followUser = (req, res) => {
       acceptance: false,
     });
     habitController.saveUsers();
-  }
+  }  
 
-  res.redirect('/friends/index');
+  res.render('friends/add-friend.ejs', { user: req.user, searchResults: null})
 };
 
 const acceptFriend = (req, res) => {

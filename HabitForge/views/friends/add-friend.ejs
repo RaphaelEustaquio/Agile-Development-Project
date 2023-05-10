@@ -4,6 +4,7 @@
     <title>Add Friend</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script defer src="/javascript.js"></script>
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
@@ -25,7 +26,7 @@
         <% searchResults.forEach(result => {
           if (result.id !== user.id && !user.realfriends.some(friend => friend.id === result.id)) { %>
             <div class="search-result">
-              <button onclick="location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
+              <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
             </div>
           <% }
         }) %>

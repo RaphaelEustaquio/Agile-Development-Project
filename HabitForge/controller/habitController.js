@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 let users = require('../data/users.json');
 
+
 const renderIndex = (req, res) => {
   res.render('userhome/add-habit.ejs', { user: req.user });
 }

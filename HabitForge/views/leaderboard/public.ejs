@@ -11,7 +11,7 @@
     <%- include('../partials/top-navbar', { pageTitle: 'Leaderboard'}) %>
 
     <div class="container">
-        <h1 class="page-title">Public Leaderboard</h1>
+        <h1 class="page-title">Public Leaderboard (Top 25)</h1>
         <div class="leaderboard-container">
             <div class="leaderboard-header">
                 <span>Rank</span>
@@ -19,12 +19,12 @@
                 <span>Level</span>
                 <span>Points</span>
             </div>
-            <% leaderboard.forEach((user, index) => { %>
+            <% leaderboard.slice(0, 25).forEach((user, index) => { %>
                 <div class="leaderboard-row <%= (index < 3) ? 'special' : '' %>">
-                    <span><%= index + 1 %></span>
-                    <span><%= user.name %></span>
-                    <span>Level <%= user.level %></span>
-                    <span><%= user.points %> points</span>
+                  <span><%= index + 1 %></span>
+                  <span><%= user.name %></span>
+                  <span>Level <%= user.level %></span>
+                  <span><%= user.points %> points</span>
                 </div>
             <% }); %>
         </div>

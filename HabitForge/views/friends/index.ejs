@@ -26,7 +26,7 @@
 
             <div class="friends-container">
                 <% user.realfriends.forEach((friend) => { %>
-                    <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - </button>
+                    <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - <%= trees[friend.level] %></button>
                 <% }) %>
             </div>
         <% } else { %>
