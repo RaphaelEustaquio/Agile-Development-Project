@@ -538,6 +538,16 @@ textarea {
   .friend:active {
     background: #0c8664;
     }
+
+  .usertree {
+    width: 25vh;
+    height: 25vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+    
   
 /* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
 .leaderboard-container {
