@@ -438,6 +438,15 @@ textarea {
   border: none;
 }
 
+.points-btn:hover {
+  background: #15c795;
+}
+
+.points-btn:active {
+background: #0c8664;
+}
+
+
 .points-container {
   display: flex;
   flex-direction: column;

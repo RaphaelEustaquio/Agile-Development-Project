@@ -16,7 +16,7 @@ const renderFriendRequests = (req, res) => {
 const renderFriendHabits = (req, res) => {
   const userId = req.params.id;
   const userToFollow = users.find(user => user.id === userId);
-  res.render('friends/friend-habits.ejs', { user: userToFollow });
+  res.render('friends/friend-habits.ejs', { user: userToFollow,  levelingThresholds: habitController.levelingThresholds });
 };
 
 

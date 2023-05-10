@@ -8,7 +8,113 @@
     <script src="/javascript.js"></script>
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'My Habits', currentPage: 'userhome' }) %>
-    <%- include('../partials/navbar', { currentPage: 'userhome' }) %>
+    <%- include('../partials/top-navbar', { pageTitle: 'Friend Habits', currentPage: 'friendhome' }) %>
+    <%- include('../partials/navbar', { currentPage: 'friendhome' }) %>
+    <div class="container">
+        <% if (user) { %>
+            <div class="header-container">
+                <h1><%= user.name %>'s page</h1>
+                <div class="points-container">
+                    <button class="points-btn">
+                      Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
+                    </button>
+                    <p>Current Tree Level:</p>
+                </div>
+            </div>
+
+            <% function isTodayCheckInDay(habit) {
+                if (!habit.logDays) {
+                    return false;
+                }
+                const today = new Date();
+                const todayDay = today.getDay();
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                return habit.logDays.includes(daysOfWeek[todayDay]);
+            } %>
+
+            <% function getNextCheckInDay(habit) {
+                if (!habit.logDays) {
+                    return "";
+                }
+                const today = new Date();
+                const todayDay = today.getDay();
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const nextDayIndex = habit.logDays.findIndex(day => daysOfWeek.indexOf(day) > todayDay);
+                if (nextDayIndex !== -1) {
+                    return habit.logDays[nextDayIndex];
+                }
+                return habit.logDays[0];
+            } %>
+
+            <% function missedLastCheckIn(habit) {
+                if (!habit.logDays || !habit.lastCheckIn) {
+                    return false;
+                }
+                const today = new Date();
+                const lastCheckInDate = new Date(habit.lastCheckIn);
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                
+                let nextCheckInDate = new Date(lastCheckInDate);
+                do {
+                    nextCheckInDate.setDate(nextCheckInDate.getDate() + 1);
+                    if (habit.logDays.includes(daysOfWeek[nextCheckInDate.getDay()])) {
+                        break;
+                    }
+                } while (true);
+                
+                const nextCheckInDay = daysOfWeek[nextCheckInDate.getDay()];
+                const todayDay = daysOfWeek[today.getDay()];
+                
+                return nextCheckInDay !== todayDay && nextCheckInDate < today;
+            } %>
+            
+            <% if (user.habits.length === 0) { %>
+                <div class="message-container">
+                    <h2><%= user.name %> is currently not quitting any habits.</h2>
+                </div>
+            <% } %>
+
+            <div class="habit-container">
+                <% let hasPrivateHabit = false %>
+                <% let hasPublicHabit = false %>
+                <% user.habits.forEach((habit) => { %>
+                    <% if (habit.isPublic == true) { %>
+                        <% hasPublicHabit = true %>
+                    <% } else { %>
+                        <% hasPrivateHabit = true %>
+                    <% } %>
+                <% }) %>
+                <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
+                    <h2>Here are <%= user.name %>'s habits.</h2>
+                <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
+                    <h2><%= user.name %>'s habits are private.</h2>
+                <% } else if (hasPrivateHabit && hasPublicHabit) { %>
+                    <h2>Here are <%= user.name %>'s public habits.</h2>
+                <% } %>
+                <% user.habits.forEach((habit) => { %>
+                    <% if (habit.isPublic == true) { %>
+                        <div class="habit">
+                            <%= habit.name %>
+                            <% if (isTodayCheckInDay(habit)) { %>
+                                <% if (habit.checkedInToday) { %>
+                                    <span class="checked-in">Checked-In ✓</span>
+                                <% } else { %>
+                                    <% if (missedLastCheckIn(habit)) { %>
+                                        <span class="missed-check-in">Missed Last Check-In</span>
+                                    <% } %>
+                                    <button class="check-in-btn">Needs to Check-In</button>
+                                <% } %>
+                            <% } else { %>
+                                <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
+                            <% } %>                          
+                        </div>
+                    <% } %>
+                <% }) %>
+            </div>            
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+    </div>
 </body>
 </html>
