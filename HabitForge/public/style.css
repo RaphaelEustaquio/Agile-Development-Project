@@ -517,3 +517,8 @@ textarea {
 .leaderboard-switch button.selected {
   background-color: #056c4f;
 }
+.habit-info {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
