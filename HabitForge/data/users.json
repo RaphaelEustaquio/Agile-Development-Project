@@ -20,10 +20,10 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 10,
-        "checkedInToday": true,
+        "progress": 0,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-10T00:31:35.713Z",
-        "streak": 1
+        "streak": 0
       },
       {
         "id": "1682964263054",
@@ -54,10 +54,10 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 10,
-        "checkedInToday": true,
+        "progress": 0,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-10T00:31:28.096Z",
-        "streak": 1
+        "streak": 0
       },
       {
         "id": "1682973446340",
@@ -163,7 +163,7 @@
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
       }
     ],
-    "points": 60,
+    "points": 40,
     "friends": [
       {
         "id": "1683065441249",
@@ -171,7 +171,7 @@
       }
     ],
     "level": 1,
-    "remainingPoints": 60,
+    "remainingPoints": 40,
     "completedPoints": null
   },
   {

@@ -70,9 +70,13 @@
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <% if (!habit.completed) { %>
-                      <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                        <%= habit.name %>
-                        <% if (isTodayCheckInDay(habit)) { %>
+                        <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
+                            <div class="habit-info">
+                                <%= habit.name %> 
+                                <div class="habit-progress">Day: <%= habit.streak %>/<%= habit.duration %>
+                                </div>
+                            </div>
+                            <% if (isTodayCheckInDay(habit)) { %>                        
                           <% if (habit.checkedInToday) { %>
                             <span class="checked-in">Checked-In ✓</span>
                           <% } else { %>

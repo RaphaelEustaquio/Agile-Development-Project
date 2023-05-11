@@ -352,3 +352,9 @@ textarea {
   font-size: 12px;
   color: #d9534f;
 }
+
+.habit-info {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
