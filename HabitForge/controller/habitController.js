@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 let users = require('../data/users.json');
 
+
 const renderIndex = (req, res) => {
   res.render('userhome/add-habit.ejs', { user: req.user });
 }
@@ -74,17 +75,24 @@ const deleteHabit = (req, res) => {
     
     req.user.points -= habit.progress;
     
-    req.user.habits.splice(habitIndex, 1);
-    
-    saveUsers();
-  }
-  res.redirect('/');
+    if (habitIndex !== -1){
+      const habit = req.user.habits[habitIndex]
+      
+      req.user.points -= habit.progress;
+      req.user.totalPoints -= habit.progress;
+      
+      req.user.habits.splice(habitIndex, 1);
+      
+      saveUsers();
+    }
+    res.redirect('/');
 };
 
 const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
 
 const updateUserPoints = (user, points) => {
   user.points += points;
+  user.totalPoints += points;
 
   let level = 1;
   let remainingPoints = user.points;
@@ -160,6 +168,7 @@ const checkMissedHabits = (user) => {
   });
 
   user.points = Math.max(0, user.points - pointsDeducted);
+  user.totalPoints = Math.max(0, user.totalPoints - pointsDeducted);
 };
 
 module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds, checkMissedHabits, updateUserPoints };

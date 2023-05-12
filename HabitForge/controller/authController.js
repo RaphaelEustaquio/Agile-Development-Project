@@ -3,6 +3,7 @@ const passport = require('passport');
 const fs = require('fs');
 const path = require('path');
 const users = require('../data/users.json');
+const trees = require('../data/trees.json');
 const habitController = require('../controller/habitController.js'); 
 
 const renderIndex = (req, res) => {
@@ -11,7 +12,7 @@ const renderIndex = (req, res) => {
     habitController.updateUserPoints(req.user, 0);
     habitController.saveUsers();
   }
-  res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds });
+  res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds, trees: trees });
 };
 
 
@@ -51,6 +52,7 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
             habits: [],
             friends: [],
+            realfriends: [],
             level: 1,
             points: 0,
             remainingPoints: 0,

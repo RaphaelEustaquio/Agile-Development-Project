@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Page</title>
+    <title>Friend Page</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/javascript.js"></script>
 </head>
 <body>
-    <button id="add-habit-btn" onclick="location.href='/add-habit'">Add a Habit</button>
-    <%- include('../partials/top-navbar', { pageTitle: 'My Habits', currentPage: 'userhome' }) %>
-    <%- include('../partials/navbar', { currentPage: 'userhome' }) %>
+    <%- include('../partials/top-navbar', { pageTitle: 'Friend Habits', currentPage: 'friendhome' }) %>
+    <%- include('../partials/navbar', { currentPage: 'friendhome' }) %>
     <div class="container">
         <% if (user) { %>
             <div class="header-container">
-                <h1>Welcome, <%= user.name %>!</h1>
-                <div class="points-container">
-                    <button class="points-btn" onclick="location.href='/achievements/index'">
+                <h1><%= user.name %>'s page</h1>
+                <div class="friend-points-container">
+                    <h3>
                       Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                    </button>
+                    <h3>
                     <% const treeName = trees[user.level][0]; %>
                     <p>Current Tree Level: <%= treeName %></p>
                 </div>
@@ -72,38 +71,48 @@
             
             <% if (user.habits.length === 0) { %>
                 <div class="message-container">
-                    <h2>You are currently not quitting any habits.</h2>
-                    <h2>Add one to the list now!</h2>
+                    <h2><%= user.name %> is currently not quitting any habits.</h2>
                 </div>
-            <% } else { %>
-                <h2>Here are your habits.</h2>
+            <% } %>
+
+            <% let hasPrivateHabit = false %>
+            <% let hasPublicHabit = false %>
+            <% user.habits.forEach((habit) => { %>
+                <% if (habit.isPublic == true) { %>
+                    <% hasPublicHabit = true %>
+                <% } else { %>
+                    <% hasPrivateHabit = true %>
+                <% } %>
+            <% }) %>
+            <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
+                <h2>Here are <%= user.name %>'s habits.</h2>
+            <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
+                <h2><%= user.name %>'s habits are private.</h2>
+            <% } else if (hasPrivateHabit && hasPublicHabit) { %>
+                <h2>Here are <%= user.name %>'s public habits.</h2>
             <% } %>
 
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
-                    <% if (!habit.completed) { %>
-                        <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                            <div class="habit-info">
-                                <%= habit.name %> 
-                                <div class="habit-progress">Day: <%= habit.streak %>/<%= habit.duration %>
-                                </div>
-                            </div>
-                            <% if (isTodayCheckInDay(habit)) { %>                        
-                          <% if (habit.checkedInToday) { %>
-                            <span class="checked-in">Checked-In ✓</span>
-                          <% } else { %>
-                            <% if (missedLastCheckIn(habit)) { %>
-                              <span class="missed-check-in">Missed Last Check-In</span>
-                            <% } %>
-                            <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
-                          <% } %>
-                        <% } else { %>
-                          <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
-                        <% } %>
-                      </div>
+                    <% if (habit.isPublic == true) { %>
+                        <div class="habit">
+                            <%= habit.name %>
+                            <% if (isTodayCheckInDay(habit)) { %>
+                                <% if (habit.checkedInToday) { %>
+                                    <span class="checked-in">Checked-In ✓</span>
+                                <% } else { %>
+                                    <% if (missedLastCheckIn(habit)) { %>
+                                        <span class="missed-check-in">Missed Last Check-In</span>
+                                    <% } %>
+                                    <button class="check-in-btn">Needs to Check-In</button>
+                                <% } %>
+                            <% } else { %>
+                                <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
+                            <% } %>                          
+                        </div>
                     <% } %>
-                  <% }) %>                  
-            </div>
+                <% }) %>
+            </div>            
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

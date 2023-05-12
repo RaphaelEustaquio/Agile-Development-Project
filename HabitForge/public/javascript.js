@@ -26,3 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoginPage();
   }
 });
+
+function sentRequest() {
+  alert("Friend request sent!");
+}

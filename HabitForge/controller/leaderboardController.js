@@ -1,7 +1,7 @@
 const users = require('../data/users.json');
 
 const comparePoints = (a, b) => {
-  return b.points - a.points;
+  return b.totalPoints - a.totalPoints;
 };
 
 const renderPublicLeaderboard = (req, res) => {

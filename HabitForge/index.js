@@ -11,6 +11,7 @@ const habitRoutes = require('./routes/habitRoutes');
 const friendRoutes = require('./routes/friendRoutes')
 const feedRoutes = require('./routes/feedRoutes')
 const leaderboardRoutes = require('./routes/leaderboardRoutes')
+const achievementRoutes = require('./routes/achievementRoutes')
 const app = express();
 const users = require('./data/users.json');
 const getUserByEmail = (email) => users.find((user) => user.email === email);
@@ -38,6 +39,7 @@ app.use(habitRoutes);
 app.use(friendRoutes); 
 app.use(feedRoutes); 
 app.use(leaderboardRoutes); 
+app.use(achievementRoutes);
 
 module.exports = app;
 

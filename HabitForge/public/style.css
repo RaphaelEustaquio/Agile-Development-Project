@@ -1,12 +1,12 @@
-/* html {
-  height: auto;
 
-} */
 
 body {
-  background:#f2f0f0;
+  background: repeating-linear-gradient(to bottom, #f2f0f0, #d3efc8);
   font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  margin: 0;
 }
+
 
 button {
   cursor: pointer;
@@ -29,8 +29,8 @@ button {
 
 .feedicon {
   position: relative;
-  left:20px;
-  bottom:3px;
+  left:15px;
+  bottom: 3px;
   height: 80px;
   width: 65px;
 }
@@ -88,18 +88,24 @@ button {
     padding: 15px;
     padding-bottom:50px;
     font-size: 15px;
-    /* padding-bottom: 100px; */
   }
   
-  /* Top Navbar styles */
+  #logDays {
+    display: flex;
+    flex-direction: column;
+  }
+
   .top-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #333;
+    padding-bottom: 10px;
+    background:#333;
+    border: none;
     color: white;
   }
+  
   
   .logo img {
     height: 8vh; /* Use viewport units to make the logo responsive */
@@ -109,7 +115,6 @@ button {
       padding-top: 20%;
       height:20vh; /* Set the height of the image to 100% to fill the parent container */
       width: 20vh; /* Set the width of the image to 100% to fill the parent container */
-      padding-bottom: 10%;
   }
 
   label {
@@ -216,13 +221,14 @@ button {
     left: 0;
     right: 0;
     height: 8vh;
-    margin: 10px;
-    background-color: #333;
+    background: #333;
     display: flex;
     justify-content: space-around;
     padding: 10px;
     align-items: center;
     z-index: 1000;
+    border-top-right-radius:30px;
+    border-top-left-radius: 30px;
   }
   
   .nav-item {
@@ -235,21 +241,6 @@ button {
   }
 
   
-  /* Add a media query to handle larger screens */
-  /* @media screen and (min-width: 769px) {
-    .bottom-navbar {
-      display: none;
-    }
-  } */
-  
-  /* Add a media query to handle smaller screens */
-  /* @media screen and (max-width: 768px) {
-    .bottom-navbar {
-      display: flex;
-    }
-  } */
-  
-  /* add-habit styles */
   .add-habit-form {
       display: flex;
       flex-direction: column;
@@ -264,7 +255,7 @@ button {
   }
 
   .add-habit-form button {
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -274,11 +265,11 @@ button {
   }
 
   .add-habit-form button:hover {
-    background-color: #15c795;
+    background: #15c795;
   }
 
   .add-habit-form button:active {
-    background-color: #056c4f;
+    background: #056c4f;
   }
 
   .delete-habit-form {
@@ -287,7 +278,7 @@ button {
   }
   
   #remove-habit-btn {
-    background-color: #e10000;
+    background: linear-gradient(to right, #ff0000, #d20000);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -297,14 +288,15 @@ button {
     margin: 20px;
     width: 400px;
   }
-
+  
   #remove-habit-btn:hover {
-    background-color: #ff0000;
+    background: #ff0000;
   }
 
   #remove-habit-btn:active {
-    background-color: #830000;
+    background: #820000;
   }
+  
 
   .toggle-container {
       display: flex;
@@ -317,7 +309,7 @@ button {
     position: fixed;
     bottom: 110px;
     right: 20px;
-    background-color: #0EA47a;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -329,12 +321,19 @@ button {
   
   
   #add-habit-btn:hover {
-      background-color: #15c795;
+      background: #15c795;
   }
   
   #add-habit-btn:active {
-    background-color: #0c8664;
-}
+    background: #0c8664;
+  }
+
+  .message-container {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   /* Habit styles */
   .habit-container {
     display: flex;
@@ -426,12 +425,34 @@ textarea {
 .header-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
-.points-display {
-  font-size: 1.25rem;
+.points-btn {
+  background: linear-gradient(to right, #0EA47a, #329D9C);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
 }
+
+.points-btn:hover {
+  background: #15c795;
+}
+
+.points-btn:active {
+background: #0c8664;
+}
+
+
+.points-container {
+  display: flex;
+  flex-direction: column;
+  /* padding-right: 50px; */
+}
+
 
 .missed-check-in {
   position: absolute;
@@ -450,43 +471,211 @@ textarea {
   margin-top: 5px;
   margin-bottom: 10px;
 }
+#friend-requests-btn {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    color:white;
+    height: 45px;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+}
 
-/* Leaderboard styles (FEEL FREE TO EDIT THESE OR CHANGE THEM TO MAKE IT LOOK NICER LMAO) */
+#friend-requests-btn:hover {
+  background: #15c795;
+}
+
+#friend-requests-btn:active {
+background: #0c8664;
+}
+
+.badge {
+  background-color: orange;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.iconbadge {
+  background-color: orange;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: -5px;
+  left: 50px;
+  width: 24px;
+  height: 24px;
+}
+
+
+#add-friends-btn {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    background-color:#333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+  }
+
+
+  #add-friends-btn:hover {
+    background: #555;
+  }
+
+  #add-friends-btn:active {
+  background: #474747;
+  }
+
+  /* .friends-container{
+    padding-bottom: 120px;
+  } */
+
+  .search-container{
+    padding: 10px;
+  }
+
+
+  .search-results {
+    padding-left: 15px;
+    padding-right: 20px;
+    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #follow-btn {
+    position: relative;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  #follow-btn:hover {
+    background: #15c795;
+  }
+
+  #follow-btn:active {
+  background: #0c8664;
+  }
+
+  .friend {
+    position: relative;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .friend:hover {
+    background:#15c795;
+  }
+
+  .friend:active {
+    background: #0c8664;
+    }
+
+  .usertree {
+    width: 25vh;
+    height: 25vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  .tree-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    
+  .treeDesc {
+    position: fixed;
+    bottom: 250px;
+    left: 20%;
+    right: 20%;
+  }
+/* Leaderboard styles */
 .leaderboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+  padding-bottom: 70px;
+  background-color: #333;
+  border-radius: 20px;
 }
+
+
+/* .leaderboard-rows {
+  display: flex;
+  flex-direction: column;
+} */
 
 .leaderboard-row,
 .leaderboard-header {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr;
+  grid-template-columns:1fr 1fr 1fr 1fr;
   gap: 20px;
-  justify-items: start;
-  align-items: center;
+  justify-items: center;
   width: 100%;
-  max-width: 600px;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
 }
+
 
 .leaderboard-row.special {
   font-size: 24px;
-  font-weight: bold;
-  color: #0EA47a;
-}
-
-.leaderboard-row:nth-child(2) {
   color: gold;
 }
 
-.leaderboard-row:nth-child(3) {
+.leaderboard-row:nth-child(2) {
   color: silver;
 }
 
-.leaderboard-row:nth-child(4) {
+.leaderboard-row:nth-child(3) {
   color: #cd7f32;
 }
+
 
 .leaderboard-switch {
   display: flex;
