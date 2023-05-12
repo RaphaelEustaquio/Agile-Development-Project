@@ -15,17 +15,13 @@ button {
 .friendsicon {
   height: 80px;
   width: 70px;
+  transition: 0.5s;
 }
 
 .friendsicon:hover {
-  height: 85px;
-  width: 75px;
+  transform: scale(1.2);
 }
 
-.friendsicon:active {
-  height: 75px;
-  width: 65px;
-}
 
 .feedicon {
   position: relative;
@@ -33,32 +29,24 @@ button {
   bottom: 3px;
   height: 80px;
   width: 65px;
+  transition: 0.5s;
 }
 
 .feedicon:hover {
-  height: 85px;
-  width: 70px;
+  transform: scale(1.2);
 }
 
-.feedicon:active {
-  height: 75px;
-  width: 60px;
-}
 
 .leaderboardicon {
   height: 85px;
   width: 110px;
+  transition: 0.5s;
 }
 
 .leaderboardicon:hover {
-  height: 90px;
-  width: 115px;
+  transform: scale(1.2);
 }
 
-.leaderboardicon:active {
-  height: 80px;
-  width: 105px;
-}
 
 .homeicon {
   height: 65px;
@@ -66,8 +54,7 @@ button {
 }
 
 .homeicon:active {
-  height: 60px;
-  width: 60px;
+  transform: scale(0.9);
 }
 
 .logouticon {
@@ -76,8 +63,7 @@ button {
 }
 
 .logouticon:active {
-  height: 50px;
-  width: 50px;
+  transform: scale(0.9);
 }
 
 
@@ -225,6 +211,7 @@ button {
     display: flex;
     justify-content: space-around;
     padding: 10px;
+    margin-top: 50px;
     align-items: center;
     z-index: 1000;
     border-top-right-radius:30px;
@@ -634,75 +621,148 @@ background: #0c8664;
     right: 20%;
   }
 /* Leaderboard styles */
-.leaderboard-container {
+.top-platform {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  gap: 0px;
+  padding-top: 10px;
+  padding-bottom:50px;
+  background: linear-gradient(to top, #333, transparent);
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+}
+
+.first-place {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-bottom: 70px;
-  background-color: #333;
-  border-radius: 20px;
+  position: relative;
+  font-size: 35px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.second-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  bottom: -60px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #c0c0c0;
+}
+
+.third-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  bottom: -85px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #cd7f32;
+}
+
+.firstplace-image {
+  width: 10vh;
+  height: 10vh;
+  padding: 5px;
+  border: solid #ffd700;
+  border-width: 5px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.secondplace-image {
+  width: 8vh;
+  height: 8vh;
+  padding: 5px;
+  border: solid #c0c0c0;
+  border-width: 5px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.thirdplace-image {
+  width: 7vh;
+  height: 7vh;
+  padding: 5px;
+  border: solid #cd7f32;
+  border-width: 5px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.goldmedal {
+  height: 9vh;
+  width: 8vh;
+}
+
+.silvermedal {
+  height: 7.5vh;
+  width: 6vh;
+}
+
+.bronzemedal {
+  height: 7vh;
+  width: 6vh;
 }
 
 
-/* .leaderboard-rows {
+.lowrank-container {
   display: flex;
   flex-direction: column;
-} */
+  align-items: center;
+  justify-content: top;
+  height: 100%;
+  overflow-y: scroll;
+  min-height: 250px;
+  max-height: 300px;
+  background-color: #333;
+  padding-bottom: 100px;
+}
+
+.lowrank-container::-webkit-scrollbar {
+  display: none;
+}
+
+.leaderboard-image {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+  background-color: white;
+}
+
 
 .leaderboard-row,
 .leaderboard-header {
   display: grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
+  align-items: center;
   width: 100%;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
 }
 
-
-.leaderboard-row.special {
-  font-size: 24px;
-  color: gold;
+.leaderboard-header {
+  background-color: #333;
 }
 
-.leaderboard-row:nth-child(2) {
-  color: silver;
+.leaderboard-row:nth-child(even) {
+  background-color: #333;
 }
 
-.leaderboard-row:nth-child(3) {
-  color: #cd7f32;
+.leaderboard-row:nth-child(odd) {
+  background-color: gray;
 }
 
-
-.leaderboard-switch {
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  margin-bottom: 20px;
-}
-
-.leaderboard-switch button {
+.leaderboard-row.highlight {
   background-color: #0EA47a;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  border: none;
-  flex-grow: 1;
-}
-
-.leaderboard-switch button:hover {
-  background-color: #15c795;
-}
-
-.leaderboard-switch button:active {
-  background-color: #056c4f;
-}
-
-.leaderboard-switch button.selected {
-  background-color: #056c4f;
 }
