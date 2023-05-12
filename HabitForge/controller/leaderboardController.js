@@ -1,7 +1,7 @@
 const users = require('../data/users.json');
 
 const comparePoints = (a, b) => {
-  return b.totalPoints - a.totalPoints;
+  return b.points - a.points;
 };
 
 const renderPublicLeaderboard = (req, res) => {
@@ -19,7 +19,7 @@ const renderPrivateLeaderboard = (req, res) => {
         name: userToFollow.name,
         email: userToFollow.email,
         level: userToFollow.level,
-        totalPoints: userToFollow.totalPoints
+        points: userToFollow.points,
       });
     }
   });

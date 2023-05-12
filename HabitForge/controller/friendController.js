@@ -58,7 +58,7 @@ const acceptFriend = (req, res) => {
     name: req.user.name,
     email:req.user.email,
     level: req.user.level,
-    totalPoints: req.user.totalPoints,
+    points: req.user.points,
     acceptance: true,
   });
 
@@ -67,7 +67,7 @@ const acceptFriend = (req, res) => {
     name: userToFollow.name,
     email:userToFollow.email,
     level: userToFollow.level,
-    totalPoints: userToFollow.totalPoints,
+    points: userToFollow.points,
     acceptance: true,
   });
 

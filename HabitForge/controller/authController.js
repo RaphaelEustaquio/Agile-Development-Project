@@ -55,7 +55,6 @@ const registerUser = async (req, res) => {
             realfriends: [],
             level: 1,
             points: 0,
-            totalPoints: 0,
         };
         users.push(newUser);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
