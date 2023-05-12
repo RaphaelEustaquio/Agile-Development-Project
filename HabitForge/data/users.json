@@ -14,7 +14,6 @@
           "Wednesday",
           "Thursday"
         ],
-<<<<<<< HEAD
         "duration": 100,
         "isPublic": false,
         "progress": 0,
@@ -161,16 +160,6 @@
       }
     ],
     "points": 40,
-=======
-        "duration": 12,
-        "isPublic": true,
-        "progress": 10,
-        "checkedInToday": true,
-        "lastCheckIn": "2023-05-10T04:30:09.968Z"
-      }
-    ],
-    "points": 10,
->>>>>>> leaderboard-design
     "friends": [
       {
         "id": "1683065441249",
@@ -208,7 +197,9 @@
         "email": "new6@test.com"
       }
     ],
-    "level": 2
+    "level": 1,
+    "totalPoints": null,
+    "remainingPoints": 40
   },
   {
     "id": "1683065441249",

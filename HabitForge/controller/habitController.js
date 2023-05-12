@@ -69,23 +69,17 @@ const updateHabit = (req, res) => {
 const deleteHabit = (req, res) => {
   const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
   
-  
   if (habitIndex !== -1){
-    const habit = req.user.habits[habitIndex]
+    const habit = req.user.habits[habitIndex];
     
     req.user.points -= habit.progress;
+    req.user.totalPoints -= habit.progress;
     
-    if (habitIndex !== -1){
-      const habit = req.user.habits[habitIndex]
-      
-      req.user.points -= habit.progress;
-      req.user.totalPoints -= habit.progress;
-      
-      req.user.habits.splice(habitIndex, 1);
-      
-      saveUsers();
-    }
-    res.redirect('/');
+    req.user.habits.splice(habitIndex, 1);
+    
+    saveUsers();
+  }
+  res.redirect('/');
 };
 
 const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
