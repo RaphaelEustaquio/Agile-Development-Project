@@ -84,14 +84,15 @@
                     <% hasPrivateHabit = true %>
                 <% } %>
             <% }) %>
-            <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
-                <h2>Here are <%= user.name %>'s habits.</h2>
-            <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
-                <h2><%= user.name %>'s habits are private.</h2>
-            <% } else if (hasPrivateHabit && hasPublicHabit) { %>
-                <h2>Here are <%= user.name %>'s public habits.</h2>
-            <% } %>
-
+            <div class="message-container">
+                <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
+                    <h2>Here are <%= user.name %>'s habits.</h2>
+                <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
+                    <h2><%= user.name %>'s habits are private.</h2>
+                <% } else if (hasPrivateHabit && hasPublicHabit) { %>
+                    <h2>Here are <%= user.name %>'s public habits.</h2>
+                <% } %>
+            </div>
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <% if (habit.isPublic == true) { %>

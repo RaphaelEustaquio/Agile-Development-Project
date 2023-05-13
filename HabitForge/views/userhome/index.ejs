@@ -69,14 +69,13 @@
                 
                 return nextCheckInDay !== todayDay && nextCheckInDate < today;
             } %>
-            
-            <% if (user.habits.length === 0) { %>
-                <div class="message-container">
+            <div class="message-container">
+                <% if (user.habits.length === 0) { %>
                     <h2>Start Adding habits now!</h2>
-                </div>
-            <% } else { %>
-                <h2>Here are your habits.</h2>
-            <% } %>
+                <% } else { %>
+                    <h2>Here are your habits.</h2>
+                <% } %>
+            </div>
 
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>

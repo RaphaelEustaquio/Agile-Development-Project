@@ -86,7 +86,7 @@ const updateUserPoints = (user, points) => {
   user.points += points;
 
   while (user.level < levelingThresholds.length && user.points >= levelingThresholds[user.level - 1]) {
-    user.points -= levelingThresholds[user.level - 1];
+    // user.points -= levelingThresholds[user.level - 1];
     user.level++;
   }
 };
