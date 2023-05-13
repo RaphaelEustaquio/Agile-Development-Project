@@ -620,6 +620,13 @@ background: #0c8664;
     left: 20%;
     right: 20%;
   }
+
+.habit-info {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
 /* Leaderboard styles */
 .top-platform {
   display: flex;

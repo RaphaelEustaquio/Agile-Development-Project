@@ -71,20 +71,6 @@
         "streak": 1
       },
       {
-        "id": "1683244137605",
-        "name": "testing update",
-        "description": "testing",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:49:00.591Z"
-      },
-      {
         "id": "1683245457150",
         "name": "hello",
         "description": "fadsf",
@@ -98,20 +84,6 @@
         "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:10:59.767Z",
         "streak": 0
-      },
-      {
-        "id": "1683246073456",
-        "name": "asdf",
-        "description": "adsf",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 111,
-        "isPublic": false,
-        "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-05T00:21:19.931Z"
       },
       {
         "id": "1683678521857",
@@ -159,11 +131,11 @@
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
       }
     ],
-    "points": 40,
+    "points": 20,
     "friends": [],
     "level": 1,
     "totalPoints": 0,
-    "remainingPoints": 40,
+    "remainingPoints": 20,
     "realfriends": [
       {
         "id": "1683065441249",
