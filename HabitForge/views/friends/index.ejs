@@ -25,7 +25,7 @@
             </div>
 
             <div class="friends-container">
-                <% user.realfriends.forEach((friend) => { %>
+                <% friends.forEach((friend) => { %>
                     <% const treeName = trees[friend.level][0]; %>
                     <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - <%= treeName %></button>
                 <% }) %>

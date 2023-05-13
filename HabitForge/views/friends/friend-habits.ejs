@@ -15,11 +15,11 @@
             <div class="header-container">
                 <h1><%= user.name %>'s page</h1>
                 <div class="friend-points-container">
-                    <h3>
-                      Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                    <h3>
                     <% const treeName = trees[user.level][0]; %>
-                    <p>Current Tree Level: <%= treeName %></p>
+                    <h3>
+                        Tree Level: <%= user.level %> - <%= treeName %>
+                    <h3>
+                    <p>Level Up Progress: <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %></p>
                 </div>
             </div>
 

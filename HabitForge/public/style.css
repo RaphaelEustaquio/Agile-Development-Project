@@ -416,6 +416,7 @@ textarea {
 .header-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .points-btn {
@@ -441,9 +442,13 @@ background: #0c8664;
 .points-container {
   display: flex;
   flex-direction: column;
-  /* padding-right: 50px; */
 }
 
+.level-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .missed-check-in {
   position: absolute;
@@ -548,10 +553,15 @@ background: #0c8664;
   .search-results {
     padding-left: 15px;
     padding-right: 20px;
-    padding-bottom: 150px;
+    overflow-y: scroll;
+    max-height: 450px;
     display: flex;
     flex-direction: column;
     font-family: 'Open Sans', sans-serif;
+  }
+
+  .search-results::-webkit-scrollbar {
+    display: none;
   }
 
   #follow-btn {
