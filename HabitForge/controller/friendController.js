@@ -27,8 +27,8 @@ const searchUsers = (req, res) => {
     return res.render('friends/add-friend.ejs', { user: req.user, searchResults: []});
   }
   const matchedUsers = users.filter(user => user.name.toLowerCase().includes(searchQuery) &&
-  user.id !== req.user.id && 
-  !req.user.friends.some(friend => friend.id === user.id));
+  user.name !== req.user.name && 
+  !req.user.realfriends.some(friend => friend.name === user.name));
   res.render('friends/add-friend.ejs', { user: req.user, searchResults: matchedUsers });
 };
 
@@ -58,6 +58,7 @@ const acceptFriend = (req, res) => {
     name: req.user.name,
     email:req.user.email,
     level: req.user.level,
+    points: req.user.points,
     acceptance: true,
   });
 
@@ -66,6 +67,7 @@ const acceptFriend = (req, res) => {
     name: userToFollow.name,
     email:userToFollow.email,
     level: userToFollow.level,
+    points: userToFollow.points,
     acceptance: true,
   });
 
