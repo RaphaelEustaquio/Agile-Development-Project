@@ -91,6 +91,17 @@ const acceptFriend = (req, res) => {
   res.redirect('/friends/index');
 };
 
+
+const removeFriend = (req, res) => {
+  const userId = req.params.id;
+  const userToFollow = users.find(user => user.id === userId);
+  userToFollow.realfriends = userToFollow.realfriends.filter(friend => friend.id !== req.user.id);
+  req.user.realfriends = req.user.realfriends.filter(friend => friend.id !== userToFollow.id);
+  habitController.saveUsers();
+
+  res.redirect('/friends/index');
+};
+
   module.exports = {
     renderFriendsIndex,
     renderAddFriend,
@@ -99,5 +110,6 @@ const acceptFriend = (req, res) => {
     acceptFriend,
     renderFriendRequests,
     renderFriendHabits,
+    removeFriend
   };
   

@@ -113,7 +113,8 @@
                         </div>
                     <% } %>
                 <% }) %>
-            </div>            
+            </div>        
+            <button class="remove-friend-btn" onclick="location.href='/friends/remove/<%= user.id %>'">Remove Friend</button> 
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

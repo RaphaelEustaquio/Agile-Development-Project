@@ -425,7 +425,7 @@ textarea {
   border: none;
   border-radius: 25px;
   padding: 10px;
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
   border: none;
 }
@@ -448,6 +448,7 @@ background: #0c8664;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 15px;
 }
 
 .missed-check-in {
@@ -522,7 +523,7 @@ background: #0c8664;
     position: fixed;
     bottom: 110px;
     right: 20px;
-    background-color:#333;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
     border-radius: 25px;
@@ -534,20 +535,43 @@ background: #0c8664;
 
 
   #add-friends-btn:hover {
-    background: #555;
+    background: #15c795;
   }
 
   #add-friends-btn:active {
-  background: #474747;
+    background: #056c4f;
   }
 
-  /* .friends-container{
-    padding-bottom: 120px;
-  } */
-
-  .search-container{
-    padding: 10px;
+  .remove-friend-btn {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    background: linear-gradient(to right, #ff0000, #d20000);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
   }
+
+  .remove-friend-btn:hover {
+    background: #ff0000;
+  }
+
+  .remove-friend-btn:active {
+  background: #820000;
+  }
+
+  .friends-container{
+    overflow-y: scroll;
+    max-height: 450px;
+  } 
+
+  .friends-container::-webkit-scrollbar{
+    display: none;
+  } 
 
 
   .search-results {
