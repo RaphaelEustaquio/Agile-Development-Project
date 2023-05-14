@@ -19,7 +19,7 @@
                     <h3>
                         Tree Level: <%= user.level %> - <%= treeName %>
                     <h3>
-                    <p>Level Up Progress: <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %></p>
+                    <p>Level Up Progress: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %></p>
                 </div>
             </div>
 

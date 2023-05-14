@@ -16,7 +16,7 @@
             <h1>Your Tree Level: <%= user.level %> - <%= treeName %> </h1>
             <img class="usertree" src="/images/<%= user.level %>.png" alt="Logo">
             <h3>
-                Progress until next tree level: <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
+                Progress until next tree level: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %>
             </h3>
             <h4 class="treeDesc"><%= treeDesc %></h4>
         <% } else { %>

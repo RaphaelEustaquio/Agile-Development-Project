@@ -49,7 +49,6 @@
                 <span>Level</span>
                 <span>Points</span>
             </div>
-<<<<<<< HEAD
             <div class="lowrank-container">
                 <% leaderboard.slice(3).forEach((user, index) => { %>
                     <div class="<%= user.name === myName ? 'leaderboard-row highlight' : 'leaderboard-row' %>">
@@ -60,15 +59,6 @@
                         <span><%= user.name %></span>
                         <span><%= user.level %></span>
                         <span><%= user.points %></span>
-=======
-            <div class="leaderboard-rows">
-                <% leaderboard.slice(0, 25).forEach((user, index) => { %>
-                    <div class="leaderboard-row <%= (index < 3) ? 'special' : '' %>">
-                    <span><%= index + 1 %></span>
-                    <span><%= user.name %></span>
-                    <span><%= user.level %></span>
-                    <span><%= user.points %></span>
->>>>>>> develop
                     </div>
                 <% }); %>
             </div>

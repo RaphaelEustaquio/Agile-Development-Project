@@ -284,6 +284,12 @@ button {
     background: #820000;
   }
   
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
   /* userhome/index.ejs styles */
   #add-habit-btn {
     position: fixed;
@@ -319,7 +325,7 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: scroll;
-    height: 420px;
+    max-height: 420px;
 }
 
 .habit-container::-webkit-scrollbar {

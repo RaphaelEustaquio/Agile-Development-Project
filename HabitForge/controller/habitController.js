@@ -49,17 +49,27 @@ const updateHabit = (req, res) => {
   const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
   if (habitIndex !== -1) {
     const oldHabit = req.user.habits[habitIndex];
-    
+    const parsedDuration = parseInt(req.body.duration);
+    const duration = parsedDuration < oldHabit.streak ? oldHabit.streak : parsedDuration;
+    let completed = false;
+
+    if (oldHabit.streak === duration) {
+      updateUserPoints(req.user, duration * 10);
+      completed = true;
+    }
+
     req.user.habits[habitIndex] = {
       id: oldHabit.id,
       name: req.body.title,
       description: req.body.description,
       logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
-      duration: parseInt(req.body.duration),
+      duration: duration,
       isPublic: req.body.isPublic === 'on',
       progress: oldHabit.progress,
       checkedInToday: oldHabit.checkedInToday,
-      lastCheckIn: oldHabit.lastCheckIn
+      lastCheckIn: oldHabit.lastCheckIn,
+      streak: oldHabit.streak,
+      completed: completed
     };
     saveUsers();
   }
@@ -73,8 +83,6 @@ const deleteHabit = (req, res) => {
     const habit = req.user.habits[habitIndex];
     
     req.user.points -= habit.progress;
-    req.user.totalPoints -= habit.progress;
-    
     req.user.habits.splice(habitIndex, 1);
     
     saveUsers();
@@ -119,9 +127,11 @@ const checkIn = (req, res) => {
   habit.checkedInToday = true;
   habit.lastCheckIn = today;
 
+  updateUserPoints(user, habit.progress); // add habit progress points to user points
   // Check if the habit duration is reached
   if (habit.streak === habit.duration) {
-    updateUserPoints(user, habit.progress); // add habit progress points to user points
+    let bonus = habit.duration * 10
+    updateUserPoints(user, bonus);
     habit.completed = true; // mark the habit as completed
   }
 
