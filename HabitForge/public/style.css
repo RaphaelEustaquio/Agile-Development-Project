@@ -284,13 +284,6 @@ button {
     background: #820000;
   }
   
-
-  .toggle-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  }
-  
   /* userhome/index.ejs styles */
   #add-habit-btn {
     position: fixed;
@@ -326,7 +319,7 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     overflow-y: scroll;
-    max-height: 475px;
+    height: 420px;
 }
 
 .habit-container::-webkit-scrollbar {
@@ -502,6 +495,7 @@ background: #0c8664;
   position: absolute;
   top: -8px;
   right: -8px;
+  animation: bouncetwo 1.5s infinite;
 }
 
 .iconbadge {
@@ -659,6 +653,29 @@ background: #0c8664;
     right: 20%;
   }
 /* Leaderboard styles */
+
+#toggle-button {
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  background: linear-gradient(to right, #0EA47a, #329D9C);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  z-index: 1000;
+}
+
+#toggle-button:hover {
+  background: #15c795;
+}
+
+#toggle-button:active {
+  background: #056c4f;
+}
+
 .top-platform {
   display: flex;
   justify-content: center;
@@ -666,10 +683,28 @@ background: #0c8664;
   overflow: hidden;
   gap: 0px;
   padding-top: 10px;
-  padding-bottom:50px;
+  padding-bottom: 50px;
   background: linear-gradient(to top, #333, transparent);
   border-top-left-radius: 30%;
   border-top-right-radius: 30%;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes bouncetwo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .first-place {
@@ -682,6 +717,7 @@ background: #0c8664;
   padding-right: 40px;
   font-weight: bold;
   color: #ffd700;
+  animation: bounce 2s infinite;
 }
 
 .second-place {
@@ -693,6 +729,7 @@ background: #0c8664;
   font-size: 30px;
   font-weight: bold;
   color: #c0c0c0;
+  animation: bouncetwo 2s infinite;
 }
 
 .third-place {
@@ -700,10 +737,11 @@ background: #0c8664;
   flex-direction: column;
   align-items: center;
   position: relative;
-  bottom: -85px;
+  bottom: -75px;
   font-size: 25px;
   font-weight: bold;
   color: #cd7f32;
+  animation: bouncetwo 2s infinite;
 }
 
 .firstplace-image {
@@ -757,12 +795,11 @@ background: #0c8664;
   flex-direction: column;
   align-items: center;
   justify-content: top;
-  height: 100%;
   overflow-y: scroll;
-  min-height: 250px;
-  max-height: 300px;
+  height: 250px;
   background-color: #333;
-  padding-bottom: 100px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 .lowrank-container::-webkit-scrollbar {
