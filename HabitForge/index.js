@@ -21,6 +21,7 @@ initializePassport(passport, getUserByEmail, getUserById);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set('view-engine', 'ejs');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
     store: new FileStore(),
@@ -40,6 +41,11 @@ app.use(feedRoutes);
 app.use(leaderboardRoutes); 
 app.use(achievementRoutes);
 
-app.listen(3000, () => {
-    console.log('Server running. Visit: localhost:3000/login in your browser');
-});
+module.exports = app;
+
+if(process.env.NODE_ENV !== 'test') {
+    app.listen(3000, () => {
+        console.log('Server running. Visit: localhost:3000/login in your browser');
+    });
+}
+

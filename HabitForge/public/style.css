@@ -837,6 +837,11 @@ background: #0c8664;
 .leaderboard-row:nth-child(odd) {
   background-color: gray;
 }
+.habit-info {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
 
 .leaderboard-row.highlight {
   background-color: #0EA47a;
