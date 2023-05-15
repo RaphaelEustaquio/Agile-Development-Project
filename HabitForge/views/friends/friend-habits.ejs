@@ -15,11 +15,11 @@
             <div class="header-container">
                 <h1><%= user.name %>'s page</h1>
                 <div class="friend-points-container">
-                    <h3>
-                      Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                    <h3>
                     <% const treeName = trees[user.level][0]; %>
-                    <p>Current Tree Level: <%= treeName %></p>
+                    <h3>
+                        Tree Level: <%= user.level %> - <%= treeName %>
+                    <h3>
+                    <p>Level Up Progress: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %></p>
                 </div>
             </div>
 
@@ -84,14 +84,15 @@
                     <% hasPrivateHabit = true %>
                 <% } %>
             <% }) %>
-            <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
-                <h2>Here are <%= user.name %>'s habits.</h2>
-            <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
-                <h2><%= user.name %>'s habits are private.</h2>
-            <% } else if (hasPrivateHabit && hasPublicHabit) { %>
-                <h2>Here are <%= user.name %>'s public habits.</h2>
-            <% } %>
-
+            <div class="message-container">
+                <% if (hasPrivateHabit === false && hasPublicHabit === true) { %>
+                    <h2>Here are <%= user.name %>'s habits.</h2>
+                <% } else if (hasPrivateHabit === true && hasPublicHabit === false) { %>
+                    <h2><%= user.name %>'s habits are private.</h2>
+                <% } else if (hasPrivateHabit && hasPublicHabit) { %>
+                    <h2>Here are <%= user.name %>'s public habits.</h2>
+                <% } %>
+            </div>
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
                     <% if (habit.isPublic == true) { %>
@@ -112,7 +113,8 @@
                         </div>
                     <% } %>
                 <% }) %>
-            </div>            
+            </div>        
+            <button class="remove-friend-btn" onclick="location.href='/friends/remove/<%= user.id %>'">Remove Friend</button> 
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

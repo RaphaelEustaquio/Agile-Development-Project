@@ -50,10 +50,10 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-10T00:31:28.096Z",
-        "streak": 0
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-15T06:01:20.089Z",
+        "streak": 1
       },
       {
         "id": "1682973446340",
@@ -131,11 +131,11 @@
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
       }
     ],
-    "points": 20,
+    "points": 50,
     "friends": [],
     "level": 1,
     "totalPoints": 0,
-    "remainingPoints": 20,
+    "remainingPoints": 50,
     "realfriends": [
       {
         "id": "1683065441249",
@@ -143,6 +143,29 @@
         "email": "eric@test.com",
         "level": 1,
         "acceptance": true
+      }
+    ],
+    "feed": [
+      {
+        "id": "1684130467384",
+        "userId": "1682742301700",
+        "habitId": "1682973225500",
+        "text": "raph missed their check-in day for play destiny. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:07.384Z"
+      },
+      {
+        "id": "1684130480089",
+        "userId": "1682742301700",
+        "habitId": "1682973225500",
+        "text": "raph successfully checked in play destiny. They are on day 1/80.",
+        "date": "2023-05-15T06:01:20.089Z"
+      },
+      {
+        "id": "1684130491342",
+        "userId": "1682742301700",
+        "habitId": "1683644943903",
+        "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:31.342Z"
       }
     ]
   },
@@ -197,7 +220,30 @@
     ],
     "totalPoints": 0,
     "level": 1,
-    "remainingPoints": 0
+    "remainingPoints": 0,
+    "feed": [
+      {
+        "id": "1684130467384",
+        "userId": "1683065441249",
+        "habitId": "1682973225500",
+        "text": "raph missed their check-in day for play destiny. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:07.384Z"
+      },
+      {
+        "id": "1684130480089",
+        "userId": "1683065441249",
+        "habitId": "1682973225500",
+        "text": "raph successfully checked in play destiny. They are on day 1/80.",
+        "date": "2023-05-15T06:01:20.089Z"
+      },
+      {
+        "id": "1684130491342",
+        "userId": "1683065441249",
+        "habitId": "1683644943903",
+        "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:31.342Z"
+      }
+    ]
   },
   {
     "id": "1683525569209",
@@ -208,7 +254,8 @@
     "friends": [],
     "level": 1,
     "points": null,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683645194616",
@@ -235,7 +282,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683654801600",
@@ -252,7 +300,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683655010681",
@@ -292,7 +341,8 @@
     "friends": [],
     "level": 1,
     "points": 20,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683668041153",
@@ -328,7 +378,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683668054666",
@@ -339,7 +390,8 @@
     "friends": [],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683676362694",
@@ -393,7 +445,8 @@
     ],
     "level": 1,
     "points": 20,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683681041224",
@@ -439,6 +492,7 @@
     ],
     "level": 1,
     "points": 10,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   }
 ]

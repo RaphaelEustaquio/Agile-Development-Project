@@ -1,15 +1,9 @@
-const fs = require('fs');
-const path = require('path');
 let users = require('../data/users.json');
 
-
-const list = (req, res) => {
-    res.render('feed/index.ejs', { user: req.user });
-
+const renderFeed = (req, res) => {
+    const user = users.find((user) => user.id === req.user.id);
+    res.render('feed/index.ejs', { user: user });
 }
 
-const findAndAddFriend = (req, res) => {
-    
-}
 
-module.exports = { list,findAndAddFriend };
+module.exports = { renderFeed };

@@ -3,7 +3,20 @@ const trees = require('../data/trees.json');
 const habitController = require('./habitController.js')
 
 const renderFriendsIndex = (req, res) => {
-  res.render('friends/index.ejs', { user: req.user, trees: trees });
+  const friends = [];
+  req.user.realfriends.forEach(friend => {
+    const friendUser = users.find(user => user.id === friend.id);
+    if (friendUser) {
+      friends.push({
+        id: friendUser.id,
+        name: friendUser.name,
+        email: friendUser.email,
+        level: friendUser.level,
+        points: friendUser.points,
+      });
+    }
+  });
+  res.render('friends/index.ejs', { user: req.user, friends: friends, trees: trees });
 };
 
 const renderAddFriend = (req, res) => {
@@ -78,6 +91,17 @@ const acceptFriend = (req, res) => {
   res.redirect('/friends/index');
 };
 
+
+const removeFriend = (req, res) => {
+  const userId = req.params.id;
+  const userToFollow = users.find(user => user.id === userId);
+  userToFollow.realfriends = userToFollow.realfriends.filter(friend => friend.id !== req.user.id);
+  req.user.realfriends = req.user.realfriends.filter(friend => friend.id !== userToFollow.id);
+  habitController.saveUsers();
+
+  res.redirect('/friends/index');
+};
+
   module.exports = {
     renderFriendsIndex,
     renderAddFriend,
@@ -86,5 +110,6 @@ const acceptFriend = (req, res) => {
     acceptFriend,
     renderFriendRequests,
     renderFriendHabits,
+    removeFriend
   };
   

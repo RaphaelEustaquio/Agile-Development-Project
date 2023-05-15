@@ -16,14 +16,15 @@
             <div class="header-container">
                 <h1>Welcome, <%= user.name %>!</h1>
                 <div class="points-container">
-                    <button class="points-btn" onclick="location.href='/achievements/index'">
-                      Level <%= user.level %> <%= user.points %>/<%= levelingThresholds[user.level - 1] || '' %>
-                    </button>
                     <% const treeName = trees[user.level][0]; %>
-                    <p>Current Tree Level: <%= treeName %></p>
+                    <button class="points-btn" onclick="location.href='/achievements/index'">
+                        Tree Level: <%= user.level %> - <%= treeName %>
+                    </button>
+                    <label class="level-label">Level Up Progress: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %></p>
                 </div>
+                
             </div>
-
+           
             <% function isTodayCheckInDay(habit) {
                 if (!habit.logDays) {
                     return false;
@@ -69,14 +70,24 @@
                 
                 return nextCheckInDay !== todayDay && nextCheckInDate < today;
             } %>
-            
-            <% if (user.habits.length === 0) { %>
-                <div class="message-container">
-                    <h2>Start Adding habits now!</h2>
-                </div>
-            <% } else { %>
-                <h2>Here are your habits.</h2>
-            <% } %>
+            <div class="message-container">
+                <% let allComplete = true; %>
+                <% if (user.habits.length === 0) { %>
+                  <h2>Start adding habits now!</h2>
+                <% } else { %>
+                  <% user.habits.forEach((habit) => { %>
+                    <% if (!habit.completed) { %>
+                      <% allComplete = false; %>
+                    <% } %>
+                  <% }); %>
+                  <% if (allComplete) { %>
+                    <h2>You have completed all your habits.</h2>
+                    <h3>Add more to the list!</h3>
+                  <% } else { %>
+                    <h2>Here are your habits.</h2>
+                  <% } %>
+                <% } %>
+            </div>
 
             <div class="habit-container">
                 <% user.habits.forEach((habit) => { %>
@@ -84,22 +95,23 @@
                         <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
                             <div class="habit-info">
                                 <%= habit.name %> 
-                                <div class="habit-progress">Day: <%= habit.streak %>/<%= habit.duration %>
+                                <div class="habit-progress">
+                                    Day: <%= habit.streak %>/<%= habit.duration %>
                                 </div>
                             </div>
                             <% if (isTodayCheckInDay(habit)) { %>                        
-                          <% if (habit.checkedInToday) { %>
-                            <span class="checked-in">Checked-In ✓</span>
-                          <% } else { %>
-                            <% if (missedLastCheckIn(habit)) { %>
-                              <span class="missed-check-in">Missed Last Check-In</span>
+                                <% if (habit.checkedInToday) { %>
+                                    <span class="checked-in">Checked-In ✓</span>
+                                <% } else { %>
+                                    <% if (missedLastCheckIn(habit)) { %>
+                                    <span class="missed-check-in">Missed Last Check-In</span>
+                                    <% } %>
+                                    <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
+                                <% } %>
+                            <% } else { %>
+                            <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
                             <% } %>
-                            <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
-                          <% } %>
-                        <% } else { %>
-                          <span class="next-check-in">Next Check-In: <%= getNextCheckInDay(habit) %></span>
-                        <% } %>
-                      </div>
+                        </div>
                     <% } %>
                   <% }) %>                  
             </div>

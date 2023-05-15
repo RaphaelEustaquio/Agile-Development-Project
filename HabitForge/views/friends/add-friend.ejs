@@ -7,40 +7,40 @@
     <script defer src="/javascript.js"></script>
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
-      <% if (user) { %>
-          <div class="search-container">
-            <h1>Add Friend</h1>
-              <form method="POST" action="/friends/search">
-                  <input type="text" placeholder="Search for friends..." name="search" class="search-input">
-              </form>
-          </div>
-          <!-- Search results will be displayed here -->
-      <% } else { %>
-          <h1>Welcome, please log in or register.</h1>
-          <a href="/login">Login</a> | <a href="/register">Register</a>
-      <% } %>
-      <% if (searchResults) { %>
-        <div class="search-results">
-          <h2>Search Results:</h2>
-          <% searchResults.forEach(result => {
-            if (result.id !== user.id && !user.realfriends.some(friend => friend.id === result.id)) { %>
-              <div class="search-result">
-                <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
-              </div>
-            <% }
-          }) %>
-          <% if (!searchResults.length) { %>
-            <p>There are no users that match that name or email.</p>
-          <!-- <% } else if (searchResults.length === 1) { %>
-            <% searchResults.forEach(result => {
-              if (result.id === user.id || user.realfriends.some(friend => friend.id === result.id)) { %>
-                <p>There are no users that match that name or email.</p>
-              <% }
-            }) %> -->
-          <% } %>
+  <%- include('../partials/top-navbar', { pageTitle: 'Add Friend', currentPage: 'add-friend' }) %>
+  <div class="container">
+    <% if (user) { %>
+        <div class="header-container">
+          <h1>Add Friend</h1>
         </div>
-      <% } %>      
+        <div class="search-container">
+            <form method="POST" action="/friends/search">
+                <input type="text" placeholder="Search for friends..." name="search" class="search-input">
+            </form>
+        </div>
+
+    <% } else { %>
+        <h1>Welcome, please log in or register.</h1>
+        <a href="/login">Login</a> | <a href="/register">Register</a>
+    <% } %>
+    <% if (searchResults) { %>
+      <h2>Search Results:</h2>
+      <div class="search-results">
+        <% searchResults.forEach(result => {
+          if (result.id !== user.id && !user.realfriends.some(friend => friend.id === result.id)) { %>
+            <div class="search-result">
+              <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
+            </div>
+          <% }
+        }) %>
+        <% if (!searchResults.length) { %>
+          <p>There are no users that match that name or email.</p>
+        <% } %>
+      </div>
+    <% } else { %>
+      <h2 class="message-container">Search Habit@ for Friends!</h2>
+    <% } %>      
+  </div> 
     <%- include('../partials/navbar') %>
 </body>
 </html>

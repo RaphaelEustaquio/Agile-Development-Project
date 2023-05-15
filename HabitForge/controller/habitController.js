@@ -49,17 +49,27 @@ const updateHabit = (req, res) => {
   const habitIndex = req.user.habits.findIndex((h) => h.id === req.params.habitId);
   if (habitIndex !== -1) {
     const oldHabit = req.user.habits[habitIndex];
-    
+    const parsedDuration = parseInt(req.body.duration);
+    const duration = parsedDuration < oldHabit.streak ? oldHabit.streak : parsedDuration;
+    let completed = false;
+
+    if (oldHabit.streak === duration) {
+      updateUserPoints(req.user, duration * 10);
+      completed = true;
+    }
+
     req.user.habits[habitIndex] = {
       id: oldHabit.id,
       name: req.body.title,
       description: req.body.description,
       logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
-      duration: parseInt(req.body.duration),
+      duration: duration,
       isPublic: req.body.isPublic === 'on',
       progress: oldHabit.progress,
       checkedInToday: oldHabit.checkedInToday,
-      lastCheckIn: oldHabit.lastCheckIn
+      lastCheckIn: oldHabit.lastCheckIn,
+      streak: oldHabit.streak,
+      completed: completed
     };
     saveUsers();
   }
@@ -117,10 +127,17 @@ const checkIn = (req, res) => {
   habit.streak += 1;
   habit.checkedInToday = true;
   habit.lastCheckIn = today;
+  if (habit.isPublic) {
+    let text = `${user.name} successfully checked in ${habit.name}. They are on day ${habit.streak}/${habit.duration}.`;
+    createFeedItem(user, habit.id, text);
+    addFeedItemToFriends(user, habit.id, text);
+  }
 
+  updateUserPoints(user, habit.progress); // add habit progress points to user points
   // Check if the habit duration is reached
   if (habit.streak === habit.duration) {
-    updateUserPoints(user, habit.progress); // add habit progress points to user points
+    let bonus = habit.duration * 10
+    updateUserPoints(user, bonus);
     habit.completed = true; // mark the habit as completed
   }
 
@@ -155,11 +172,43 @@ const checkMissedHabits = (user) => {
         habit.progress = 0;
         pointsDeducted += habitPoints;
         habit.checkedInToday = false;
+        if (habit.isPublic) {
+          let text = `${user.name} missed their check-in day for ${habit.name}. Help motivate them to get back on track!`;
+          createFeedItem(user, habit.id, text);
+          addFeedItemToFriends(user, habit.id, text);
       }
     }
+  }
   });
 
   user.points = Math.max(0, user.points - pointsDeducted);
+};
+
+const createFeedItem = (user, habitId, text) => {
+  const feedItem = {
+    id: Date.now().toString(),
+    userId: user.id,
+    habitId: habitId,
+    text: text,
+    date: new Date()
+  };
+
+  // Check if this message already exists in the user's feed
+  if (!user.feed.some(item => item.text === text && item.habitId === habitId)) {
+    user.feed.push(feedItem);
+  }
+};
+
+const addFeedItemToFriends = (user, habitId, text) => {
+  user.realfriends.forEach(friend => {
+    const friendUser = users.find(u => u.id === friend.id);
+    if (friendUser) {
+      // Only create a feed item if it doesn't already exist in the friend's feed
+      if (!friendUser.feed.some(item => item.text === text && item.habitId === habitId)) {
+        createFeedItem(friendUser, habitId, text);
+      }
+    }
+  });
 };
 
 module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds, checkMissedHabits, updateUserPoints };
