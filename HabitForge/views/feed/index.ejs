@@ -11,37 +11,10 @@
     <div class="container">
         <% if (user) { %>
             <h1>stuff</h1>
-            <!-- <h1>Welcome, <%= user.name %>!</h1>
-            
-            <% function isTodayCheckInDay(habit) {
-              if (!habit.logDays) {
-                  return false;
-              }
-              const today = new Date();
-              const todayDay = today.getDay();
-              const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-              return habit.logDays.includes(daysOfWeek[todayDay]);
-          } %> -->
-
-          <!-- <div class="habit-container">
-            <% user.habits.forEach((habit) => { %>
-                <div class="habit" onclick="location.href='userhome/edit-habit/<%= habit.id %>'">
-                    <%= habit.name %>
-                    <% if (isTodayCheckInDay(habit)) { %>
-                        <% if (habit.checkedInToday) { %>
-                            <span class="checked-in">Checked-In ✓</span>
-                        <% } else { %>
-                            <button class="check-in-btn" onclick="event.stopPropagation(); location.href='/userhome/check-in/<%= habit.id %>'">Check-In</button>
-                        <% } %>
-                    <% } %>
-                </div>
-            <% }) %>
-        </div> -->
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
-        <!-- <button id="add-habit-btn" onclick="location.href='/add-friend'">Add Friend</button> -->
     </div>
     <%- include('../partials/navbar') %>
 </body>
