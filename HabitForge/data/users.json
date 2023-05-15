@@ -172,7 +172,8 @@
         "level": 1,
         "acceptance": true
       }
-    ]
+    ],
+    "feed": []
   },
   {
     "id": "1683065441249",
@@ -225,7 +226,8 @@
     ],
     "totalPoints": 0,
     "level": 1,
-    "remainingPoints": 0
+    "remainingPoints": 0,
+    "feed": []
   },
   {
     "id": "1683525569209",
@@ -236,7 +238,8 @@
     "friends": [],
     "level": 1,
     "points": null,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683645194616",
@@ -263,7 +266,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683654801600",
@@ -280,7 +284,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683655010681",
@@ -320,7 +325,8 @@
     "friends": [],
     "level": 1,
     "points": 20,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683668041153",
@@ -356,7 +362,8 @@
     ],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683668054666",
@@ -367,7 +374,8 @@
     "friends": [],
     "level": 1,
     "points": 0,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683676362694",
@@ -421,7 +429,8 @@
     ],
     "level": 1,
     "points": 20,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   },
   {
     "id": "1683681041224",
@@ -467,6 +476,7 @@
     ],
     "level": 1,
     "points": 10,
-    "realfriends": []
+    "realfriends": [],
+    "feed": []
   }
 ]

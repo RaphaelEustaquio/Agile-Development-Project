@@ -126,6 +126,11 @@ const checkIn = (req, res) => {
   habit.streak += 1;
   habit.checkedInToday = true;
   habit.lastCheckIn = today;
+  if (habit.isPublic) {
+    let text = `${user.name} successfully checked in ${habit.name}. They are on day ${habit.streak}/${habit.duration}.`;
+    createFeedItem(user, habit.id, text);
+    addFeedItemToFriends(user, habit.id, text);
+  }
 
   updateUserPoints(user, habit.progress); // add habit progress points to user points
   // Check if the habit duration is reached
@@ -166,11 +171,43 @@ const checkMissedHabits = (user) => {
         habit.progress = 0;
         pointsDeducted += habitPoints;
         habit.checkedInToday = false;
+        if (habit.isPublic) {
+          let text = `${user.name} missed their check-in day for ${habit.name}. Help motivate them to get back on track!`;
+          createFeedItem(user, habit.id, text);
+          addFeedItemToFriends(user, habit.id, text);
       }
     }
+  }
   });
 
   user.points = Math.max(0, user.points - pointsDeducted);
+};
+
+const createFeedItem = (user, habitId, text) => {
+  const feedItem = {
+    id: Date.now().toString(),
+    userId: user.id,
+    habitId: habitId,
+    text: text,
+    date: new Date()
+  };
+
+  // Check if this message already exists in the user's feed
+  if (!user.feed.some(item => item.text === text && item.habitId === habitId)) {
+    user.feed.push(feedItem);
+  }
+};
+
+const addFeedItemToFriends = (user, habitId, text) => {
+  user.realfriends.forEach(friend => {
+    const friendUser = users.find(u => u.id === friend.id);
+    if (friendUser) {
+      // Only create a feed item if it doesn't already exist in the friend's feed
+      if (!friendUser.feed.some(item => item.text === text && item.habitId === habitId)) {
+        createFeedItem(friendUser, habitId, text);
+      }
+    }
+  });
 };
 
 module.exports = { addHabit, editHabit, updateHabit, deleteHabit, checkIn, saveUsers, renderIndex, levelingThresholds, checkMissedHabits, updateUserPoints };
