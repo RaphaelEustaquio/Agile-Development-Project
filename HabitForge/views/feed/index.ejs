@@ -10,12 +10,14 @@
     <%- include('../partials/top-navbar', { pageTitle: 'Feed', currentPage: 'feed' }) %>
     <div class="container">
         <% if (user) { %>
-            <% user.feed.forEach((item) => { %>
-                <div class="feed-item">
-                  <p><%= item.text %></p>
-                  <p><small><%= item.date %></small></p>
-                </div>
-              <% }) %>              
+            <div class="feed-container">
+                <% user.feed.forEach((item) => { %>
+                    <div class="feed-item">
+                      <p class="feed-text"><%= item.text %></p>
+                      <p class="feed-date"><small><%= item.date %></small></p>
+                    </div>
+                <% }) %>  
+            </div>            
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
