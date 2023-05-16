@@ -128,7 +128,7 @@ const checkIn = (req, res) => {
   habit.checkedInToday = true;
   habit.lastCheckIn = today;
   if (habit.isPublic) {
-    let text = `${user.name} successfully checked in ${habit.name}. They are on day ${habit.streak}/${habit.duration}.`;
+    let text = `${user.name} successfully checked in their habit: ${habit.name}. They are on day ${habit.streak}/${habit.duration}.`;
     createFeedItem(user, habit.id, text);
     addFeedItemToFriends(user, habit.id, text);
   }
