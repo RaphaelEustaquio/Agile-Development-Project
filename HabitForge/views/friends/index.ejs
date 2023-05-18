@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Friends</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Friends' }) %>
+
+    <div class="container">
+        <% if (user) { %>
+            <div class="header-container">
+                <h1>My Friends</h1>
+                <button id="friend-requests-btn" onclick="location.href='/friends/friend-requests'">
+                    <% if (user.friends.length > 0) { %>
+                        <span class="badge"><%= user.friends.length %></span>
+                    <% } %>
+                    Friend Requests
+                </button>
+            </div>
+            <div class="friends-container">
+                <% if (friends.length > 0) { %>
+                    <% friends.forEach((friend) => { %>
+                      <% const treeName = trees[friend.level][0]; %>
+                      <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - <%= treeName %></button>
+                    <% }) %>
+                  <% } else { %>
+                    <h2 class="message-container">Start adding friends now!</h2>
+                  <% } %>                  
+            </div>
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+        <button id="add-friends-btn" onclick="location.href='/friends/add-friend'">Add Friends</button>
+        
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

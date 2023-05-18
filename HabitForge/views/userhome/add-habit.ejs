@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Habit</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Add Habit', currentPage: 'add-habit' }) %>
+    <div class="container">
+        <form class="add-habit-form" action="/add-habit" method="post">
+            <label for="title">Habit Title</label>
+            <input type="text" name="title" required>
+            <label for="description">Description</label>
+            <textarea name="description" rows="5" required></textarea>
+            <label for="logDays">Log Days:</label>
+            <div id="logDays">
+              <label><input type="checkbox" name="logDays[]" value="Sunday"> Sunday</label>
+              <label><input type="checkbox" name="logDays[]" value="Monday"> Monday</label>
+              <label><input type="checkbox" name="logDays[]" value="Tuesday"> Tuesday</label>
+              <label><input type="checkbox" name="logDays[]" value="Wednesday"> Wednesday</label>
+              <label><input type="checkbox" name="logDays[]" value="Thursday"> Thursday</label>
+              <label><input type="checkbox" name="logDays[]" value="Friday"> Friday</label>
+              <label><input type="checkbox" name="logDays[]" value="Saturday"> Saturday</label>
+            </div>            
+            <label for="duration">Habit Duration (days)</label>
+            <input type="number" name="duration" required>
+            <div class="toggle-container">
+                <label for="isPublic">Make habit public</label>
+                <input type="checkbox" name="isPublic">
+            </div>
+            <button type="submit">Add Habit!</button>
+        </form>
+    </div>
+    <%- include('../partials/navbar', { currentPage: 'add-habit' }) %>
+</body>
+</html>

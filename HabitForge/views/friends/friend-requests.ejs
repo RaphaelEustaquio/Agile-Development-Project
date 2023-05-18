@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Friends</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Friend Requests', currentPage: 'friend-requests' }) %>
+
+    <div class="container">
+        <% if (user) { %>
+            <h1>My Friend Requests</h1>
+            <div class="friends-container"></div>
+                <% if (user.friends) { %>
+                    <% user.friends.forEach((friend) => { %>
+                        <button class="friend" onclick="location.href='/friends/accept/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - Click to accept friend request!</button>
+                    <% }) %>
+                <% } if (user.friends.length === 0) { %>
+                    <div class="message-container">
+                        <h2>You have no new friend requests.</h2>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+        <button id="add-friends-btn" onclick="location.href='/friends/add-friend'">Add Friends</button>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

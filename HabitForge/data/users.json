@@ -1,11 +1,498 @@
 [
   {
-    "id": "1682608685349",
-    "name": "Eric Kim",
-    "email": "123@gmail.com",
-    "password": "$2a$10$iJz0YKBCzAgQVNlAb3RhVObSrnU0GndlEDJ5pnQ6sdqwRPHI./6Cq",
+    "id": "1682742301700",
+    "name": "raph",
+    "email": "raph@test.com",
+    "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
     "habits": [
-      "quit smoking"
+      {
+        "id": "1683693004017",
+        "name": "asaaaa",
+        "description": "sddsdfdsfsd",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "duration": 100,
+        "isPublic": false,
+        "progress": 0,
+        "checkedInToday": false,
+        "lastCheckIn": "2023-05-10T00:31:35.713Z",
+        "streak": 0
+      },
+      {
+        "id": "1682964263054",
+        "name": "quit vaping",
+        "description": "less clouds",
+        "logDays": [
+          "Monday",
+          "Tuesday"
+        ],
+        "duration": 50,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:36.964Z",
+        "streak": 1
+      },
+      {
+        "id": "1682973225500",
+        "name": "play destiny",
+        "description": "i wawnna play destiny",
+        "logDays": [
+          "Sunday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "duration": 80,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-15T06:01:20.089Z",
+        "streak": 1
+      },
+      {
+        "id": "1682973446340",
+        "name": "quit smoking",
+        "description": "testing",
+        "logDays": [
+          "Sunday",
+          "Tuesday"
+        ],
+        "duration": 100,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:31:34.273Z",
+        "streak": 1
+      },
+      {
+        "id": "1683245457150",
+        "name": "hello",
+        "description": "fadsf",
+        "logDays": [
+          "Thursday"
+        ],
+        "duration": 11,
+        "isPublic": false,
+        "progress": 0,
+        "level": 1,
+        "checkedInToday": false,
+        "lastCheckIn": "2023-05-05T00:10:59.767Z",
+        "streak": 0
+      },
+      {
+        "id": "1683678521857",
+        "name": "be gone",
+        "description": "please",
+        "logDays": [
+          "Tuesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 0,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:28:44.121Z"
+      },
+      {
+        "id": "1683678825147",
+        "name": "be gone 2",
+        "description": "lalalal",
+        "logDays": [
+          "Tuesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 10,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:33:47.401Z"
+      },
+      {
+        "id": "1683750451932",
+        "name": "one day",
+        "description": "one",
+        "logDays": [
+          "Wednesday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 10,
+        "completed": true,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T20:27:34.341Z"
+      }
+    ],
+    "points": 50,
+    "friends": [],
+    "level": 1,
+    "totalPoints": 0,
+    "remainingPoints": 50,
+    "realfriends": [
+      {
+        "id": "1683065441249",
+        "name": "eric",
+        "email": "eric@test.com",
+        "level": 1,
+        "acceptance": true
+      }
+    ],
+    "feed": [
+      {
+        "id": "1684130467384",
+        "userId": "1682742301700",
+        "habitId": "1682973225500",
+        "text": "raph missed their check-in day for play destiny. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:07.384Z"
+      },
+      {
+        "id": "1684130480089",
+        "userId": "1682742301700",
+        "habitId": "1682973225500",
+        "text": "raph successfully checked in play destiny. They are on day 1/80.",
+        "date": "2023-05-15T06:01:20.089Z"
+      },
+      {
+        "id": "1684130491342",
+        "userId": "1682742301700",
+        "habitId": "1683644943903",
+        "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:31.342Z"
+      }
     ]
+  },
+  {
+    "id": "1683065441249",
+    "name": "eric",
+    "email": "eric@test.com",
+    "password": "$2a$10$Homw1y2mlY2bhxnR/ru7Je1ATh/BFQdm5VbqKRwTF8KLtNai4MNLa",
+    "habits": [
+      {
+        "id": "1683644943903",
+        "name": "New Habit",
+        "description": "i have a new habit i want to quit",
+        "logDays": [
+          "Tuesday",
+          "Friday",
+          "Saturday"
+        ],
+        "duration": 123,
+        "isPublic": true,
+        "progress": 0,
+        "checkedInToday": false,
+        "lastCheckIn": "2023-05-09T15:09:07.586Z",
+        "streak": 0
+      },
+      {
+        "id": "1683644964361",
+        "name": "Second habit",
+        "description": "this is weird",
+        "logDays": [
+          "Tuesday",
+          "Thursday"
+        ],
+        "duration": 1,
+        "isPublic": false,
+        "progress": 0,
+        "checkedInToday": false,
+        "lastCheckIn": "2023-05-09T15:09:26.218Z",
+        "streak": 0
+      }
+    ],
+    "friends": [],
+    "points": 0,
+    "realfriends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com",
+        "level": 1,
+        "acceptance": true
+      }
+    ],
+    "totalPoints": 0,
+    "level": 1,
+    "remainingPoints": 0,
+    "feed": [
+      {
+        "id": "1684130467384",
+        "userId": "1683065441249",
+        "habitId": "1682973225500",
+        "text": "raph missed their check-in day for play destiny. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:07.384Z"
+      },
+      {
+        "id": "1684130480089",
+        "userId": "1683065441249",
+        "habitId": "1682973225500",
+        "text": "raph successfully checked in play destiny. They are on day 1/80.",
+        "date": "2023-05-15T06:01:20.089Z"
+      },
+      {
+        "id": "1684130491342",
+        "userId": "1683065441249",
+        "habitId": "1683644943903",
+        "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
+        "date": "2023-05-15T06:01:31.342Z"
+      }
+    ]
+  },
+  {
+    "id": "1683525569209",
+    "name": "new guy",
+    "email": "new@test.com",
+    "password": "$2a$10$ZYoNmSYIBdAwSP/Dyo0tv.o7AMDlvmrgrGtLr4w7E6aFVRG76fUre",
+    "habits": [],
+    "friends": [],
+    "level": 1,
+    "points": null,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683645194616",
+    "name": "newww person",
+    "email": "new2@test.com",
+    "password": "$2a$10$YFASwqGJOR0773UkSFQdi.3R23cswXheFnBKJYm2zxBRwbi68pvoG",
+    "habits": [],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com"
+      },
+      {
+        "id": "1683065441249",
+        "name": "eric",
+        "email": "eric@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683654801600",
+    "name": "new account",
+    "email": "new3@test.com",
+    "password": "$2a$10$wUh1AWFUIuKOupu2BaMQ0e2k.k6SKDRF7xgm8meapUqXd1KEHcrT2",
+    "habits": [],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683655010681",
+    "name": "newnr",
+    "email": "new4@test.com",
+    "password": "$2a$10$UmmgHU0qZtoaY1E2eks38uduG73T9qyPOsnSpTnmyuNdLKBH5NHtu",
+    "habits": [
+      {
+        "id": "1683655122056",
+        "name": "habit ",
+        "description": "lksdf",
+        "logDays": [
+          "Monday",
+          "Tuesday"
+        ],
+        "duration": 12,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T17:58:44.117Z"
+      },
+      {
+        "id": "1683655142187",
+        "name": "habit two",
+        "description": "alkjfldlkjslkdfj",
+        "logDays": [
+          "Tuesday",
+          "Wednesday"
+        ],
+        "duration": 0,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-09T17:59:04.049Z"
+      }
+    ],
+    "friends": [],
+    "level": 1,
+    "points": 20,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683668041153",
+    "name": "bew",
+    "email": "new6@test.com",
+    "password": "$2a$10$95A/xyy6vkB5IgGdyLCRnOSevpEYYfSaSNzX31X1oMBmOGQa1XpKi",
+    "habits": [
+      {
+        "id": "1683673160490",
+        "name": "mdsnlkf",
+        "description": "lksdflkjsfladk",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Saturday"
+        ],
+        "duration": 234,
+        "isPublic": false,
+        "progress": 0
+      }
+    ],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com"
+      },
+      {
+        "id": "1683065441249",
+        "name": "eric",
+        "email": "eric@test.com"
+      }
+    ],
+    "level": 1,
+    "points": 0,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683668054666",
+    "name": "another guy",
+    "email": "new7@test.com",
+    "password": "$2a$10$fN2dlcuMnuaKZBOC1tTqG.nOQEO5hd0C.In2aSWSky2HZ5NO1U.NW",
+    "habits": [],
+    "friends": [],
+    "level": 1,
+    "points": 0,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683676362694",
+    "name": "new person",
+    "email": "new9@test.com",
+    "password": "$2a$10$7Fj/HqSgU7XTXfgKrULTXeySxsp8yUQKTGksMzR/Ai4eyLg3NLvaK",
+    "habits": [
+      {
+        "id": "1683677017602",
+        "name": "hlak",
+        "description": "kldgkljga",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "duration": 11,
+        "isPublic": true,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T00:03:39.907Z"
+      },
+      {
+        "id": "1683690266976",
+        "name": "kjjk",
+        "description": "lklk",
+        "logDays": [
+          "Tuesday",
+          "Wednesday"
+        ],
+        "duration": 5,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T03:44:28.856Z"
+      }
+    ],
+    "friends": [
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com",
+        "level": 2
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com",
+        "level": 1
+      }
+    ],
+    "level": 1,
+    "points": 20,
+    "realfriends": [],
+    "feed": []
+  },
+  {
+    "id": "1683681041224",
+    "name": "eric kim",
+    "email": "eric1@test.com",
+    "password": "$2a$10$tLU3eOFK67flrT3UMxMpIOhx3h0UtEr2.RLRAmorRt/aGRLmafB3y",
+    "habits": [
+      {
+        "id": "1683683616874",
+        "name": "something",
+        "description": "asflkdfjkklj",
+        "logDays": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday"
+        ],
+        "duration": 123,
+        "isPublic": false,
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-10T01:53:38.821Z"
+      }
+    ],
+    "friends": [
+      {
+        "id": "1683654801600",
+        "name": "new account",
+        "email": "new3@test.com",
+        "level": 1
+      },
+      {
+        "id": "1683668054666",
+        "name": "another guy",
+        "email": "new7@test.com",
+        "level": 1
+      },
+      {
+        "id": "1682742301700",
+        "name": "raph",
+        "email": "raph@test.com",
+        "level": 2
+      }
+    ],
+    "level": 1,
+    "points": 10,
+    "realfriends": [],
+    "feed": []
   }
 ]

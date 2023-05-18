@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feed Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Feed', currentPage: 'feed' }) %>
+    <div class="container">
+        <% if (user) { %>
+            <div class="feed-container">
+                <% user.feed.forEach((item) => { %>
+                    <div class="feed-item">
+                      <p class="feed-text"><%= item.text %></p>
+                      <p class="feed-date"><small><%= item.date %></small></p>
+                    </div>
+                <% }) %>  
+            </div>            
+        <% } else { %>
+            <h1>Welcome, please log in or register.</h1>
+            <a href="/login">Login</a> | <a href="/register">Register</a>
+        <% } %>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

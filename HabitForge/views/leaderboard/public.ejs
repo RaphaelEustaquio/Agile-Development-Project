@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <script defer src="/javascript.js"></script>
+    <title>Public Leaderboard</title>
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Global Leaderboard',  currentPage: 'leaderboard'}) %>
+    <button id="toggle-button" onclick="location.href='/leaderboard/private'">Go to Friends Leaderboard</button>
+    <% let myName = user.name %>
+    <div class="leaderboard-container">
+        <div class="top-platform">
+            <% leaderboard.slice(1, 2).forEach((user, index) => { %>
+                <div class="second-place">
+                    <div class="secondplace-frame">
+                        <img class="secondplace-image" src="/images/<%= user.level %>.png" alt="Logo">
+                    </div>
+                    <img class="silvermedal" src="/images/silvermedal.png" alt="Logo">
+                    <span><%= user.name %></span>
+                    <span><%= user.points %></span>
+                </div>
+            <% }); %>
+            <% leaderboard.slice(0, 1).forEach((user, index) => { %>
+                <div class="first-place">
+                    <div class="firstplace-frame">
+                        <img class="firstplace-image"src="/images/<%= user.level %>.png" alt="Logo">
+                    </div>
+                    <img class="goldmedal" src="/images/goldmedal.png" alt="Logo">
+                    <span><%= user.name %></span>
+                    <span><%= user.points %></span>
+                </div>
+            <% }); %>
+            <% leaderboard.slice(2, 3).forEach((user, index) => { %>
+                <div class="third-place">
+                    <div class="thirdplace-frame">
+                        <img class="thirdplace-image" src="/images/<%= user.level %>.png" alt="Logo">
+                    </div>
+                    <img class="bronzemedal" src="/images/bronzemedal.png" alt="Logo">
+                    <span><%= user.name %></span>
+                    <span><%= user.points %></span>
+                </div>  
+            <% }); %>
+        </div>
+        <div class="leaderboard-header">
+            <span>Rank</span>
+            <span>Tree</span>
+            <span>Name</span>
+            <span>Level</span>
+            <span>Points</span>
+        </div>
+        <div class="lowrank-container">
+            <% leaderboard.slice(3).forEach((user, index) => { %>
+                <div class="<%= user.name === myName ? 'leaderboard-row highlight' : 'leaderboard-row' %>">
+                    <span><%= index + 4 %></span>
+                    <div class="leaderboard-imageframe">
+                        <img class="leaderboard-image <%= user.name === myName ? 'leaderboard-image highlight' : '' %>" src="/images/<%= user.level %>.png" alt="Logo">
+                    </div>
+                    <span><%= user.name %></span>
+                    <span><%= user.level %></span>
+                    <span><%= user.points %></span>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

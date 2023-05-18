@@ -1,0 +1,31 @@
+<!-- Classes have been reused from login page to save time and redundancy -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body class="loginpage">
+    <div class="fulllogo">
+        <img src="/images/fulllogo1.png" alt="Logo"></a>
+    </div>
+    <div class="loginform">
+        <form action="/register" method="post">
+            <label for="name" class="padding">Name</label>
+            <input type="text" name="name" required placeholder="John Smith">
+            <label for="email" class="padding">Email</label>
+            <input type="email" name="email" required placeholder="johnsmith@example.com">
+            <div class="passwordcontainer">
+                <label for="password" class="padding">Password</label>
+                <input type="password" name="password" required placeholder="**********">
+            </div>
+            <button type="submit" class="loginbutton">Register</button>
+        </form>
+    </div>
+    <div class="registration">
+        <p>Already a User?</p>
+        <a href="/login">Login</a>
+    </div>
+</body>
+</html>
