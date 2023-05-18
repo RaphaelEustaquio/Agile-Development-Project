@@ -13,11 +13,10 @@
     <div class="toggle-button">
         <input id="toggle" class="toggle" type="checkbox" role="switch" name="toggle" value="on" onclick="window.location.href='/leaderboard/private'">
         <label for="toggle" class="slot">
-            <span class="slot__label">Public</span>
-            <span class="slot__label">Private</span>
+            <span class="slot__label">Global</span>
+            <span class="slot__label">Friends</span>
         </label>
     </div>
-    <button id="toggle-button" onclick="location.href='/leaderboard/private'">Go to Friends Leaderboard</button>
     <% let myName = user.name %>
     <div class="leaderboard-container">
         <div class="top-platform">

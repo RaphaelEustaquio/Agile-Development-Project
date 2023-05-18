@@ -946,6 +946,7 @@ background: #0c8664;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  color: white;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -960,7 +961,7 @@ background: #0c8664;
 }
 
 .toggle:checked:before {
-  transform: translateX(1.4em);
+  transform: translateX(1.3em);
 }
 
 .toggle:checked ~ .slot .slot__label, .slot__label:nth-child(2) {
@@ -992,4 +993,6 @@ background: #0c8664;
   position: fixed;
   z-index: 1000;
   color: white;
+  display: flex;
+  width: 100%;
 }
