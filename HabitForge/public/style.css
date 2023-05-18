@@ -913,3 +913,83 @@ background: #0c8664;
   justify-content: center;
   height: calc(100vh - 100px); /* minus top and bottom nav height */
 }
+
+
+/* Toggle button design  */
+
+.toggle, .toggle:before, .slot__label {
+  transition-property: background-color, transform;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in, cubic-bezier(0.6,0.2,0.4,1.5);
+}
+
+.toggle:before, .slot, .slot__label {
+  display: block;
+}
+
+.toggle:before {
+  position: absolute;
+}
+
+.toggle:focus {
+  outline: transparent;
+}
+
+.toggle {
+  border-radius: 0.75em;
+  box-shadow: 0 0 0 0.1em inset;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.25em;
+  width: 3em;
+  height: 1.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle:before {
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+  top: 0.2em;
+  left: 0.2em;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.toggle:checked:before {
+  transform: translateX(1.4em);
+}
+
+.toggle:checked ~ .slot .slot__label, .slot__label:nth-child(2) {
+  transform: translateY(-50%) scaleY(0);
+}
+
+.toggle:checked ~ .slot .slot__label:nth-child(2) {
+  transform: translateY(-100%) scaleY(1);
+}
+
+.slot {
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  overflow: hidden;
+  height: 1em;
+}
+
+.slot__label {
+  transform-origin: 50% 0;
+}
+
+.slot__label:nth-child(2) {
+  transform-origin: 50% 100%;
+}
+
+.toggle-button {
+  position: fixed;
+  z-index: 1000;
+  color: white;
+}

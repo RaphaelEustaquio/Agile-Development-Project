@@ -50,10 +50,10 @@
         ],
         "duration": 80,
         "isPublic": true,
-        "progress": 10,
-        "checkedInToday": true,
+        "progress": 0,
+        "checkedInToday": false,
         "lastCheckIn": "2023-05-15T06:01:20.089Z",
-        "streak": 1
+        "streak": 0
       },
       {
         "id": "1682973446340",
@@ -131,11 +131,11 @@
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
       }
     ],
-    "points": 50,
+    "points": 40,
     "friends": [],
     "level": 1,
     "totalPoints": 0,
-    "remainingPoints": 50,
+    "remainingPoints": 40,
     "realfriends": [
       {
         "id": "1683065441249",
