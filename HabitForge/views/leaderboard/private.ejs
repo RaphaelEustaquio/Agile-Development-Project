@@ -10,6 +10,13 @@
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Friends Leaderboard', currentPage: 'privateleaderboard'}) %>
+    <div class="toggle-button">
+        <input id="toggle" class="toggle" type="checkbox" role="switch" name="toggle" value="on" checked onclick="window.location.href='/leaderboard/public'">
+        <label for="toggle" class="slot">
+            <span class="slot__label">Global</span>
+            <span class="slot__label">Friends</span>
+        </label>
+    </div>
     <% let myName = user.name %>
     <div class="leaderboard-container">
         <div class="top-platform">
