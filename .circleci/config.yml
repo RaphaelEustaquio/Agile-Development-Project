@@ -19,5 +19,3 @@ workflows:
                     echo "Tests failed. Aborting Git push."
                     exit 1
                   fi
-      - deploy:
-          # Define your Git push steps here
