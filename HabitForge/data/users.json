@@ -16,10 +16,10 @@
         ],
         "duration": 100,
         "isPublic": false,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-10T00:31:35.713Z",
-        "streak": 0
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-19T06:20:33.262Z",
+        "streak": 1
       },
       {
         "id": "1682964263054",
@@ -52,37 +52,8 @@
         "isPublic": true,
         "progress": 10,
         "checkedInToday": true,
-        "lastCheckIn": "2023-05-15T06:01:20.089Z",
+        "lastCheckIn": "2023-05-19T06:20:49.872Z",
         "streak": 1
-      },
-      {
-        "id": "1682973446340",
-        "name": "quit smoking",
-        "description": "testing",
-        "logDays": [
-          "Sunday",
-          "Tuesday"
-        ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 10,
-        "checkedInToday": true,
-        "lastCheckIn": "2023-05-10T00:31:34.273Z",
-        "streak": 1
-      },
-      {
-        "id": "1683244137605",
-        "name": "testing update",
-        "description": "testing",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 100,
-        "isPublic": false,
-        "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-04T23:49:00.591Z"
       },
       {
         "id": "1683245457150",
@@ -98,20 +69,6 @@
         "checkedInToday": false,
         "lastCheckIn": "2023-05-05T00:10:59.767Z",
         "streak": 0
-      },
-      {
-        "id": "1683246073456",
-        "name": "asdf",
-        "description": "adsf",
-        "logDays": [
-          "Thursday"
-        ],
-        "duration": 111,
-        "isPublic": false,
-        "progress": 10,
-        "level": 1,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-05T00:21:19.931Z"
       },
       {
         "id": "1683678521857",
@@ -157,6 +114,22 @@
         "streak": 1,
         "checkedInToday": true,
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
+      },
+      {
+        "id": "1684479035216",
+        "name": "test",
+        "description": "111",
+        "logDays": [
+          "Thursday",
+          "Friday"
+        ],
+        "duration": 111,
+        "isPublic": true,
+        "progress": 10,
+        "completed": false,
+        "streak": 1,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-19T06:50:37.517Z"
       }
     ],
     "points": 50,
@@ -194,6 +167,13 @@
         "habitId": "1683644943903",
         "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
         "date": "2023-05-15T06:01:31.342Z"
+      },
+      {
+        "id": "1684479037518",
+        "userId": "1682742301700",
+        "habitId": "1684479035216",
+        "text": "raph successfully checked in test. They are on day 1/111.",
+        "date": "2023-05-19T06:50:37.518Z"
       }
     ]
   },
@@ -270,6 +250,13 @@
         "habitId": "1683644943903",
         "text": "eric missed their check-in day for New Habit. Help motivate them to get back on track!",
         "date": "2023-05-15T06:01:31.342Z"
+      },
+      {
+        "id": "1684479037518",
+        "userId": "1683065441249",
+        "habitId": "1684479035216",
+        "text": "raph successfully checked in test. They are on day 1/111.",
+        "date": "2023-05-19T06:50:37.518Z"
       }
     ]
   },
