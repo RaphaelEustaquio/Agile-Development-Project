@@ -57,3 +57,9 @@ model FeedItem {
   text      String
   user      User    @relation(fields: [userId], references: [id])
 }
+
+model Tree {
+  id        Int    @id
+  level     String
+  message   String
+}
