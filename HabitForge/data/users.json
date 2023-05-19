@@ -4,6 +4,7 @@
     "name": "raph",
     "email": "raph@test.com",
     "password": "$2a$10$bj/8iZh.XZ.VfIAb3r5Z4ODfcbUzWHEAO3zshLinccGP4VQrhQY2m",
+    "unseen": [],
     "habits": [
       {
         "id": "1683693004017",
@@ -116,20 +117,20 @@
         "lastCheckIn": "2023-05-10T20:27:34.341Z"
       },
       {
-        "id": "1684479035216",
-        "name": "test",
-        "description": "111",
+        "id": "1684480532032",
+        "name": "new",
+        "description": "new",
         "logDays": [
           "Thursday",
           "Friday"
         ],
-        "duration": 111,
+        "duration": 11,
         "isPublic": true,
         "progress": 10,
         "completed": false,
         "streak": 1,
         "checkedInToday": true,
-        "lastCheckIn": "2023-05-19T06:50:37.517Z"
+        "lastCheckIn": "2023-05-19T07:28:53.650Z"
       }
     ],
     "points": 50,
@@ -174,6 +175,34 @@
         "habitId": "1684479035216",
         "text": "raph successfully checked in test. They are on day 1/111.",
         "date": "2023-05-19T06:50:37.518Z"
+      },
+      {
+        "id": "1684480489017",
+        "userId": "1682742301700",
+        "habitId": "1684479035216",
+        "text": "raph has just removed test from their habits.",
+        "date": "2023-05-19T07:14:49.017Z"
+      },
+      {
+        "id": "1684480532032",
+        "userId": "1682742301700",
+        "habitId": "1684480532032",
+        "text": "raph has just added new to their habits. Make sure they stay on track!",
+        "date": "2023-05-19T07:15:32.032Z"
+      },
+      {
+        "id": "1684481333650",
+        "userId": "1682742301700",
+        "habitId": "1684480532032",
+        "text": "raph successfully checked in new. They are on day 1/11.",
+        "date": "2023-05-19T07:28:53.650Z"
+      },
+      {
+        "id": "1684481941796",
+        "userId": "1682742301700",
+        "habitId": "1683644943903",
+        "text": "eric successfully checked in New Habit. They are on day 1/123.",
+        "date": "2023-05-19T07:39:01.796Z"
       }
     ]
   },
@@ -194,10 +223,10 @@
         ],
         "duration": 123,
         "isPublic": true,
-        "progress": 0,
-        "checkedInToday": false,
-        "lastCheckIn": "2023-05-09T15:09:07.586Z",
-        "streak": 0
+        "progress": 10,
+        "checkedInToday": true,
+        "lastCheckIn": "2023-05-19T07:39:01.796Z",
+        "streak": 1
       },
       {
         "id": "1683644964361",
@@ -216,7 +245,8 @@
       }
     ],
     "friends": [],
-    "points": 0,
+    "points": 10,
+    "unseen": [],
     "realfriends": [
       {
         "id": "1682742301700",
@@ -228,7 +258,7 @@
     ],
     "totalPoints": 0,
     "level": 1,
-    "remainingPoints": 0,
+    "remainingPoints": 10,
     "feed": [
       {
         "id": "1684130467384",
@@ -257,6 +287,34 @@
         "habitId": "1684479035216",
         "text": "raph successfully checked in test. They are on day 1/111.",
         "date": "2023-05-19T06:50:37.518Z"
+      },
+      {
+        "id": "1684480489018",
+        "userId": "1683065441249",
+        "habitId": "1684479035216",
+        "text": "raph has just removed test from their habits.",
+        "date": "2023-05-19T07:14:49.018Z"
+      },
+      {
+        "id": "1684480532032",
+        "userId": "1683065441249",
+        "habitId": "1684480532032",
+        "text": "raph has just added new to their habits. Make sure they stay on track!",
+        "date": "2023-05-19T07:15:32.032Z"
+      },
+      {
+        "id": "1684481333650",
+        "userId": "1683065441249",
+        "habitId": "1684480532032",
+        "text": "raph successfully checked in new. They are on day 1/11.",
+        "date": "2023-05-19T07:28:53.650Z"
+      },
+      {
+        "id": "1684481941796",
+        "userId": "1683065441249",
+        "habitId": "1683644943903",
+        "text": "eric successfully checked in New Habit. They are on day 1/123.",
+        "date": "2023-05-19T07:39:01.796Z"
       }
     ]
   },

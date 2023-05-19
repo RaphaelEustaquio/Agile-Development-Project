@@ -25,11 +25,16 @@ const addHabit = (req, res) => {
     progress: 0,
     completed: false,
     streak: 0,
-};
+  };
   const user = users.find((user) => user.id === req.user.id);
 
   if (user) {
       user.habits.push(habit);
+      if (habit.isPublic) {
+        let text = `${user.name} has just added "${habit.name}" to their habits. Make sure they stay on track!`;
+        createFeedItem(user, habit.id, text);
+        addFeedItemToFriends(user, habit.id, text);
+      }
       saveUsers();
   }
 
@@ -83,6 +88,11 @@ const deleteHabit = (req, res) => {
     const habit = req.user.habits[habitIndex];
     
     req.user.points -= habit.progress;
+    if (habit.isPublic) {
+      let text = `${req.user.name} has just removed ${habit.name} from their habits.`;
+      createFeedItem(req.user, habit.id, text);
+      addFeedItemToFriends(req.user, habit.id, text);
+    }
     req.user.habits.splice(habitIndex, 1);
     
     saveUsers();
@@ -192,19 +202,35 @@ const createFeedItem = (user, habitId, text) => {
     date: new Date()
   };
 
+  // Initialize unseen array if it does not exist
+  if (!user.unseen) {
+    user.unseen = [];
+  }
+
   // Check if this message already exists in the user's feed
   if (!user.feed.some(item => item.text === text && item.habitId === habitId)) {
     user.feed.push(feedItem);
+    // Also add this item to the user's unseen feed items
+    user.unseen.push(feedItem.id);
   }
+
+  return feedItem;  // return the feedItem
 };
 
 const addFeedItemToFriends = (user, habitId, text) => {
   user.realfriends.forEach(friend => {
     const friendUser = users.find(u => u.id === friend.id);
     if (friendUser) {
+      // Initialize unseen array if it does not exist
+      if (!friendUser.unseen) {
+        friendUser.unseen = [];
+      }
+
       // Only create a feed item if it doesn't already exist in the friend's feed
       if (!friendUser.feed.some(item => item.text === text && item.habitId === habitId)) {
-        createFeedItem(friendUser, habitId, text);
+        const feedItem = createFeedItem(friendUser, habitId, text); // store the returned feedItem
+        // Also add this item to the friend's unseen feed items
+        friendUser.unseen.push(feedItem.id);
       }
     }
   });
