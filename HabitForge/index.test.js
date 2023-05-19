@@ -74,7 +74,7 @@ describe('Test habit creation', () => {
       .post('/add-habit')
       .send(newHabit);
 
-    expect(response.statusCode).toBe(200);
+    expect(response.statusCode).toBe(302);
 
     const users = JSON.parse(fs.readFileSync(usersPath));
     const user = users.find(user => user.email === testUser.email);
