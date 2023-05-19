@@ -10,3 +10,50 @@ datasource db {
   url      = "file:./dev.db"
 }
 
+model User {
+  id                String       @id @default(uuid())
+  name              String
+  email             String       @unique
+  password          String
+  level             Int          @default(1)
+  points            Int          @default(0)
+  remainingPoints   Int          @default(0)
+  habits            Habit[]
+  friends           Friend[]
+  realfriends       Friend[]
+  feed              FeedItem[]
+  unseen            FeedItem[]
+}
+
+model Habit {
+  id           String  @id @default(uuid())
+  userId       String
+  name         String
+  description  String?
+  logDays      String  // If the days are stored as comma-separated string
+  duration     Int
+  isPublic     Boolean
+  progress     Int
+  completed    Boolean
+  streak       Int
+  user         User    @relation(fields: [userId], references: [id])
+}
+
+model Friend {
+  id        String  @id @default(uuid())
+  friendId  String
+  userId    String
+  name      String
+  email     String
+  level     Int
+  points    Int
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model FeedItem {
+  id        String  @id @default(uuid())
+  userId    String
+  habitId   String
+  text      String
+  user      User    @relation(fields: [userId], references: [id])
+}
