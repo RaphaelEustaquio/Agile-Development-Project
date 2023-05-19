@@ -73,8 +73,7 @@ describe('Test habit creation', () => {
     const response = await agent
       .post('/add-habit')
       .send(newHabit);
-
-    expect(response.statusCode).toBe(1111);
+    expect(response.statusCode).toBe(302);
 
     const users = JSON.parse(fs.readFileSync(usersPath));
     const user = users.find(user => user.email === testUser.email);
