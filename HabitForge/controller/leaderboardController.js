@@ -1,30 +1,25 @@
-const users = require('../data/users.json');
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
-const comparePoints = (a, b) => {
-  return b.points - a.points;
-};
-
-const renderPublicLeaderboard = (req, res) => {
-  const sortedUsers = users.slice().sort(comparePoints);
+const renderPublicLeaderboard = async (req, res) => {
+  const sortedUsers = await prisma.user.findMany({
+    orderBy: {
+      points: 'desc',
+    },
+  });
   res.render('leaderboard/public.ejs', { user: req.user, leaderboard: sortedUsers });
 };
 
-const renderPrivateLeaderboard = (req, res) => {
-  const friends = [];
-  req.user.realfriends.forEach(friend => {
-    const userToFollow = users.find(user => user.id === friend.id);
-    if (userToFollow) {
-      friends.push({
-        id: userToFollow.id,
-        name: userToFollow.name,
-        email: userToFollow.email,
-        level: userToFollow.level,
-        points: userToFollow.points,
-      });
-    }
+const renderPrivateLeaderboard = async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: { id: req.user.id },
+    include: { realfriends: true },
   });
-  friends.push(req.user);
-  const sortedFriends = friends.slice().sort(comparePoints);
+
+  const friends = user.realfriends;
+  friends.push(user);
+
+  const sortedFriends = friends.sort((a, b) => b.points - a.points);
   res.render('leaderboard/private.ejs', { user: req.user, leaderboard: sortedFriends });
 };
 
