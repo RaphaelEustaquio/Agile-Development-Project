@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                String       @id @default(uuid())
+  name              String
+  email             String       @unique
+  password          String
+  level             Int          @default(1)
+  points            Int          @default(0)
+  remainingPoints   Int          @default(0)
+  habits            Habit[]
+  friends           Friend[]     @relation("User_Friends")
+  realfriends       Friend[]     @relation("User_RealFriends")
+  feed              FeedItem[]   @relation("User_Feed")
+  unseen            FeedItem[]   @relation("User_Unseen")
+}
+
+model Habit {
+  id           String  @id @default(uuid())
+  userId       String
+  name         String
+  description  String?
+  logDays      String  // If the days are stored as comma-separated string
+  duration     Int
+  isPublic     Boolean
+  progress     Int
+  completed    Boolean
+  streak       Int
+  user         User    @relation(fields: [userId], references: [id])
+}
+
+model Friend {
+  id        String  @id @default(uuid())
+  friendId  String
+  userId    String
+  name      String
+  email     String
+  level     Int
+  points    Int
+  user      User    @relation("User_Friends", fields: [userId], references: [id])
+  realUser  User    @relation("User_RealFriends", fields: [userId], references: [id])
+}
+
+model FeedItem {
+  id        String  @id @default(uuid())
+  userId    String
+  habitId   String
+  text      String
+  userFeed  User    @relation("User_Feed", fields: [userId], references: [id])
+  userUnseen User   @relation("User_Unseen", fields: [userId], references: [id])
+}
+
+model Tree {
+  id        Int    @id
+  level     String
+  message   String
+}
