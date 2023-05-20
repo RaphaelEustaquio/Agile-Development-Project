@@ -161,10 +161,10 @@ const checkIn = async (req, res) => {
   res.redirect('/');
 };
 
-const checkMissedHabits = async (req, res) => {
+const checkMissedHabits = async (user) => {
   const habits = await prisma.habit.findMany({
     where: {
-      userId: req.user.id
+      userId: user.id
     }
   });
 
@@ -182,8 +182,6 @@ const checkMissedHabits = async (req, res) => {
       });
     }
   }
-
-  res.redirect('/');
 };
 
 const createFeedItem = async (req, res) => {
