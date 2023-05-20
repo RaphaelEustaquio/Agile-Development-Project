@@ -63,6 +63,11 @@ const updateHabit = async (req, res) => {
     completed = true;
   }
 
+  let logDays = oldHabit.logDays;
+  if (Array.isArray(req.body.logDays)) {
+    logDays = req.body.logDays.filter(day => day).join(',');
+  }
+
   await prisma.habit.update({
     where: {
       id: oldHabit.id
@@ -70,7 +75,7 @@ const updateHabit = async (req, res) => {
     data: {
       name: req.body.title,
       description: req.body.description,
-      logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
+      logDays: logDays,
       duration: duration,
       isPublic: req.body.isPublic === 'on',
       progress: oldHabit.progress,
@@ -188,7 +193,8 @@ const checkIn = async (req, res) => {
       streak: newStreak,
       lastCheckIn: new Date(),
       completed,
-      completedAt: completed ? new Date() : null
+      completedAt: completed ? new Date() : null,
+      checkedInToday: true
     }
   });
 

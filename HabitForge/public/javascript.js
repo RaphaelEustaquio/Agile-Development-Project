@@ -30,3 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function sentRequest() {
   alert("Friend request sent!");
 }
+
+function validateForm() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="logDays[]"]');
+  const checked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  
+  if (!checked) {
+      alert('Please select at least one log day.');
+      return false;
+  }
+  
+  return true;
+}

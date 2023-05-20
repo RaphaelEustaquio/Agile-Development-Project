@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascript.js"></script>
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'My Habit', currentPage: 'edit-habit' }) %>  <div class="container">
     <div class="container">
-        <form class="add-habit-form" action="/userhome/update-habit/<%= habit.id %>" method="post">
+        <form class="add-habit-form" action="/userhome/update-habit/<%= habit.id %>" method="post" onsubmit="return validateForm()">
             <label for="title">Habit Title</label>
             <input type="text" name="title" value="<%= habit.name %>" readonly="readonly">
             <label for="description">Description</label>

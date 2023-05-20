@@ -31,7 +31,7 @@ model Habit {
   userId       String
   name         String
   description  String?
-  logDays      String  // If the days are stored as comma-separated string
+  logDays      String
   duration     Int
   isPublic     Boolean
   progress     Int
@@ -40,6 +40,7 @@ model Habit {
   user         User    @relation(fields: [userId], references: [id])
   lastCheckIn  DateTime?
   completedAt DateTime?
+  checkedInToday Boolean @default(false) 
 }
 
 model Friend {
