@@ -12,10 +12,13 @@ const friendRoutes = require('./routes/friendRoutes')
 const feedRoutes = require('./routes/feedRoutes')
 const leaderboardRoutes = require('./routes/leaderboardRoutes')
 const achievementRoutes = require('./routes/achievementRoutes')
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const app = express();
-const users = require('./data/users.json');
-const getUserByEmail = (email) => users.find((user) => user.email === email);
-const getUserById = (id) => users.find((user) => user.id === id);
+
+const getUserByEmail = async (email) => await prisma.user.findUnique({ where: { email } });
+const getUserById = async (id) => await prisma.user.findUnique({ where: { id } });
 
 initializePassport(passport, getUserByEmail, getUserById);
 
@@ -48,4 +51,3 @@ if(process.env.NODE_ENV !== 'test') {
         console.log('Server running. Visit: localhost:3000/login in your browser');
     });
 }
-
