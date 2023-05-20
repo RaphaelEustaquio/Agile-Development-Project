@@ -85,7 +85,23 @@ const updateHabit = async (req, res) => {
 };
 
 const deleteHabit = async (req, res) => {
-  const habit = await prisma.habit.delete({
+  const habit = await prisma.habit.findUnique({
+    where: {
+      id: req.params.habitId
+    }
+  });
+
+  if (!habit) {
+    return res.redirect('/');
+  }
+
+  // Subtract points equal to habit progress only if the habit is not completed
+  if (!habit.completed) {
+    const pointsToRemove = habit.progress * 10;  // You can adjust this as needed
+    await updateUserPoints(req.user, -pointsToRemove);
+  }
+
+  await prisma.habit.delete({
     where: {
       id: req.params.habitId
     }
@@ -96,7 +112,12 @@ const deleteHabit = async (req, res) => {
 
 const updateUserPoints = async (user, points) => {
   // Calculate total points
-  const totalPoints = user.points + points;
+  let totalPoints = user.points + points;
+
+  // Don't let points fall below zero
+  if (totalPoints < 0) {
+    totalPoints = 0;
+  }
 
   // Calculate level and remaining points
   let level = 1;
@@ -111,7 +132,7 @@ const updateUserPoints = async (user, points) => {
   }
 
   // Update user
-  await prisma.user.update({
+  const updatedUser = await prisma.user.update({
     where: {
       id: user.id
     },
@@ -121,6 +142,8 @@ const updateUserPoints = async (user, points) => {
       remainingPoints
     }
   });
+
+  console.log(`Updated user points for ${updatedUser.id} to ${updatedUser.points}`);
 };
 
 const checkIn = async (req, res) => {
@@ -178,25 +201,35 @@ const checkIn = async (req, res) => {
 const checkMissedHabits = async (user) => {
   const habits = await prisma.habit.findMany({
     where: {
-      userId: user.id
+      userId: user.id,
+      completed: false
     }
   });
 
   for (let habit of habits) {
     const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
 
-    if (lastCheckIn && new Date().getDate() - lastCheckIn.getDate() > 1 && habit.logDays.includes(new Date().getDay().toString())) {
+    if (lastCheckIn && new Date().getDate() - lastCheckIn.getDate() > 1 && habit.logDays.includes(new Date().toLocaleDateString('en-US', { weekday: 'long' }))) {
+      // calculate the points to subtract based on the habit's progress
+      const pointsToSubtract = habit.progress * 10;
+      console.log(`Points to subtract for habit ${habit.id}: ${pointsToSubtract}`);
+      // update the user's points first
+      await updateUserPoints(user, -pointsToSubtract);
+      
+      // then reset the habit's streak and progress
       await prisma.habit.update({
         where: {
           id: habit.id
         },
         data: {
-          streak: 0
+          streak: 0,
+          progress: 0
         }
       });
     }
   }
 };
+
 
 const createFeedItem = async (req, res) => {
   const item = {

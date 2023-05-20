@@ -6,7 +6,8 @@ const habitController = require('../controller/habitController.js');
 
 const renderIndex = async (req, res) => {
   if (req.user) {
-    const user = await prisma.user.findUnique({
+    await habitController.checkMissedHabits(req.user); // first check and update missed habits
+    const user = await prisma.user.findUnique({ // then get the user with the updated points value
       where: { 
         id: req.user.id 
       },
@@ -14,8 +15,6 @@ const renderIndex = async (req, res) => {
         habits: true,
       }
     });
-    await habitController.checkMissedHabits(user);
-    await habitController.updateUserPoints(user, 0);
     const trees = await prisma.tree.findMany();
     res.render('userhome/index.ejs', { user, levelingThresholds: habitController.levelingThresholds, trees: trees });
   }
@@ -25,12 +24,13 @@ const renderIndex = async (req, res) => {
   }
 };
 
+
 const renderLogin = (req, res) => {
     res.render('auth/login.ejs');
 };
 
 const loginUser = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', async (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -41,10 +41,10 @@ const loginUser = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      if(req.user) { // Checking if req.user is defined
+      if (req.user) {
         await habitController.checkMissedHabits(req.user);
       }
-      return res.redirect('/');
+      await renderIndex(req, res); // Call the renderIndex function instead of directly redirecting
     });
   })(req, res, next);
 };
