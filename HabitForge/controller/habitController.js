@@ -42,6 +42,7 @@ const editHabit = async (req, res) => {
   res.render('userhome/edit-habit.ejs', { user: req.user, habit });
 };
 
+// used to update the habit when editing the habit
 const updateHabit = async (req, res) => {
   const oldHabit = await prisma.habit.findUnique({
     where: {
@@ -94,11 +95,12 @@ const deleteHabit = async (req, res) => {
 };
 
 const updateUserPoints = async (user, points) => {
-  user.points += points;
+  // Calculate total points
+  const totalPoints = user.points + points;
 
+  // Calculate level and remaining points
   let level = 1;
-  let remainingPoints = user.points;
-
+  let remainingPoints = totalPoints;
   for (let i = 0; i < levelingThresholds.length; i++) {
     if (remainingPoints >= levelingThresholds[i]) {
       level = i + 2;
@@ -108,13 +110,15 @@ const updateUserPoints = async (user, points) => {
     }
   }
 
+  // Update user
   await prisma.user.update({
     where: {
       id: user.id
     },
     data: {
-      level: level,
-      remainingPoints: remainingPoints
+      points: totalPoints,
+      level,
+      remainingPoints
     }
   });
 };
@@ -143,6 +147,15 @@ const checkIn = async (req, res) => {
   const newProgress = habit.progress + 1;
   const newStreak = lastCheckIn && new Date().getDate() - lastCheckIn.getDate() === 1 ? habit.streak + 1 : 1;
 
+  // Calculate points based on progress and duration
+  let pointsToAdd = newProgress * 10;
+  let completed = false;
+  if (newProgress >= habit.duration) {
+    pointsToAdd += habit.duration * 5;
+    completed = true;
+  }
+
+  // Update habit
   await prisma.habit.update({
     where: {
       id: habit.id
@@ -150,13 +163,14 @@ const checkIn = async (req, res) => {
     data: {
       progress: newProgress,
       streak: newStreak,
-      lastCheckIn: new Date()
+      lastCheckIn: new Date(),
+      completed,
+      completedAt: completed ? new Date() : null
     }
   });
 
-  if (newProgress >= habit.duration) {
-    await updateUserPoints(req.user, habit.duration * 10);
-  }
+  // Update user points
+  await updateUserPoints(req.user, pointsToAdd);
 
   res.redirect('/');
 };
