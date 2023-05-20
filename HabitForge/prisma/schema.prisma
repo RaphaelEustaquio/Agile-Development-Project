@@ -38,6 +38,7 @@ model Habit {
   completed    Boolean
   streak       Int
   user         User    @relation(fields: [userId], references: [id])
+  lastCheckIn  DateTime?
 }
 
 model Friend {

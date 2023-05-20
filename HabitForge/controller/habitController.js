@@ -12,7 +12,7 @@ const addHabit = async (req, res) => {
     id: Date.now().toString(),
     name: req.body.title,
     description: req.body.description,
-    logDays: Array.isArray(req.body.logDays) ? req.body.logDays.filter(day => day) : [req.body.logDays].filter(day => day),
+    logDays: Array.isArray(req.body.logDays) ? req.body.logDays.join(',') : req.body.logDays,
     duration: parseInt(req.body.duration),
     isPublic: req.body.isPublic === 'on',
     progress: 0,
@@ -130,9 +130,9 @@ const checkIn = async (req, res) => {
     return res.redirect('/');
   }
 
-  if (!habit.logDays.includes(new Date().getDay().toString())) {
+  if (!habit.logDays.includes(new Date().toLocaleDateString('en-US', { weekday: 'long' }))) {
     return res.redirect('/');
-  }
+  } 
 
   const lastCheckIn = habit.lastCheckIn ? new Date(habit.lastCheckIn) : null;
 
