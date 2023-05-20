@@ -19,8 +19,8 @@ model User {
   points            Int          @default(0)
   remainingPoints   Int          @default(0)
   habits            Habit[]
-  friends           Friend[]
-  realfriends       Friend[]
+  friends           Friend[]     @relation("User_Friends")
+  realfriends       Friend[]     @relation("User_RealFriends")
   feed              FeedItem[]
   unseen            FeedItem[]
 }
