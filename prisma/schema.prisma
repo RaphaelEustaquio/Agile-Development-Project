@@ -47,7 +47,8 @@ model Friend {
   email     String
   level     Int
   points    Int
-  user      User    @relation(fields: [userId], references: [id])
+  user      User    @relation("User_Friends", fields: [userId], references: [id])
+  realUser  User    @relation("User_RealFriends", fields: [userId], references: [id])
 }
 
 model FeedItem {
@@ -55,7 +56,8 @@ model FeedItem {
   userId    String
   habitId   String
   text      String
-  user      User    @relation(fields: [userId], references: [id])
+  userFeed  User    @relation("User_Feed", fields: [userId], references: [id])
+  userUnseen User   @relation("User_Unseen", fields: [userId], references: [id])
 }
 
 model Tree {
