@@ -15,12 +15,12 @@ const renderIndex = async (req, res) => {
         habits: true,
       }
     });
-    const trees = await prisma.tree.findMany();
-    res.render('userhome/index.ejs', { user, levelingThresholds: habitController.levelingThresholds, trees: trees });
+    const tree = await prisma.tree.findUnique({ where: { id: req.user.level }});
+    res.render('userhome/index.ejs', { user, levelingThresholds: habitController.levelingThresholds, tree: tree });
   }
   else {
-    const trees = await prisma.tree.findMany();
-    res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds, trees: trees });
+    const tree = await prisma.tree.findUnique({ where: { id: req.user.level }});
+    res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds, tree: tree });
   }
 };
 

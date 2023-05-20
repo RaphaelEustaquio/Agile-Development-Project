@@ -16,9 +16,8 @@
             <div class="header-container">
                 <h1>Welcome, <%= user.name %>!</h1>
                 <div class="points-container">
-                    <% const treeName = trees[user.level][0]; %>
                     <button class="points-btn" onclick="location.href='/achievements/index'">
-                        Tree Level: <%= user.level %> - <%= treeName %>
+                        Tree Level: <%= user.level %> - <%= tree.level %>
                     </button>
                     <label class="level-label">Level Up Progress: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %></p>
                 </div>
