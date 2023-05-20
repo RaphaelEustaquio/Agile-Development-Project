@@ -21,8 +21,8 @@ model User {
   habits            Habit[]
   friends           Friend[]     @relation("User_Friends")
   realfriends       Friend[]     @relation("User_RealFriends")
-  feed              FeedItem[]
-  unseen            FeedItem[]
+  feed              FeedItem[]   @relation("User_Feed")
+  unseen            FeedItem[]   @relation("User_Unseen")
 }
 
 model Habit {
