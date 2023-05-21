@@ -7,13 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'Your Tree', currentPage: 'achievements' }) %>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Tree', currentPage: 'achievements' }) %>
     <div class="tree-container">
-
         <% if (user) { %>
             <% const treeName = trees[user.level][0]; %>
             <% const treeDesc = trees[user.level][1]; %>
-            <h1>Your Tree Level: <%= user.level %> - <%= treeName %> </h1>
+            <h1>Tree Level: <%= user.level %> - <%= treeName %> </h1>
             <img class="usertree" src="/images/<%= user.level %>.png" alt="Logo">
             <h3>
                 Progress until next tree level: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %>

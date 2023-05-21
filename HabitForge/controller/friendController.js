@@ -74,6 +74,9 @@ const acceptFriend = (req, res) => {
     points: req.user.points,
     acceptance: true,
   });
+  if (!userToFollow.trophies.some(trophy => trophy.hasOwnProperty("VI"))) {
+    userToFollow.trophies.push({ "VI": new Date() });
+  }
 
   req.user.realfriends.push({
     id: userToFollow.id,
@@ -83,6 +86,9 @@ const acceptFriend = (req, res) => {
     points: userToFollow.points,
     acceptance: true,
   });
+  if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("VI"))) {
+    req.user.trophies.push({ "VI": new Date() });
+  }  
 
   req.user.friends = req.user.friends.filter(friend => friend.id !== userId);
 

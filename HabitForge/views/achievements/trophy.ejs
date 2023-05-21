@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trophy Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'Trophy', currentPage: 'trophy' }) %>
+    <button id="trophies-btn" onclick="location.href='/achievements/trophies'">My Trophies</button>
+    <div class="tree-container">
+        <h1><%= trophyDesc[0] %></h1>
+        <img class="trophyimage" src="/images/<%= trophyKey %>.png" alt="Logo">
+        <h3> <%= trophyDesc[1] %> </h3>
+        <p>Date Obtained: <%= trophyDate %> </p>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>

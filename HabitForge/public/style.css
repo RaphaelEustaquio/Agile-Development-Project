@@ -310,6 +310,40 @@ button {
     background: #0c8664;
   }
 
+  .trophies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 500px;
+    overflow-y: scroll;
+  }
+
+  #trophies-btn {
+    position: fixed;
+    bottom: 110px;
+    left: 20px;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+  }
+  
+  #trophies-btn:hover {
+      background: #15c795;
+  }
+  
+  #trophies-btn:active {
+    background: #0c8664;
+  }
+
+  .trophyimage {
+    width: 25vh;
+    height: 25vh;
+  }
   .message-container {
     display: flex;
     flex-direction: column;
@@ -637,6 +671,45 @@ background: #0c8664;
     transform: translate(-50%, -50%);
 
   }
+
+  .trophy {
+    position: relative;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .hidden-trophy {
+    position: relative;
+    background: linear-gradient(to right, #4e4e4e, #727272);
+    height: 50px;
+    color: white;
+    margin-top: 10px;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+  }
+
+  .trophy:hover {
+    background:#15c795;
+  }
+
+  .trophy:active {
+    background: #0c8664;
+    }
 
   .tree-container{
     display: flex;

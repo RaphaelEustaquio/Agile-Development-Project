@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trophies Page</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Trophies', currentPage: 'trophies' }) %>
+    <div class="container">
+        <h1>My Trophies</h1>
+        <div class="trophies-container">
+            <% Object.entries(trophies).forEach((trophy) => { %>
+                <% const [key, value] = trophy; %>
+                <% if (user.trophies.some(trophy => trophy.hasOwnProperty(key))) { %>
+                    <button onclick="location.href='/achievements/trophy/<%= key %>'" class="trophy"> <%= value[0] %></button>
+                <% } else { %>
+                    <button class="hidden-trophy">Hidden Trophy</button>
+                <% } %>
+            <% }); %>
+        </div>
+    </div>
+    <%- include('../partials/navbar') %>
+</body>
+</html>
+    
