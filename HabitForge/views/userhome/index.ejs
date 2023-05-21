@@ -106,8 +106,7 @@
                                     Day: <%= habit.streak %>/<%= habit.duration %>
                                 </div>
                             </div>
-                            <% if (isTodayCheckInDay(habit)) { %>
-                                <% console.log(habit.checkedInToday) %>                        
+                            <% if (isTodayCheckInDay(habit)) { %>               
                                 <% if (habit.checkedInToday) { %>
                                     <span class="checked-in">Checked-In ✓</span>
                                 <% } else { %>

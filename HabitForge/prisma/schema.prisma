@@ -19,11 +19,11 @@ model User {
   level             Int          @default(1)
   points            Int          @default(0)
   remainingPoints   Int          @default(0)
+  levelUp           Boolean      @default(false)
   habits            Habit[]
   friendRequests    FriendRequest[] 
   realFriends       RealFriend[] 
-  feed              FeedItem[]   @relation("User_Feed")
-  unseen            FeedItem[]   @relation("User_Unseen")
+  userFeedItems     UserFeedItem[]
 }
 
 model Habit {
@@ -66,12 +66,22 @@ model RealFriend {
 }
 
 model FeedItem {
-  id        String  @id @default(uuid())
+  id        String         @id @default(uuid())
   userId    String
-  habitId   String
+  habitId   String?
   text      String
-  userFeed  User    @relation("User_Feed", fields: [userId], references: [id])
-  userUnseen User   @relation("User_Unseen", fields: [userId], references: [id])
+  createdAt DateTime       @default(now())
+  userFeedItems UserFeedItem[]
+}
+
+model UserFeedItem {
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  feedItem  FeedItem @relation(fields: [feedItemId], references: [id])
+  feedItemId String
+  seen      Boolean  @default(false)
+
+  @@id([userId, feedItemId])
 }
 
 model Tree {

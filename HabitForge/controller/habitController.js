@@ -25,6 +25,16 @@ const addHabit = async (req, res) => {
     data: habit
   });
 
+  if (habit.isPublic) {
+    // Refresh user data from the database before calling `createFeedItemForUserAndFriends`
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+    });
+    await createFeedItemForUserAndFriends(user, habit.id, `${req.user.name} just added ${habit.name} to their habits! Wish them the best!`);
+  }
+
   res.redirect('/');
 };
 
@@ -112,6 +122,16 @@ const deleteHabit = async (req, res) => {
     }
   });
 
+  if (habit.isPublic) {
+    // Refresh user data from the database before calling `createFeedItemForUserAndFriends`
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+    });
+    await createFeedItemForUserAndFriends(user, habit.id, `${req.user.name} just deleted ${habit.name} from their habits!`);
+  }
+
   res.redirect('/');
 };
 
@@ -136,6 +156,11 @@ const updateUserPoints = async (user, points) => {
     }
   }
 
+  let levelUp = false;
+  if(level > user.level) {
+    levelUp = true;
+  }
+
   // Update user
   const updatedUser = await prisma.user.update({
     where: {
@@ -144,11 +169,27 @@ const updateUserPoints = async (user, points) => {
     data: {
       points: totalPoints,
       level,
-      remainingPoints
+      remainingPoints,
+      levelUp
     }
   });
 
-  console.log(`Updated user points for ${updatedUser.id} to ${updatedUser.points}`);
+  // If the user has leveled up and the habit is public, create a feed item
+  // if (user.levelUp) {
+  //   await createFeedItemForUserAndFriends(user, null, `${user.name} has leveled up by maintaining their habits! Congrats!`);
+  //   // reset levelUp flag to false
+  //   await prisma.user.update({ where: { id: user.id }, data: { levelUp: false } });
+  // }
+};
+
+const checkLevelUpAndCreateFeedItem = async (user) => {
+  const updatedUser = await prisma.user.findUnique({ where: { id: user.id } });
+  
+  if(updatedUser.levelUp) {
+    await createFeedItemForUserAndFriends(updatedUser, null, `${updatedUser.name} has leveled up by maintaining their habits! Congrats!`);
+    // reset levelUp flag to false
+    await prisma.user.update({ where: { id: updatedUser.id }, data: { levelUp: false } });
+  }
 };
 
 const checkIn = async (req, res) => {
@@ -200,6 +241,19 @@ const checkIn = async (req, res) => {
 
   // Update user points
   await updateUserPoints(req.user, pointsToAdd);
+  await checkLevelUpAndCreateFeedItem(req.user);
+
+  // If the habit is public, create a feed item for the check-in
+  if (habit.isPublic) {
+    // Refresh user data from the database before calling `createFeedItemForUserAndFriends`
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+    });
+    await createFeedItemForUserAndFriends(req.user, habit.id, `${req.user.name} just checked in to their habit ${habit.name}!`);
+  }
+  console.log(req.user)
 
   res.redirect('/');
 };
@@ -218,7 +272,9 @@ const checkMissedHabits = async (user) => {
     if (lastCheckIn && new Date().getDate() - lastCheckIn.getDate() > 1 && habit.logDays.includes(new Date().toLocaleDateString('en-US', { weekday: 'long' }))) {
       // calculate the points to subtract based on the habit's progress
       const pointsToSubtract = habit.progress * 10;
-      console.log(`Points to subtract for habit ${habit.id}: ${pointsToSubtract}`);
+      if (habit.isPublic) {
+        await createFeedItemForUserAndFriends(user, habit.id, `${user.name} missed a check-in for their habit ${habit.name}. Encourage them to get back on track!`);
+      }
       // update the user's points first
       await updateUserPoints(user, -pointsToSubtract);
       
@@ -232,49 +288,42 @@ const checkMissedHabits = async (user) => {
           progress: 0
         }
       });
+
     }
   }
 };
 
-
-const createFeedItem = async (req, res) => {
-  const item = {
-    id: Date.now().toString(),
-    content: req.body.content,
-    type: req.body.type,
-    isPublic: req.body.isPublic === 'on',
-    userId: req.user.id
-  };
-
-  await prisma.feedItem.create({
-    data: item
-  });
-
-  res.redirect('/');
-};
-
-const addFeedItemToFriends = async (req, res) => {
-  const friends = await prisma.friend.findMany({
-    where: {
-      userId: req.user.id
+const createFeedItemForUserAndFriends = async (user, habitId, text) => {
+  const feedItem = await prisma.feedItem.create({
+    data: {
+      userId: user.id,
+      habitId: habitId,
+      text: text,
+      createdAt: new Date(),
     }
   });
 
+  // Create a UserFeedItem for the user
+  await prisma.userFeedItem.create({
+    data: {
+      userId: user.id,
+      feedItemId: feedItem.id,
+    }
+  });
+
+  // Add the feed item to each friend's feedItems
+  const friends = await prisma.realFriend.findMany({ where: { userId: user.id }});
+
   for (let friend of friends) {
-    await prisma.feedItem.create({
+    await prisma.userFeedItem.create({
       data: {
-        id: Date.now().toString(),
-        content: req.body.content,
-        type: req.body.type,
-        isPublic: req.body.isPublic === 'on',
-        userId: friend.friendId
+        userId: friend.friendId,
+        feedItemId: feedItem.id,
       }
     });
   }
-
-  res.redirect('/');
 };
 
 const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
 
-module.exports = { addHabit, editHabit, updateHabit, deleteHabit, renderIndex, checkIn, checkMissedHabits, createFeedItem, addFeedItemToFriends, levelingThresholds, updateUserPoints };
+module.exports = { addHabit, editHabit, updateHabit, deleteHabit, renderIndex, checkIn, checkMissedHabits, levelingThresholds, updateUserPoints };
