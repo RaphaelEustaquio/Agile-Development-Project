@@ -11,14 +11,12 @@
     <div class="tree-container">
 
         <% if (user) { %>
-            <% const treeName = trees[user.level][0]; %>
-            <% const treeDesc = trees[user.level][1]; %>
-            <h1>Your Tree Level: <%= user.level %> - <%= treeName %> </h1>
+            <h1>Your Tree Level: <%= user.level %> - <%= tree.level %> </h1>
             <img class="usertree" src="/images/<%= user.level %>.png" alt="Logo">
             <h3>
                 Progress until next tree level: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %>
             </h3>
-            <h4 class="treeDesc"><%= treeDesc %></h4>
+            <h4 class="treeDesc"><%= tree.message %></h4>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

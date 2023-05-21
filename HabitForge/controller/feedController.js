@@ -1,16 +1,46 @@
-let users = require('../data/users.json');
-const { saveUsers } = require('./habitController.js')
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-const renderFeed = (req, res) => {
-    const user = users.find((user) => user.id === req.user.id);
-    // Get all the unseen feed items for the user
-    const unseenItems = user.feed.filter(item => user.unseen.includes(item.id));
-    // Update the user's unseen array to remove the items that are about to be rendered
-    user.unseen = user.unseen.filter(id => !unseenItems.some(item => item.id === id));
-    // Save the updated users data
-    saveUsers();
-    res.render('feed/index.ejs', { user: user, feedItems: unseenItems });
-}
+const renderFeed = async (req, res) => {
+    // Find unseen feed items
+    const unseenUserFeedItems = await prisma.userFeedItem.findMany({
+        where: {
+            userId: req.user.id,
+            seen: false
+        },
+        include: {
+            feedItem: true // Include associated feed item
+        },
+        orderBy: {
+            feedItem: {
+                createdAt: 'desc'
+            }
+        }
+    });
 
+    // Convert feed items to format expected by the view
+    const feedItems = unseenUserFeedItems.map((userFeedItem) => {
+        const item = userFeedItem.feedItem;
+        item.date = item.createdAt.toDateString();
+        return item;
+    });
+
+    // Update status of displayed items to seen
+    for (let userFeedItem of unseenUserFeedItems) {
+        await prisma.userFeedItem.update({
+            where: {
+                userId_feedItemId: {
+                    userId: req.user.id,
+                    feedItemId: userFeedItem.feedItemId
+                }
+            },
+            data: {
+                seen: true
+            }
+        });
+    }
+
+    res.render('feed/index.ejs', { user: req.user, feedItems: feedItems });
+};
 
 module.exports = { renderFeed };

@@ -14,8 +14,8 @@
             <div class="header-container">
                 <h1>My Friends</h1>
                 <button id="friend-requests-btn" onclick="location.href='/friends/friend-requests'">
-                    <% if (user.friends.length > 0) { %>
-                        <span class="badge"><%= user.friends.length %></span>
+                    <% if (user.friendRequests.length > 0) { %>
+                        <span class="badge"><%= user.friendRequests.length %></span>
                     <% } %>
                     Friend Requests
                 </button>
@@ -23,12 +23,11 @@
             <div class="friends-container">
                 <% if (friends.length > 0) { %>
                     <% friends.forEach((friend) => { %>
-                      <% const treeName = trees[friend.level][0]; %>
-                      <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - <%= treeName %></button>
+                      <button class="friend" onclick="location.href='/friends/view/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - <%= friend.treeName %></button>
                     <% }) %>
-                  <% } else { %>
+                <% } else { %>
                     <h2 class="message-container">Start adding friends now!</h2>
-                  <% } %>                  
+                <% } %>                                                  
             </div>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>

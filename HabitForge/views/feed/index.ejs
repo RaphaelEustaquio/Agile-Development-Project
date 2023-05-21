@@ -12,6 +12,7 @@
         <% if (user) { %>
             <div class="feed-container">
                 <% feedItems.forEach((item) => { %>
+                    
                     <div class="feed-item">
                         <p class="feed-text"><%= item.text %></p>
                         <p class="feed-date"><small><%= item.date %></small></p>

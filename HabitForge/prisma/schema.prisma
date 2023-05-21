@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  seed    = "node prisma/seed.js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                String       @id @default(uuid())
+  name              String
+  email             String       @unique
+  password          String
+  level             Int          @default(1)
+  points            Int          @default(0)
+  remainingPoints   Int          @default(0)
+  levelUp           Boolean      @default(false)
+  habits            Habit[]
+  friendRequests    FriendRequest[] 
+  realFriends       RealFriend[] 
+  userFeedItems     UserFeedItem[]
+}
+
+model Habit {
+  id           String  @id @default(uuid())
+  userId       String
+  name         String
+  description  String?
+  logDays      String
+  duration     Int
+  isPublic     Boolean
+  progress     Int
+  completed    Boolean
+  streak       Int
+  user         User    @relation(fields: [userId], references: [id])
+  lastCheckIn  DateTime?
+  completedAt DateTime?
+  checkedInToday Boolean @default(false) 
+}
+
+model FriendRequest {
+  id        String  @id @default(uuid())
+  friendId  String
+  userId    String
+  name      String
+  email     String
+  level     Int
+  points    Int
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model RealFriend {
+  id        String  @id @default(uuid())
+  friendId  String
+  userId    String
+  name      String
+  email     String
+  level     Int
+  points    Int
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model FeedItem {
+  id        String         @id @default(uuid())
+  userId    String
+  habitId   String?
+  text      String
+  createdAt DateTime       @default(now())
+  userFeedItems UserFeedItem[]
+}
+
+model UserFeedItem {
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  feedItem  FeedItem @relation(fields: [feedItemId], references: [id])
+  feedItemId String
+  seen      Boolean  @default(false)
+
+  @@id([userId, feedItemId])
+}
+
+model Tree {
+  id        Int    @id
+  level     String
+  message   String
+}

@@ -1,18 +1,27 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const fs = require('fs');
-const path = require('path');
-const users = require('../data/users.json');
-const trees = require('../data/trees.json');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const habitController = require('../controller/habitController.js'); 
 
-const renderIndex = (req, res) => {
+const renderIndex = async (req, res) => {
   if (req.user) {
-    habitController.checkMissedHabits(req.user);
-    habitController.updateUserPoints(req.user, 0);
-    habitController.saveUsers();
+    await habitController.checkMissedHabits(req.user); // first check and update missed habits
+    const user = await prisma.user.findUnique({ // then get the user with the updated points value
+      where: { 
+        id: req.user.id 
+      },
+      include: {
+        habits: true,
+      }
+    });
+    const tree = await prisma.tree.findUnique({ where: { id: req.user.level }});
+    res.render('userhome/index.ejs', { user, levelingThresholds: habitController.levelingThresholds, tree: tree });
   }
-  res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds, trees: trees });
+  else {
+    const tree = await prisma.tree.findUnique({ where: { id: req.user.level }});
+    res.render('userhome/index.ejs', { user: req.user, levelingThresholds: habitController.levelingThresholds, tree: tree });
+  }
 };
 
 
@@ -21,50 +30,56 @@ const renderLogin = (req, res) => {
 };
 
 const loginUser = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', async (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.render('auth/login.ejs', { errorMessage: info.message });
+    }
+    req.logIn(user, async (err) => {
       if (err) {
         return next(err);
       }
-      if (!user) {
-        return res.render('auth/login.ejs', { errorMessage: info.message });
+      if (req.user) {
+        await habitController.checkMissedHabits(req.user);
       }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        habitController.checkMissedHabits(user);
-        return res.redirect('/');
-      });
-    })(req, res, next);
-  };
+      await renderIndex(req, res); // Call the renderIndex function instead of directly redirecting
+    });
+  })(req, res, next);
+};
 
 const renderRegister = (req, res) => {
     res.render('auth/register.ejs');
 };
 
 const registerUser = async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const newUser = {
-            id: Date.now().toString(),
-            name: req.body.name,
-            email: req.body.email,
-            password: hashedPassword,
-            habits: [],
-            friends: [],
-            realfriends: [],
-            level: 1,
-            points: 0,
-            remainingPoints: 0,
-            feed: [],
-            unseen:[],
-        };
-        users.push(newUser);
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
-        res.redirect('/login');
-    } catch {
-        res.redirect('/register');
+  try {
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email: req.body.email
+      }
+    });
+    if (existingUser) {
+      return res.status(400).send('Email already taken');
     }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const newUser = await prisma.user.create({
+      data: {
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+        level: 1,
+        points: 0,
+        remainingPoints: 0,
+      },
+    });
+    res.redirect('/login');
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Error in user registration.');
+  }
 };
 
 const logout = (req, res) => {
