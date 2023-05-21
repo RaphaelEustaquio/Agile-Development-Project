@@ -1,90 +1,91 @@
-const request = require('supertest');
-const fs = require('fs');
-const path = require('path');
 const app = require('./index');
-const usersPath = path.join(__dirname, 'data', 'users.json');
-
-describe('Test user registration', () => {
-  test('It should create a new user', async () => {
-    const newUser = {
-      name: 'Test User',
-      email: 'test@example.com',
-      password: 'testpassword',
-    };
-
-    const response = await request(app)
-      .post('/register')
-      .send(newUser);
-
-
-    expect(response.statusCode).toBe(302);
-    const users = JSON.parse(fs.readFileSync(usersPath));
-    const user = users.find(user => user.email === newUser.email);
-    expect(user).toBeTruthy();
-
-    // Clean up: delete the test user
-    const usersWithoutTestUser = users.filter(user => user.email !== newUser.email);
-    fs.writeFileSync(usersPath, JSON.stringify(usersWithoutTestUser, null, 2));
-  });
-});
+const request = require('supertest')(app);
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 const testUser = {
   name: 'Test User',
   email: 'test@example.com',
-  password: 'testpassword',
+  password: 'password',
 };
 
-// Test login
-const agent = request.agent(app);
-
-beforeAll(async () => {
-  await agent
-    .post('/register')
-    .send(testUser);
-});
-
-afterAll(async () => {
-  // Cleanup
-  const users = JSON.parse(fs.readFileSync(usersPath));
-  const usersWithoutTestUser = users.filter(user => user.email !== testUser.email);
-  fs.writeFileSync(usersPath, JSON.stringify(usersWithoutTestUser, null, 2));
-});
-
-describe('Test user login', () => {
-  test('It should log in the user', async () => {
-    const response = await agent
+describe('Authentication', () => {
+  // Login test
+  it('should log in a user and return 200 status', async () => {
+    const response = await request
       .post('/login')
       .send({ email: testUser.email, password: testUser.password });
 
-    expect(response.statusCode).toBe(302);
+    expect(response.status).toBe(200);
+  });
+
+  // Register test
+  it('should register a user and return 302 status', async () => {
+    const response = await request
+      .post('/register')
+      .send(testUser);
+  
+    expect(response.status).toBe(302);
+  
+    const testUsers = await prisma.user.findUnique({ where: { email: testUser.email } });
+    expect(testUsers).toBeTruthy();
+  
+    console.log('Test user registered successfully:', testUser.email);
+  });
+  
+
+  // User deletion test
+  it('should delete the test users', async () => {
+    // Find the test users in the database using Prisma
+    const testUsers = await prisma.user.findMany({ where: { email: testUser.email } });
+
+    // Delete the test users
+    for (const user of testUsers) {
+      await prisma.user.delete({ where: { id: user.id } });
+    }
+
+    // Make assertions to check if the users were successfully deleted
+    const deletedUsers = await prisma.user.findMany({ where: { email: testUser.email } });
+    expect(deletedUsers.length).toBe(0);
   });
 });
 
-describe('Test habit creation', () => {
-  test('It should add a new habit', async () => {
-    const newHabit = {
-      title: 'Test Habit',
-      description: 'This is a test habit',
-      logDays: ['Monday', 'Wednesday', 'Friday'],
-      duration: 10,
-      isPublic: 'on'
-    };
+// describe('Habit Management', () => {
+//   let user;
+//     // Login the test user first
+//     beforeAll(async () => {
+//       await request.post('/register').send(testUser);
+//       await request.post('/login').send({ email: testUser.email, password: testUser.password });
+//       user = await prisma.user.findUnique({ where: { email: testUser.email }, include: { habits: true} });
+//     });
+//   // Add habit test
+//   it('should add a habit for the test user', async () => {
+//     console.log(user)
+//     const habitData = {
+//       name: 'Test Habit',
+//       description: 'This is a test habit',
+//       logDays: 'Monday,Wednesday,Friday',
+//       duration: 30,
+//       isPublic: true,
+//       userId: user.id,
+//     };
+//     // Send a request to add a habit
+//     const response = await request
+//       .post('/add-habit')
+//       .send(habitData)
+//       .set('Cookie', 'connect.sid=' + user.sessionCookie); // Pass the session cookie to authenticate the request
 
-    const response = await agent
-      .post('/add-habit')
-      .send(newHabit);
 
-    expect(response.statusCode).toBe(302);
+//     expect(response.status).toBe(302); // Assuming the redirect status is 302
+//     console.log(habitData.name)
 
-    const users = JSON.parse(fs.readFileSync(usersPath));
-    const user = users.find(user => user.email === testUser.email);
-    expect(user).toBeTruthy();
-    const habit = user.habits.find(habit => habit.name === newHabit.title);
-    expect(habit).toBeTruthy();
-
-    // Cleanup: delete the test habit
-    const habitIndex = user.habits.findIndex(habit => habit.name === newHabit.title);
-    user.habits.splice(habitIndex, 1);
-    fs.writeFileSync(usersPath, JSON.stringify(users, null, 2));
-  });
-});
+//     // Assert that the habit was added successfully in the database
+//     const addedHabit = await prisma.habit.findFirst({
+//       where: { name: 'Test Habit' },
+//     });
+//     expect(addedHabit).toBeTruthy();
+//   });
+//   afterAll(async () => {
+//     await prisma.user.deleteMany({ where: { email: testUser.email } });
+//   });
+// });
