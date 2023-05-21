@@ -13,10 +13,10 @@ const renderPublicLeaderboard = async (req, res) => {
 const renderPrivateLeaderboard = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: { id: req.user.id },
-    include: { realfriends: true },
+    include: { realFriends: true },
   });
 
-  const friends = user.realfriends;
+  const friends = user.realFriends;
   friends.push(user);
 
   const sortedFriends = friends.sort((a, b) => b.points - a.points);
