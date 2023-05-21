@@ -33,9 +33,27 @@ const renderFriendRequests = async (req, res) => {
 };
 
 const renderFriendHabits = async (req, res) => {
+  if (!req.user) {
+    return res.redirect('/login');
+  }
+
   const userId = req.params.id;
-  const userToFollow = await prisma.user.findUnique({ where: { id: userId } });
-  res.render('friends/friend-habits.ejs', { user: userToFollow,  levelingThresholds: habitController.levelingThresholds, trees: trees });
+  const userToFollow = await prisma.RealFriend.findUnique({ where: { id: userId } });
+  const friend = await prisma.user.findUnique({ where: { id: userToFollow.friendId}, include: {
+    habits: true,
+   } });
+
+  if (!friend) {
+    return res.redirect('/friends/index');
+  }
+
+  const tree = await prisma.tree.findUnique({ where: { id: friend.level }});
+
+  res.render('friends/friend-habits.ejs', {
+    user: friend,
+    levelingThresholds: habitController.levelingThresholds,
+    tree: tree,
+  });
 };
 
 const searchUsers = async (req, res) => {
@@ -109,7 +127,7 @@ const acceptFriend = async (req, res) => {
     await prisma.user.update({
       where: { id: friendRequest.userId },
       data: {
-        realFriends: { create: acceptingUserData },
+        realFriends: { create: requestingUserData },
         friendRequests: { delete: { id: friendRequestId } },
       },
     });
@@ -117,7 +135,7 @@ const acceptFriend = async (req, res) => {
     await prisma.user.update({
       where: { id: friendRequest.friendId },
       data: {
-        realFriends: { create: requestingUserData },
+        realFriends: { create: acceptingUserData },
       },
     });
   }
@@ -126,17 +144,28 @@ const acceptFriend = async (req, res) => {
 };
 
 const removeFriend = async (req, res) => {
-  const userId = req.params.id;
-  const userToFollow = await prisma.user.findUnique({ where: { id: userId } });
-  if (userToFollow) {
-    await prisma.user.update({
-      where: { id: req.user.id },
-      data: { realFriends: { disconnect: { id: userId } } },
-    });
-    await prisma.user.update({
-      where: { id: userToFollow.id },
-      data: { realFriends: { disconnect: { id: req.user.id } } },
-    });
+  const friendId = req.params.id;
+  const userId = req.user.id;
+
+  const friend = await prisma.user.findUnique({ where: { id: friendId }, include: {realFriends: true }});
+  const user = await prisma.user.findUnique({ where: { id: userId }, include: {realFriends: true }});
+
+  const matchingFriend = user.realFriends.find(
+    (realFriend) => realFriend.friendId === friendId
+  )
+  const matchingUser = friend.realFriends.find(
+    (realFriend) => realFriend.friendId === userId
+  )
+  if (matchingFriend) {
+    await prisma.realFriend.delete({
+      where: { id: matchingFriend.id}
+    })
+  }
+
+  if (matchingUser) {
+    await prisma.realFriend.delete({
+      where: { id: matchingUser.id }
+    })
   }
   res.redirect('/friends/index');
 };
