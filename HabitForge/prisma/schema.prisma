@@ -20,8 +20,8 @@ model User {
   points            Int          @default(0)
   remainingPoints   Int          @default(0)
   habits            Habit[]
-  friends           Friend[]     @relation("User_Friends")
-  realfriends       Friend[]     @relation("User_RealFriends")
+  friendRequests    FriendRequest[] 
+  realFriends       RealFriend[] 
   feed              FeedItem[]   @relation("User_Feed")
   unseen            FeedItem[]   @relation("User_Unseen")
 }
@@ -43,7 +43,7 @@ model Habit {
   checkedInToday Boolean @default(false) 
 }
 
-model Friend {
+model FriendRequest {
   id        String  @id @default(uuid())
   friendId  String
   userId    String
@@ -51,8 +51,18 @@ model Friend {
   email     String
   level     Int
   points    Int
-  user      User    @relation("User_Friends", fields: [userId], references: [id])
-  realUser  User    @relation("User_RealFriends", fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model RealFriend {
+  id        String  @id @default(uuid())
+  friendId  String
+  userId    String
+  name      String
+  email     String
+  level     Int
+  points    Int
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model FeedItem {

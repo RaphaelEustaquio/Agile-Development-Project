@@ -13,11 +13,11 @@
         <% if (user) { %>
             <h1>My Friend Requests</h1>
             <div class="friends-container"></div>
-                <% if (user.friends) { %>
-                    <% user.friends.forEach((friend) => { %>
+                <% if (user.friendRequests) { %>
+                    <% user.friendRequests.forEach((friend) => { %>
                         <button class="friend" onclick="location.href='/friends/accept/<%= friend.id %>'" ><%= friend.name %>: Level <%= friend.level %> - Click to accept friend request!</button>
                     <% }) %>
-                <% } if (user.friends.length === 0) { %>
+                <% } if (user.friendRequests.length === 0) { %>
                     <div class="message-container">
                         <h2>You have no new friend requests.</h2>
                     </div>

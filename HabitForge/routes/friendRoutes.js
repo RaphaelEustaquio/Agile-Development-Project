@@ -12,6 +12,5 @@ router.get('/friends/follow/:id', checkAuthenticated, friendController.followUse
 router.get('/friends/accept/:id', checkAuthenticated, friendController.acceptFriend);
 router.get('/friends/view/:id', checkAuthenticated, friendController.renderFriendHabits);
 router.get('/friends/remove/:id', checkAuthenticated, friendController.removeFriend);
-// router.get('/friends/index', checkAuthenticated, setCurrentPage('friends'), friendController.renderFriendsIndex);
 
 module.exports = router;

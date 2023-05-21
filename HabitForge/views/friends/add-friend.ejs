@@ -27,7 +27,7 @@
       <h2>Search Results:</h2>
       <div class="search-results">
         <% searchResults.forEach(result => {
-          if (result.id !== user.id && !user.realfriends.some(friend => friend.id === result.id)) { %>
+          if (result.id !== user.id && !user.realFriends.some(friend => friend.id === result.id)) { %>
             <div class="search-result">
               <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
             </div>
