@@ -173,13 +173,6 @@ const updateUserPoints = async (user, points) => {
       levelUp
     }
   });
-
-  // If the user has leveled up and the habit is public, create a feed item
-  // if (user.levelUp) {
-  //   await createFeedItemForUserAndFriends(user, null, `${user.name} has leveled up by maintaining their habits! Congrats!`);
-  //   // reset levelUp flag to false
-  //   await prisma.user.update({ where: { id: user.id }, data: { levelUp: false } });
-  // }
 };
 
 const checkLevelUpAndCreateFeedItem = async (user) => {
