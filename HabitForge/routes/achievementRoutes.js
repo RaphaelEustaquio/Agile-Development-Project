@@ -4,6 +4,8 @@ const achievementController = require('../controller/achievementController');
 const { checkAuthenticated } = require('../middleware/authMiddleware');
 const { setCurrentPage } = require('../middleware/setCurrentPageMiddleware');
 
-router.get("/achievements/index", checkAuthenticated, setCurrentPage('achievements'), achievementController.renderAchievements)
+router.get('/achievements/index', checkAuthenticated, setCurrentPage('achievements'), achievementController.renderAchievements);
+router.get('/achievements/trophies', checkAuthenticated, setCurrentPage('trophies'), achievementController.getTrophies);
+router.get('/achievements/trophy/:id', checkAuthenticated, setCurrentPage('trophy'), achievementController.getTrophy);
 
-module.exports = router
+module.exports = router;

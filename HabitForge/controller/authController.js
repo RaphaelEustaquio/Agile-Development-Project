@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const habitController = require('../controller/habitController.js'); 
+const habitController = require('../controller/habitController.js');
+const { unlockTrophy } = require('./achievementController.js');
 
 const renderIndex = async (req, res) => {
   if (req.user) {
@@ -75,6 +76,7 @@ const registerUser = async (req, res) => {
         remainingPoints: 0,
       },
     });
+    await unlockTrophy(newUser, { NewUser: true });
     res.redirect('/login');
   } catch (error) {
       console.error(error);

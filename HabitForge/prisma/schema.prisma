@@ -24,7 +24,7 @@ model User {
   friendRequests    FriendRequest[] 
   realFriends       RealFriend[] 
   userFeedItems     UserFeedItem[]
-  trophies          Trophy[]
+  userTrophies      UserTrophy[]
 }
 
 model Habit {
@@ -92,10 +92,19 @@ model Tree {
 }
 
 model Trophy {
-  id        String   @id @default(uuid())
-  userId    String
-  name      String
+  id          String  @id @default(uuid())
+  name        String
   description String
-  image     String
-  user      User     @relation(fields: [userId], references: [id])
+  image       String
+  userTrophies UserTrophy[]
+}
+
+model UserTrophy {
+  id           String   @id @default(uuid())
+  userId       String
+  trophyId     String
+  dateObtained DateTime
+
+  user         User     @relation(fields: [userId], references: [id])
+  trophy       Trophy   @relation(fields: [trophyId], references: [id])
 }
