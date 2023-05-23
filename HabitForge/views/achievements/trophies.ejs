@@ -9,19 +9,28 @@
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'My Trophies', currentPage: 'trophies' }) %>
     <div class="container">
-        <h1>My Trophies</h1>
+        <h1>My Trophies</h1>  
         <div class="trophies-container">
             <% Object.entries(trophies).forEach((trophy) => { %>
                 <% const [key, value] = trophy; %>
-                <% if (user.trophies.some(trophy => trophy.hasOwnProperty(key))) { %>
-                    <button onclick="location.href='/achievements/trophy/<%= key %>'" class="trophy"> <%= value[0] %></button>
+                <% const matchingTrophy = user.trophies.find(trophy => trophy.hasOwnProperty(key)); %>
+                <% if (matchingTrophy) { %>
+                    <% if (!matchingTrophy.seen) { %>
+                        <button onclick="location.href='/achievements/trophy/<%= key %>'" class="trophy">
+                            <%= value[0] %>
+                            <div class="unseen-trophy-badge"></div>
+                        </button>
+                    <% } else { %>
+                        <button onclick="location.href='/achievements/trophy/<%= key %>'" class="trophy">
+                            <%= value[0] %>
+                        </button>
+                    <% } %>
                 <% } else { %>
                     <button class="hidden-trophy">Hidden Trophy</button>
                 <% } %>
-            <% }); %>
+            <% }); %>            
         </div>
     </div>
     <%- include('../partials/navbar') %>
 </body>
 </html>
-    

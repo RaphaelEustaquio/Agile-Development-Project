@@ -31,7 +31,7 @@ const addHabit = (req, res) => {
   if (user) {
       user.habits.push(habit);
       if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("II"))) {
-        req.user.trophies.push({ "II": new Date() });
+        req.user.trophies.push({ "II": new Date(), "seen": false });
       }
       saveUsers();
   }
@@ -60,12 +60,12 @@ const updateHabit = (req, res) => {
       updateUserPoints(req.user, duration * 10);
       completed = true;
       if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("V"))) {
-        req.user.trophies.push({ "V": new Date() });
+        req.user.trophies.push({ "V": new Date(), "seen": false });
       }
       
       if (habit.duration >= 30) {
         if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("VII"))) {
-          req.user.trophies.push({ "VII": new Date() });
+          req.user.trophies.push({ "VII": new Date(), "seen": false });
         }
         
       }
@@ -73,7 +73,7 @@ const updateHabit = (req, res) => {
 
     if (oldHabit.streak >= duration / 2) {
       if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("IV"))) {
-        req.user.trophies.push({ "IV": new Date() });
+        req.user.trophies.push({ "IV": new Date(), "seen": false });
       }
       
     }
@@ -123,6 +123,9 @@ const updateUserPoints = (user, points) => {
     if (remainingPoints >= levelingThresholds[i]) {
       level = i + 2;
       remainingPoints -= levelingThresholds[i];
+      if (!user.trophies.some(trophy => trophy.hasOwnProperty("VIII"))) {
+        user.trophies.push({ "VIII": new Date(), "seen": false });
+      };
     } else {
       break;
     }
@@ -160,24 +163,24 @@ const checkIn = (req, res) => {
     updateUserPoints(user, bonus);
     habit.completed = true; // mark the habit as completed
     if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("V"))) {
-      req.user.trophies.push({ "V": new Date() });
+      req.user.trophies.push({ "V": new Date(), "seen": false });
     }
     
     if (habit.duration >= 30) {
       if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("VII"))) {
-        req.user.trophies.push({ "VII": new Date() });
+        req.user.trophies.push({ "VII": new Date(), "seen": false });
       }      
     }
   }
 
   if (habit.streak >= habit.duration / 2) {
     if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("IV"))) {
-      req.user.trophies.push({"IV": new Date() });
+      req.user.trophies.push({"IV": new Date(), "seen": false });
     } 
   }
 
   if (!req.user.trophies.some(trophy => trophy.hasOwnProperty("III"))) {
-    req.user.trophies.push({ "III": new Date() });
+    req.user.trophies.push({ "III": new Date(), "seen": false });
   }
   saveUsers();
   res.redirect('/');

@@ -57,7 +57,7 @@ const registerUser = async (req, res) => {
             points: 0,
             remainingPoints: 0,
             feed: [],
-            trophies: [{"I": new Date()}]
+            trophies: [{"I": new Date(), "seen": false}]
         };
         users.push(newUser);
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'users.json'), JSON.stringify(users, null, 2));
