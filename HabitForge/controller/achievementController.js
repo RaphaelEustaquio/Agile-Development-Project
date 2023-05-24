@@ -14,13 +14,21 @@ const renderAchievements = async (req, res) => {
 
 const getTrophies = async (req, res) => {
   try {
-    const trophies = await prisma.trophy.findMany();
-    const userTrophies = await prisma.userTrophy.findMany({
-      where: { userId: req.user.id },
-      select: { trophyId: true },
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+      include: {
+        userTrophies: {
+          include: {
+            trophy: true,
+          },
+        },
+      },
     });
-    const userTrophyIds = userTrophies.map((userTrophy) => userTrophy.trophyId);
-    res.render('achievements/trophies.ejs', { userTrophyIds, trophies });
+    const trophies = await prisma.trophy.findMany();
+    const userTrophyIds = user.userTrophies.map((userTrophy) => userTrophy.trophyId);
+    res.render('achievements/trophies.ejs', { userTrophyIds, trophies, user });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error loading trophies');
@@ -41,6 +49,24 @@ const getTrophy = async (req, res) => {
     console.error(error);
     res.status(500).send('Error loading trophy');
   }
+};
+
+const markTrophyAsSeen = async (req, res) => {
+  const trophyId = req.params.trophyId;
+  const userId = req.user.id;
+
+  await prisma.userTrophy.updateMany({
+    where: {
+      userId: userId,
+      trophyId: trophyId,
+      seen: false,
+    },
+    data: {
+      seen: true,
+    },
+  });
+
+  res.redirect('/achievements/trophies');
 };
 
 const unlockTrophy = async (user, actionData) => {
@@ -167,4 +193,4 @@ const unlockTrophy = async (user, actionData) => {
   // Add more unlock conditions here
 };
 
-module.exports = { renderAchievements, getTrophies, getTrophy, unlockTrophy };
+module.exports = { renderAchievements, getTrophies, getTrophy, unlockTrophy, markTrophyAsSeen };

@@ -10,6 +10,10 @@
 <body>
     <button id="add-habit-btn" onclick="location.href='/add-habit'">Add a Habit</button>
     <button id="trophies-btn" onclick="location.href='../achievements/trophies'">My Trophies</button>
+    <% const unseenTrophies = user.userTrophies.filter(trophy => !trophy.seen); %>
+    <% if (unseenTrophies.length > 0) { %>
+        <div class="trophy-count"><%= unseenTrophies.length %></div>
+    <% } %>
     <%- include('../partials/top-navbar', { pageTitle: 'My Habits', currentPage: 'userhome' }) %>
     <%- include('../partials/navbar', { currentPage: 'userhome' }) %>
     <div class="container">

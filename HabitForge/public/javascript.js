@@ -42,3 +42,7 @@ function validateForm() {
   
   return true;
 }
+
+function markTrophySeen(trophyId) {
+  fetch(`/achievements/trophy/${trophyId}/mark-seen`, { method: 'POST' });
+}

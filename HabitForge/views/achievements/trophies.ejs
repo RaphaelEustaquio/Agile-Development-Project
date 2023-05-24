@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Trophies Page</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trophies Page</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="/javascript.js"></script>
 </head>
-
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'My Trophies' , currentPage: 'trophies' }) %>
-        <div class="container">
-            <h1>My Trophies</h1>
-            <div class="trophies-container">
-                <% trophies.forEach((trophy) => { %>
-                    <% if (userTrophyIds.includes(trophy.id)) { %>
-                      <button onclick="location.href='/achievements/trophy/<%= trophy.id %>'" class="trophy">
-                        <%= trophy.name %>
-                      </button>
-                    <% } else { %>
-                      <button class="hidden-trophy">Hidden Trophy</button>
-                    <% } %>
-                  <% }); %>
-            </div>
-        </div>
-        <%- include('../partials/navbar') %>
+  <%- include('../partials/top-navbar', { pageTitle: 'My Trophies' , currentPage: 'trophies' }) %>
+  <div class="container">
+    <h1>My Trophies</h1>
+    <div class="trophies-container">
+      <% trophies.forEach((trophy) => { %>
+        <% const matchingTrophy = user.userTrophies.find((userTrophy) => userTrophy.trophyId === trophy.id); %>
+        <% if (matchingTrophy) { %>
+          <% const isSeen = matchingTrophy.seen; %>
+          <button onclick="<% if (!isSeen) { %>markTrophySeen('<%= trophy.id %>');<% } %>location.href='/achievements/trophy/<%= trophy.id %>'" class="trophy <%= isSeen ? '' : 'unseen' %>">
+            <%= trophy.name %>
+            <% if (!isSeen) { %>
+              <div class="unseen-trophy-badge"></div>
+            <% } %>
+          </button>
+        <% } else { %>
+          <button class="hidden-trophy">Hidden Trophy</button>
+        <% } %>
+      <% }); %>
+    </div>
+  </div>
+  <%- include('../partials/navbar') %>
 </body>
-
 </html>

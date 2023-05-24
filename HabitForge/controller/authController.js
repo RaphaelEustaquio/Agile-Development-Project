@@ -14,6 +14,7 @@ const renderIndex = async (req, res) => {
       },
       include: {
         habits: true,
+        userTrophies: true,
       }
     });
     const tree = await prisma.tree.findUnique({ where: { id: req.user.level }});
