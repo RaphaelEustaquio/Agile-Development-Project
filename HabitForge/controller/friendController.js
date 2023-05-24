@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const habitController = require("./habitController");
+const { unlockTrophy } = require("./achievementController");
 
 const renderFriendsIndex = async (req, res) => {
   const user = await prisma.user.findUnique({
@@ -138,6 +139,9 @@ const acceptFriend = async (req, res) => {
         realFriends: { create: acceptingUserData },
       },
     });
+
+    await unlockTrophy(acceptingUser, { firstFriend: true });
+    await unlockTrophy(requestingUser, { firstFriend: true });
   }
 
   res.redirect('/friends/index');

@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
-
-// Instantiate PrismaClient
 const prisma = new PrismaClient();
+const { unlockTrophy } = require('./achievementController')
 
 const renderIndex = (req, res) => {
   res.render('userhome/add-habit.ejs', { user: req.user });
@@ -24,6 +23,8 @@ const addHabit = async (req, res) => {
   await prisma.habit.create({
     data: habit
   });
+
+  await unlockTrophy(req.user, { firstHabit: true });
 
   if (habit.isPublic) {
     // Refresh user data from the database before calling `createFeedItemForUserAndFriends`
@@ -217,6 +218,18 @@ const checkIn = async (req, res) => {
     completed = true;
   }
 
+  if (newProgress === Math.floor(habit.duration / 2)) {
+    await unlockTrophy(req.user, { halfwayThere: true });
+  }
+
+  if (newProgress >= 30 && completed === true) {
+    await unlockTrophy(req.user, { longTerm: true });
+  }
+
+  if (completed === true) {
+    await unlockTrophy(req.user, { completedHabitFirstTime: true });
+  }
+
   // Update habit
   await prisma.habit.update({
     where: {
@@ -246,7 +259,8 @@ const checkIn = async (req, res) => {
     });
     await createFeedItemForUserAndFriends(req.user, habit.id, `${req.user.name} just checked in to their habit ${habit.name}!`);
   }
-  console.log(req.user)
+
+  await unlockTrophy(req.user, { firstCheckIn: true });
 
   res.redirect('/');
 };

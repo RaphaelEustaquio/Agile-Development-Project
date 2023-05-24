@@ -1,11 +1,11 @@
-const habitController = require('./habitController.js');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const renderAchievements = async (req, res) => {
   try {
     const tree = await prisma.tree.findUnique({ where: { id: req.user.level } });
-    res.render('achievements/index.ejs', { user: req.user, tree: tree, levelingThresholds: habitController.levelingThresholds });
+    const levelingThresholds = Array.from({ length: 20 }, (_, i) => (i * 100 * 1.25) + 100);
+    res.render('achievements/index.ejs', { user: req.user, tree: tree, levelingThresholds: levelingThresholds });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error loading achievements');
@@ -45,33 +45,126 @@ const getTrophy = async (req, res) => {
 
 const unlockTrophy = async (user, actionData) => {
   if (actionData.completedHabitFirstTime) {
-    const trophy = await prisma.trophy.findUnique({ where: { name: "Breaking Good"}});
-    await prisma.userTrophy.create({
-      data: {
+    const trophyId = 'V';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
         userId: user.id,
-        trophyId: trophy.id,
-        dateObtained: new Date(),
+        trophyId: trophyId,
       },
     });
-  } else if (actionData.halfwayCheckIn) {
-    const trophy = await prisma.trophy.findUnique({ where: { name: "Halfway There"}});
-    await prisma.userTrophy.create({
-      data: {
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  } else if (actionData.halfwayThere) {
+    const trophyId = 'IV';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
         userId: user.id,
-        trophyId: trophy.id,
-        dateObtained: new Date(),
-      }
-    })
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
   } else if (actionData.NewUser) {
-    const trophy = await prisma.trophy.findUnique({ where: { id: "I"}});
-    console.log(trophy)
-    await prisma.userTrophy.create({
-      data: {
+    const trophyId = 'I';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
         userId: user.id,
-        trophyId: trophy.id,
-        dateObtained: new Date(),
-      }
-    })
-  } // put more unlock conditions here 
-}
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  } else if (actionData.firstHabit) {
+    const trophyId = 'II';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
+        userId: user.id,
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  } else if (actionData.firstCheckIn) {
+    const trophyId = 'III';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
+        userId: user.id,
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  } else if (actionData.firstFriend) {
+    const trophyId = 'VI';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
+        userId: user.id,
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  } else if (actionData.longTerm) {
+    const trophyId = 'VII';
+    const existingTrophy = await prisma.userTrophy.findFirst({
+      where: {
+        userId: user.id,
+        trophyId: trophyId,
+      },
+    });
+    if (!existingTrophy) {
+      await prisma.userTrophy.create({
+        data: {
+          userId: user.id,
+          trophyId: trophyId,
+          dateObtained: new Date(),
+        },
+      });
+    }
+  }
+  // Add more unlock conditions here
+};
+
 module.exports = { renderAchievements, getTrophies, getTrophy, unlockTrophy };
