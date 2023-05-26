@@ -3,15 +3,15 @@
 <head>
     <title>Achievement Page</title>
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Poppins:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <%- include('../partials/top-navbar', { pageTitle: 'Your Tree', currentPage: 'achievements' }) %>
+    <%- include('../partials/top-navbar', { pageTitle: 'My Tree', currentPage: 'achievements' }) %>
     <div class="tree-container">
 
         <% if (user) { %>
-            <h1>Your Tree Level: <%= user.level %> - <%= tree.level %> </h1>
+            <h1>Tree Level: <%= user.level %> - <%= tree.level %> </h1>
             <img class="usertree" src="/images/<%= user.level %>.png" alt="Logo">
             <h3>
                 Progress until next tree level: <%= user.remainingPoints %>/<%= levelingThresholds[user.level - 1] || '' %>
@@ -21,6 +21,7 @@
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>
         <% } %>
+        <button class="trophies-btn" onclick="location.href='/'">My Habits</button>
     </div>
     <%- include('../partials/navbar') %>
 </body>
