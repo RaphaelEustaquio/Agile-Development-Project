@@ -335,7 +335,8 @@ button {
   
   .trophy {
     position: relative;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
+    background: linear-gradient(to right, #0EA47a, #329D9C); 
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.2);
     height: 50px;
     color: white;
     margin-top: 10px;
@@ -365,13 +366,12 @@ button {
   }
 
   .trophy:hover {
-    background:#15c795;
+    background: #15c795;
   }
-
+  
   .trophy:active {
-    background: #0c8664;
+  background: #0c8664;
   }
-
   .unseen-trophy-badge {
     background-color: orange;
     border-radius: 50%;
@@ -385,6 +385,11 @@ button {
     top: -8px;
     right: -5px;
   }
+
+  .trophy.unseen {
+    animation: colorTransition 1.5s infinite;
+  }
+  
   
 
   .trophy-count{
@@ -531,11 +536,11 @@ button {
 }
 
 .habit:hover {
-  background-color: #15c795;
+  background-color:  #f8f8f8;
 }
 
 .habit:active {
-  background-color: #0c8664;
+  background-color: #f0f0f0;
 }
 
 
@@ -794,7 +799,7 @@ background: #0c8664;
     padding-left: 15px;
     padding-right: 20px;
     overflow-y: scroll;
-    max-height: 450px;
+    max-height: 370px;
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
@@ -846,11 +851,11 @@ background: #0c8664;
   }
 
   .friend:hover {
-    background:#15c795;
+    background:#f8f8f8;
   }
 
   .friend:active {
-    background: #0c8664;
+    background: #f0f0f0;
     }
 
   .usertree {
