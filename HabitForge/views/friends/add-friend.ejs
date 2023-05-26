@@ -3,7 +3,7 @@
 <head>
     <title>Add Friend</title>
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Poppins:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script defer src="/javascript.js"></script>
 </head>
 <body>
@@ -39,7 +39,8 @@
       </div>
     <% } else { %>
       <h2 class="message-container">Search Habit@ for Friends!</h2>
-    <% } %>      
+    <% } %>  
+    <button class="my-friends-btn" onclick="location.href='/friends/index'">My Friends</button>    
   </div> 
     <%- include('../partials/navbar') %>
 </body>
