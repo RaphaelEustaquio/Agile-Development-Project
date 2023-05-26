@@ -153,11 +153,11 @@ button {
     height: 60px;
     width: 100%;
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     border: none;
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
   }
@@ -169,7 +169,7 @@ button {
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     border: none;
-    padding: 15px;
+    padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
   }
@@ -505,11 +505,12 @@ button {
   textarea {
     height: 100px;
     font-size: 20px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     resize: none;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
   }
   
 
@@ -526,7 +527,7 @@ button {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add the box-shadow property */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add the box-shadow property */
 }
 
 .habit:hover {
@@ -796,7 +797,7 @@ background: #0c8664;
     max-height: 450px;
     display: flex;
     flex-direction: column;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   .search-results::-webkit-scrollbar {
@@ -841,7 +842,7 @@ background: #0c8664;
     border: none;
     width: 100%;
     box-sizing: border-box;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); 
   }
 
   .friend:hover {
@@ -1209,6 +1210,6 @@ background: #0c8664;
   z-index: 1000;
   color: black;
   display: flex;
-  top: 100px;
+  top: 110px;
   right: 0;
 }
