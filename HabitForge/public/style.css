@@ -1,6 +1,6 @@
 body {
-  background: repeating-linear-gradient(to bottom, #f2f0f0, #d3efc8);
-  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #F5F5DC);
+  font-family: 'Poppins', sans-serif;
   height: 100vh;
   margin: 0;
 }
@@ -8,6 +8,7 @@ body {
 
 button {
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
 }
 
 .friendsicon {
@@ -72,6 +73,7 @@ button {
     padding: 15px;
     padding-bottom:50px;
     font-size: 15px;
+    font-family: 'Poppins', sans-serif;
   }
   
   #logDays {
@@ -85,8 +87,10 @@ button {
     align-items: center;
     padding: 10px;
     padding-bottom: 10px;
-    background:#333;
+    background:#15b082;
     border: none;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     color: white;
   }
   
@@ -110,6 +114,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: "Open Sans";
   }
 
   .loginform {
@@ -148,13 +153,25 @@ button {
     height: 60px;
     width: 100%;
     margin-bottom: 5px;
-    font-size: 30px;
-    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
-    padding: 15px;
     border: none;
+    padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="number"] {
+    height: 30px;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
   }
 
   .registration {
@@ -166,6 +183,7 @@ button {
     position: absolute;
     padding: 10px;
     bottom: 2px;
+    font-family: "Open Sans";
   }
 
   .padding {
@@ -205,7 +223,7 @@ button {
     left: 0;
     right: 0;
     height: 8vh;
-    background: #333;
+    background: #15b082;
     display: flex;
     justify-content: space-around;
     padding: 10px;
@@ -288,32 +306,37 @@ button {
   
   /* userhome/index.ejs styles */
   #add-habit-btn {
-    position: fixed;
-    bottom: 110px;
-    right: 20px;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
-    color: white;
-    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: solid black;
+    height: 50px;
+    color: black;
+    margin: 10px;
     border-radius: 25px;
-    font-size: 20px;
+    padding: 15px;
+    font-size: 40px;
     cursor: pointer;
-    border: none;
-    z-index: 1000;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add the box-shadow property */
   }
   
   
   #add-habit-btn:hover {
-      background: #15c795;
+    background-color: #f5f5f5;
   }
   
-  #add-habit-btn:active {
-    background: #0c8664;
-  }
+
 
   
   .trophy {
     position: relative;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
+    background: linear-gradient(to right, #0EA47a, #329D9C); 
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.2);
     height: 50px;
     color: white;
     margin-top: 10px;
@@ -343,13 +366,12 @@ button {
   }
 
   .trophy:hover {
-    background:#15c795;
+    background: #15c795;
   }
-
+  
   .trophy:active {
-    background: #0c8664;
+  background: #0c8664;
   }
-
   .unseen-trophy-badge {
     background-color: orange;
     border-radius: 50%;
@@ -363,6 +385,11 @@ button {
     top: -8px;
     right: -5px;
   }
+
+  .trophy.unseen {
+    animation: colorTransition 1.5s infinite;
+  }
+  
   
 
   .trophy-count{
@@ -378,7 +405,7 @@ button {
     font-size: 20px;
     font-weight: bold;
     position: absolute;
-    left: 150px;
+    right: 20px;
     bottom: 137px;
     animation: bouncetwo 1.5s infinite;
     z-index: 1000;
@@ -391,10 +418,10 @@ button {
     max-height: 500px;
   }
 
-  #trophies-btn {
+  .trophies-btn {
     position: fixed;
-    bottom: 110px;
-    left: 20px;
+    bottom: 105px;
+    right: 20px;
     background: linear-gradient(to right, #0EA47a, #329D9C);
     color: white;
     padding: 10px 20px;
@@ -402,13 +429,45 @@ button {
     font-size: 20px;
     cursor: pointer;
     border: none;
+    z-index: 1000;
+  }
+
+  .trophies-btn-highlight {
+    position: fixed;
+    bottom: 105px;
+    right: 20px;
+    background: linear-gradient(to right, #0EA47a, #329D9C);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+  }
+
+  .trophies-btn-highlight span {
+    display: inline-block;
+    animation: colorTransition 1.5s infinite;
   }
   
-  #trophies-btn:hover {
+  @keyframes colorTransition {
+    0% {
+      color: gold;
+    }
+    50% {
+      color: white;
+    }
+    100% {
+      color: gold;
+    }
+  }
+  
+  .trophies-btn:hover {
       background: #15c795;
   }
   
-  #trophies-btn:active {
+  .trophies-btn:active {
     background: #0c8664;
   }
 
@@ -426,38 +485,62 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-height: 420px;
+    max-height: 350px;
     overflow-y: scroll;
+    position: relative;
   }
 
-textarea {
-  height: 100px;
-  font-size: 20px;
-  font-family: 'Open Sans', sans-serif;
-  resize: none;
-}
+  .habit-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-message {
+    display: none;
+    position: fixed;
+    bottom: 290px;
+    left: 25px;
+    transform: translateX(-50%);
+    color: black;
+    padding: 5px 10px;
+    z-index: 1000;
+    animation: bouncetwo 1.5s infinite;
+  }
+
+
+  textarea {
+    height: 100px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+  }
+  
 
 .habit {
-    position: relative;
-    background-color: #333;
-    height: 50px;
-    color: white;
-    margin: 10px;
-    border-radius: 25px;
-    padding: 15px;
-    font-size: 15px;
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
+  position: relative;
+  background-color: #f5f5f5;
+  height: 50px;
+  color: black;
+  margin: 10px;
+  border-radius: 25px;
+  padding: 15px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Add the box-shadow property */
 }
 
 .habit:hover {
-  background-color: #555;
+  background-color:  #f8f8f8;
 }
 
 .habit:active {
-  background-color: #474747;
+  background-color: #f0f0f0;
 }
 
 
@@ -478,12 +561,11 @@ textarea {
   font-size: 12px;
   cursor: pointer;
   border: none;
-  color:white;
+  color:black;
 }
 
 .check-in-btn:hover {
-  background-color: #555;
-  color: #0EA47a
+  color: #ffa36b;
 }
 
 .checked-in {
@@ -495,7 +577,7 @@ textarea {
   padding: 5px 10px;
   border-radius: 12px;
   font-size: 12px;
-  color: #0EA47a;
+  color: #ffa36b;
 }
 
 .next-check-in {
@@ -507,7 +589,7 @@ textarea {
   padding: 5px 10px;
   border-radius: 12px;
   font-size: 12px;
-  color: white;
+  color: black;
 }
 
 .header-container {
@@ -587,13 +669,37 @@ background: #0c8664;
 background: #0c8664;
 }
 
+.my-friends-btn {
+  position: fixed;
+  bottom: 105px;
+  right: 20px;
+  background: linear-gradient(to right, #0EA47a, #329D9C);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  z-index: 1000;
+}
+
+.my-friends-btn:hover {
+  background: #15c795;
+}
+
+.my-friends-btn:active {
+background: #0c8664;
+}
+
 .badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: orange;
   border-radius: 50%;
   width: 24px;
   height: 24px;
   color: white;
-  text-align: center;
   font-size: 20px;
   font-weight: bold;
   position: absolute;
@@ -618,31 +724,44 @@ background: #0c8664;
 
 
 #add-friends-btn {
-    position: fixed;
-    bottom: 110px;
-    right: 20px;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
-    color: white;
-    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: solid black;
+    height: 50px;
+    color: black;
     border-radius: 25px;
-    font-size: 20px;
+    padding: 15px;
+    font-size: 40px;
+    width: 100%;
+    margin: 10px;
     cursor: pointer;
-    border: none;
-    z-index: 1000;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add the box-shadow property */
   }
-
 
   #add-friends-btn:hover {
-    background: #15c795;
+    background-color: #f5f5f5;
   }
 
-  #add-friends-btn:active {
-    background: #056c4f;
+  .friends-scroll-message {
+    display: none;
+    position: fixed;
+    bottom: 220px;
+    left: 25px;
+    transform: translateX(-50%);
+    color: black;
+    padding: 5px 10px;
+    z-index: 1000;
+    animation: bouncetwo 1.5s infinite;
   }
 
   .remove-friend-btn {
     position: fixed;
-    bottom: 110px;
+    bottom: 105px;
     right: 20px;
     background: linear-gradient(to right, #ff0000, #d20000);
     color: white;
@@ -663,8 +782,12 @@ background: #0c8664;
   }
 
   .friends-container{
-    overflow-y: scroll;
-    max-height: 450px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-height: 485px;
+      overflow-y: scroll;
+      position: relative;
   } 
 
   .friends-container::-webkit-scrollbar{
@@ -676,10 +799,10 @@ background: #0c8664;
     padding-left: 15px;
     padding-right: 20px;
     overflow-y: scroll;
-    max-height: 450px;
+    max-height: 370px;
     display: flex;
     flex-direction: column;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   .search-results::-webkit-scrollbar {
@@ -712,26 +835,27 @@ background: #0c8664;
 
   .friend {
     position: relative;
-    background: linear-gradient(to right, #0EA47a, #329D9C);
+    background-color: #f5f5f5;
     height: 50px;
-    color: white;
-    margin-top: 10px;
+    color: black;
+    margin: 10px;
     border-radius: 25px;
     padding: 15px;
     font-size: 15px;
     cursor: pointer;
     text-align: center;
+    border: none;
     width: 100%;
     box-sizing: border-box;
-    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); 
   }
 
   .friend:hover {
-    background:#15c795;
+    background:#f8f8f8;
   }
 
   .friend:active {
-    background: #0c8664;
+    background: #f0f0f0;
     }
 
   .usertree {
@@ -765,27 +889,6 @@ background: #0c8664;
 
 /* Leaderboard styles */
 
-#toggle-button {
-  position: fixed;
-  bottom: 110px;
-  right: 20px;
-  background: linear-gradient(to right, #0EA47a, #329D9C);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 20px;
-  cursor: pointer;
-  border: none;
-  z-index: 1000;
-}
-
-#toggle-button:hover {
-  background: #15c795;
-}
-
-#toggle-button:active {
-  background: #056c4f;
-}
 
 .top-platform {
   display: flex;
@@ -795,7 +898,7 @@ background: #0c8664;
   gap: 0px;
   padding-top: 10px;
   padding-bottom: 50px;
-  background-color: #3f3f3f;
+  background-color: #ffffff;
 }
 
 @keyframes bounce {
@@ -921,7 +1024,7 @@ background: #0c8664;
   overflow-y: scroll;
   height: 300px;
   padding-bottom: 50px;
-  background-color: #333;
+  background-color: white;
 }
 
 .lowrank-container::-webkit-scrollbar {
@@ -954,21 +1057,21 @@ background: #0c8664;
   width: 100%;
   font-weight: bold;
   font-size: 20px;
-  color: white;
+  color: black;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .leaderboard-header {
-  background-color: #3f3f3f;
+  background-color: white;
 }
 
 .leaderboard-row:nth-child(even) {
-  background-color: #3f3f3f;
+  background-color: white;
 }
 
 .leaderboard-row:nth-child(odd) {
-  background-color: gray;
+  background-color: #F5F5DC;
 }
 .habit-info {
   display: flex;
@@ -986,7 +1089,7 @@ background: #0c8664;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-height: 700px;
+  max-height: 650px;
   overflow-y: scroll;
 }
 
@@ -1010,6 +1113,18 @@ background: #0c8664;
 .feed-date {
   color: #999;
   font-size: 14px;
+}
+
+.feed-scroll-message {
+  /* display: none; */
+  position: fixed;
+  bottom: 100px;
+  left: 15px;
+  transform: translateX(-50%);
+  color: black;
+  padding: 5px 10px;
+  z-index: 1000;
+  animation: bouncetwo 1.5s infinite;
 }
 
 .login-register-container {
@@ -1047,12 +1162,12 @@ background: #0c8664;
   cursor: pointer;
   position: relative;
   margin-right: 0.25em;
-  width: 3em;
+  width: 4em;
   height: 1.5em;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: white;
+  color: black;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -1096,9 +1211,10 @@ background: #0c8664;
 }
 
 .toggle-button {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
-  color: white;
+  color: black;
   display: flex;
-  width: 100%;
+  top: 110px;
+  right: 0;
 }

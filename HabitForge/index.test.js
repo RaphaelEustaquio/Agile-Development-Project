@@ -2,6 +2,8 @@ const app = require('./index');
 const request = require('supertest')(app);
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const { addHabit, updateHabit, deleteHabit } = require('./controller/habitController');
+
 
 const testUser = {
   name: 'Test User',
@@ -35,57 +37,153 @@ describe('Authentication', () => {
   
 
   // User deletion test
-  it('should delete the test users', async () => {
-    // Find the test users in the database using Prisma
+  it('should delete the test user', async () => {
     const testUsers = await prisma.user.findMany({ where: { email: testUser.email } });
 
-    // Delete the test users
     for (const user of testUsers) {
+      // Delete the associated user trophies first
+      await prisma.userTrophy.deleteMany({ where: { userId: user.id } });
+      await prisma.habit.deleteMany({ where: { userId: user.id } });
+      // Delete the user
       await prisma.user.delete({ where: { id: user.id } });
     }
 
-    // Make assertions to check if the users were successfully deleted
     const deletedUsers = await prisma.user.findMany({ where: { email: testUser.email } });
     expect(deletedUsers.length).toBe(0);
   });
 });
 
-// describe('Habit Management', () => {
-//   let user;
-//     // Login the test user first
-//     beforeAll(async () => {
-//       await request.post('/register').send(testUser);
-//       await request.post('/login').send({ email: testUser.email, password: testUser.password });
-//       user = await prisma.user.findUnique({ where: { email: testUser.email }, include: { habits: true} });
-//     });
-//   // Add habit test
-//   it('should add a habit for the test user', async () => {
-//     console.log(user)
-//     const habitData = {
-//       name: 'Test Habit',
-//       description: 'This is a test habit',
-//       logDays: 'Monday,Wednesday,Friday',
-//       duration: 30,
-//       isPublic: true,
-//       userId: user.id,
-//     };
-//     // Send a request to add a habit
-//     const response = await request
-//       .post('/add-habit')
-//       .send(habitData)
-//       .set('Cookie', 'connect.sid=' + user.sessionCookie); // Pass the session cookie to authenticate the request
+describe('Habit Management', () => {
+  beforeAll(async () => {
+    await request
+    .post('/register')
+    .send(testUser)
+  })
+  afterAll(async () => {
+    // Delete the test user and associated habits
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+    await prisma.habit.deleteMany({ where: { userId: user.id } });
+    await prisma.userTrophy.deleteMany({ where: { userId: user.id } });
+    await prisma.userFeedItem.deleteMany({ where: { userId: user.id } });
+    await prisma.user.delete({ where: { id: user.id } });
+    await prisma.$disconnect();
+  });
 
+  it('should add a habit to an existing user', async () => {
+    // Prepare the habit data
+    const habitData = {
+      title: 'Test Habit',
+      description: 'Test habit description',
+      logDays: ['Monday', 'Wednesday', 'Friday'],
+      duration: 30,
+      isPublic: "on",
+    };
 
-//     expect(response.status).toBe(302); // Assuming the redirect status is 302
-//     console.log(habitData.name)
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
 
-//     // Assert that the habit was added successfully in the database
-//     const addedHabit = await prisma.habit.findFirst({
-//       where: { name: 'Test Habit' },
-//     });
-//     expect(addedHabit).toBeTruthy();
-//   });
-//   afterAll(async () => {
-//     await prisma.user.deleteMany({ where: { email: testUser.email } });
-//   });
-// });
+    // Create mock request and response objects
+    const mockRequest = {
+      user: { id: user.id },
+      body: habitData,
+    };
+    const mockResponse = {
+      redirect: jest.fn(),
+    };
+
+    // Add the habit to the user
+    await addHabit(mockRequest, mockResponse);
+
+    expect(mockResponse.redirect).toHaveBeenCalledWith('/');
+
+    // Check if the habit is added to the user in the database
+    const habit = await prisma.habit.findFirst({
+      where: { name: habitData.title, userId: user.id },
+    });
+
+    expect(habit).toBeTruthy();
+    expect(habit.name).toBe(habitData.title);
+    expect(habit.description).toBe(habitData.description);
+    expect(habit.logDays).toEqual(habitData.logDays.join(','));
+    expect(habit.duration).toBe(habitData.duration);
+    expect(habit.isPublic).toBe(true);
+    expect(habit.userId).toBe(user.id);
+  });
+
+  it('should update an existing habit', async () => {
+    // Prepare the updated habit data
+    const updatedHabitData = {
+      title: 'Updated Habit',
+      description: 'Updated habit description',
+      logDays: ['Tuesday', 'Thursday'],
+      duration: 60,
+      isPublic: "off",
+    };
+    
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+
+    // Get the test user's habit
+    const habit = await prisma.habit.findFirst({
+      where: { userId: user.id },
+    });
+  
+    // Create mock request and response objects
+    const mockRequest = {
+      user: { id: user.id },
+      params: { habitId: habit.id },
+      body: updatedHabitData,
+    };
+    const mockResponse = {
+      redirect: jest.fn(),
+    };
+  
+    // Update the habit
+    await updateHabit(mockRequest, mockResponse);
+  
+    expect(mockResponse.redirect).toHaveBeenCalledWith('/');
+  
+    // Check if the habit is updated in the database
+    const updatedHabit = await prisma.habit.findFirst({
+      where: { id: habit.id },
+    });
+  
+    expect(updatedHabit).toBeTruthy();
+    expect(updatedHabit.name).toBe(updatedHabitData.title);
+    expect(updatedHabit.description).toBe(updatedHabitData.description);
+    expect(updatedHabit.logDays).toEqual(updatedHabitData.logDays.join(','));
+    expect(updatedHabit.duration).toBe(updatedHabitData.duration);
+    expect(updatedHabit.isPublic).toBe(false);
+    expect(updatedHabit.userId).toBe(user.id);
+  });
+
+  it('should delete an existing habit', async () => {
+
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+
+    // Get the test user's habit
+    const habit = await prisma.habit.findFirst({
+      where: { userId: user.id },
+    });
+
+    // Create mock request and response objects
+    const mockRequest = {
+      user: { id: user.id },
+      params: { habitId: habit.id },
+    };
+    const mockResponse = {
+      redirect: jest.fn(),
+    };
+  
+    // Delete the habit
+    await deleteHabit(mockRequest, mockResponse);
+  
+    expect(mockResponse.redirect).toHaveBeenCalledWith('/');
+  
+    // Check if the habit is deleted from the database
+    const deletedHabit = await prisma.habit.findUnique({
+      where: { id: habit.id },
+    });
+  
+    expect(deletedHabit).toBeNull();
+  });
+  
+});

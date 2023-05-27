@@ -3,22 +3,27 @@
 <head>
     <title>Feed Page</title>
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Poppins:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/javascript.js"></script>
 </head>
 <body>
     <%- include('../partials/top-navbar', { pageTitle: 'Feed', currentPage: 'feed' }) %>
     <div class="container">
         <% if (user) { %>
-            <div class="feed-container">
-                <% feedItems.forEach((item) => { %>
-                    
-                    <div class="feed-item">
-                        <p class="feed-text"><%= item.text %></p>
-                        <p class="feed-date"><small><%= item.date %></small></p>
-                    </div>
-                <% }) %>  
-            </div>               
+            <% if (feedItems.length > 0) { %>
+                <div class="feed-container">
+                    <% feedItems.forEach((item) => { %>
+                        <div class="feed-item">
+                            <p class="feed-text"><%= item.text %></p>
+                            <p class="feed-date"><small><%= item.date %></small></p>
+                        </div>
+                    <% }) %>  
+                    <div class="feed-scroll-message">Scroll for more ↓</div>     
+                </div>
+            <% } else { %>
+                <h2 class="message-container">Up to date, nothing new!</h2>
+            <% } %>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>
             <a href="/login">Login</a> | <a href="/register">Register</a>

@@ -59,12 +59,21 @@ const renderFriendHabits = async (req, res) => {
 
 const searchUsers = async (req, res) => {
   const searchQuery = req.body.search.toLowerCase();
+  
+  // Retrieve users who match the search query and have not received a friend request from the current user
   const matchedUsers = await prisma.user.findMany({
     where: {
       AND: [
         { name: { contains: searchQuery } },
         { name: { not: req.user.name } },
         { realFriends: { none: { name: req.user.name } } },
+        {
+          friendRequests: {
+            none: {
+              friendId: req.user.id,
+            },
+          },
+        },
       ],
     },
   });

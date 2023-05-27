@@ -3,14 +3,13 @@
 <head>
     <title>User Page</title>
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Poppins:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/javascript.js"></script>
 </head>
 <body>
-    <button id="add-habit-btn" onclick="location.href='/add-habit'">Add a Habit</button>
-    <button id="trophies-btn" onclick="location.href='../achievements/trophies'">My Trophies</button>
     <% const unseenTrophies = user.userTrophies.filter(trophy => !trophy.seen); %>
+    <button class="<%= unseenTrophies.length > 0 ? 'trophies-btn-highlight' : 'trophies-btn' %>" onclick="location.href='../achievements/trophies'"><span>My Trophies</span></button>
     <% if (unseenTrophies.length > 0) { %>
         <div class="trophy-count"><%= unseenTrophies.length %></div>
     <% } %>
@@ -125,7 +124,11 @@
                             <% } %>
                         </div>
                     <% } %>
-                  <% }) %>                  
+                <% }) %>   
+                <div class="scroll-message">Scroll for more ↓</div>
+            </div>
+            <div class="habit-container">
+                <button id="add-habit-btn" onclick="location.href='/add-habit'">+</button>             
             </div>
         <% } else { %>
             <h1>Welcome, please log in or register.</h1>

@@ -158,21 +158,21 @@ const updateUserPoints = async (user, points) => {
   }
 
   let levelUp = false;
-  if(level > user.level) {
+  if (level > user.level) {
     levelUp = true;
   }
 
   // Update user
   const updatedUser = await prisma.user.update({
     where: {
-      id: user.id
+      id: user.id,
     },
     data: {
-      points: totalPoints,
+      points: Number.isNaN(totalPoints) ? 0 : Math.floor(totalPoints),
       level,
-      remainingPoints,
-      levelUp
-    }
+      remainingPoints: Number.isNaN(remainingPoints) ? 0 : Math.floor(remainingPoints),
+      levelUp,
+    },
   });
 };
 

@@ -3,7 +3,7 @@
 <head>
     <title>Add Friend</title>
     <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Poppins:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script defer src="/javascript.js"></script>
 </head>
 <body>
@@ -26,20 +26,19 @@
     <% if (searchResults) { %>
       <h2>Search Results:</h2>
       <div class="search-results">
-        <% searchResults.forEach(result => {
-          if (result.id !== user.id && !user.realFriends.some(friend => friend.id === result.id)) { %>
-            <div class="search-result">
-              <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
-            </div>
-          <% }
-        }) %>
+        <% searchResults.forEach(result => { %>
+          <div class="search-result">
+            <button onclick="sentRequest(); window.location.href='/friends/follow/<%= result.id %>'" id="follow-btn"><%= result.name %> (<%= result.email %>) Click to send a friend request!</button>
+          </div>
+        <% }) %>
         <% if (!searchResults.length) { %>
-          <p>There are no users that match that name or email.</p>
+          <p>No users match the search criteria.</p>
         <% } %>
       </div>
     <% } else { %>
       <h2 class="message-container">Search Habit@ for Friends!</h2>
-    <% } %>      
+    <% } %>  
+    <button class="my-friends-btn" onclick="location.href='/friends/index'">My Friends</button>    
   </div> 
     <%- include('../partials/navbar') %>
 </body>
