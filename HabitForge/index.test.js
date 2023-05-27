@@ -54,9 +54,18 @@ describe('Authentication', () => {
 });
 
 describe('Habit Management', () => {
+  beforeAll(async () => {
+    await request
+    .post('/register')
+    .send(testUser)
+  })
   afterAll(async () => {
     // Delete the test user and associated habits
-    await prisma.habit.deleteMany({ where: { userId: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' } });
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+    await prisma.habit.deleteMany({ where: { userId: user.id } });
+    await prisma.userTrophy.deleteMany({ where: { userId: user.id } });
+    await prisma.userFeedItem.deleteMany({ where: { userId: user.id } });
+    await prisma.user.delete({ where: { id: user.id } });
     await prisma.$disconnect();
   });
 
@@ -70,9 +79,11 @@ describe('Habit Management', () => {
       isPublic: "on",
     };
 
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+
     // Create mock request and response objects
     const mockRequest = {
-      user: { id: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      user: { id: user.id },
       body: habitData,
     };
     const mockResponse = {
@@ -86,7 +97,7 @@ describe('Habit Management', () => {
 
     // Check if the habit is added to the user in the database
     const habit = await prisma.habit.findFirst({
-      where: { name: habitData.title, userId: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      where: { name: habitData.title, userId: user.id },
     });
 
     expect(habit).toBeTruthy();
@@ -95,7 +106,7 @@ describe('Habit Management', () => {
     expect(habit.logDays).toEqual(habitData.logDays.join(','));
     expect(habit.duration).toBe(habitData.duration);
     expect(habit.isPublic).toBe(true);
-    expect(habit.userId).toBe('c0ce1733-bdee-42a2-9670-7f61327e4aa1');
+    expect(habit.userId).toBe(user.id);
   });
 
   it('should update an existing habit', async () => {
@@ -107,15 +118,17 @@ describe('Habit Management', () => {
       duration: 60,
       isPublic: "off",
     };
-  
+    
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+
     // Get the test user's habit
     const habit = await prisma.habit.findFirst({
-      where: { userId: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      where: { userId: user.id },
     });
   
     // Create mock request and response objects
     const mockRequest = {
-      user: { id: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      user: { id: user.id },
       params: { habitId: habit.id },
       body: updatedHabitData,
     };
@@ -139,18 +152,21 @@ describe('Habit Management', () => {
     expect(updatedHabit.logDays).toEqual(updatedHabitData.logDays.join(','));
     expect(updatedHabit.duration).toBe(updatedHabitData.duration);
     expect(updatedHabit.isPublic).toBe(false);
-    expect(updatedHabit.userId).toBe('c0ce1733-bdee-42a2-9670-7f61327e4aa1');
+    expect(updatedHabit.userId).toBe(user.id);
   });
 
   it('should delete an existing habit', async () => {
+
+    const user = await prisma.user.findUnique({ where: { email: testUser.email}})
+
     // Get the test user's habit
     const habit = await prisma.habit.findFirst({
-      where: { userId: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      where: { userId: user.id },
     });
-  
+
     // Create mock request and response objects
     const mockRequest = {
-      user: { id: 'c0ce1733-bdee-42a2-9670-7f61327e4aa1' },
+      user: { id: user.id },
       params: { habitId: habit.id },
     };
     const mockResponse = {
