@@ -1,5 +1,8 @@
 # Agile-Development-Project
 
+## NOTES TO KNOW BEFORE CLONING:
+When cloned, it will be in the structure: `Agile-Development-Project/HabitForge/`. Therefore, you can clone it straight to your desktop but if you clone it into a folder that you have created, keep in mind the structure will then be `<folder-you-created>/Agile-Development-Project/HabitForge/`. Just keep in mind that you must `cd` to the `/HabitForge/` directory to execute all commands as directed in the instructions below. 
+
 ## Basic steps to run the app:
 1. Make sure you are in the right location.
    - Navigate to the `Agile-Development-Project/HabitForge/` directory. You can use the command `cd ./Agile-Development-Project/HabitForge/` in your code editor's terminal (modify the command if your current directory is different).
