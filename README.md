@@ -3,7 +3,7 @@
 ## NOTES TO KNOW BEFORE CLONING:
 When cloned, it will be in the structure: `Agile-Development-Project/HabitForge/`. Therefore, you can clone it straight to your desktop but if you clone it into a folder that you have created, keep in mind the structure will then be `<folder-you-created>/Agile-Development-Project/HabitForge/`. Just keep in mind that you must `cd` to the `/HabitForge/` directory to execute all commands as directed in the instructions below. 
 
-## Basic steps to run the app:
+## Basic Steps to Run the App:
 1. Make sure you are in the right location.
    - Navigate to the `Agile-Development-Project/HabitForge/` directory. You can use the command `cd ./Agile-Development-Project/HabitForge/` in your code editor's terminal (modify the command if your current directory is different).
 
@@ -21,7 +21,7 @@ When cloned, it will be in the structure: `Agile-Development-Project/HabitForge/
 
 Please follow these steps to set up and run the HabitForge app successfully.
 
-## Explanation of our app's directory structure:
+## Explanation of the App's Directory Structure:
 1. Controller:
 The `controller` directory contains files responsible for handling the logic and operations of specific features or entities in the application. These files act as intermediaries between incoming requests and the underlying data or business logic. Each file within the `controller` directory focuses on a specific feature or entity and contains functions that handle various operations related to that feature.
 
@@ -38,3 +38,6 @@ The `public` directory is where we store static assets that are directly served 
 The `index.js` file serves as the entry point of our application. It's where the server is initialized, and the main execution starts. In this file, we typically import necessary dependencies and modules, configure the server settings, establish connections to databases or external services, and define the routes for handling incoming requests. The `index.js` file brings together the various components of our application, such as controllers, middleware, and routes, to create a functioning server.
 
 By organizing our codebase in this directory structure, we achieve a modular and maintainable architecture. It allows us to separate concerns, such as handling business logic (`controller`), defining routes (`routes`), implementing middleware, and managing static assets (`public`). The `index.js` file serves as the entry point, initializing the server and connecting all the components together to create a cohesive application.
+
+## How to Run the Unit Tests:
+Our unit tests are located in the `index.test.js` file. To run the unit tests, execute the command `npm test`. Make sure you execute this command in the `Agile-Development-Project/HabitForge/` directory.
